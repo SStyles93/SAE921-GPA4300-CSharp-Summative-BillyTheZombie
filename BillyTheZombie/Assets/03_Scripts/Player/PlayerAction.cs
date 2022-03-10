@@ -9,6 +9,10 @@ public class PlayerAction : MonoBehaviour
     //Reference GameObjects
     [SerializeField] private GameObject _aim;
 
+    [SerializeField] private GameObject _body;
+    [SerializeField] private GameObject _armR;
+    [SerializeField] private GameObject _armL;
+
     void Start()
     {
         _controller = GetComponent<PlayerController>();
@@ -22,6 +26,9 @@ public class PlayerAction : MonoBehaviour
         {
             _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
         }
-
+        else
+        {
+            _aim.transform.localPosition = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
+        }
     }
 }

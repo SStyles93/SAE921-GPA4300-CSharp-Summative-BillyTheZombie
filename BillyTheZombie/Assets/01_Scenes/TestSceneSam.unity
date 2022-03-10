@@ -123,6 +123,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &32897484 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 32897484, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+  m_PrefabInstance: {fileID: 2619042566747792503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1624313780 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6752433910420508882, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+  m_PrefabInstance: {fileID: 2619042566747792503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1709225246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2619042568326500037, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+  m_PrefabInstance: {fileID: 2619042566747792503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1709225247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709225246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c5761c1c546e5429fbb4c34d1d8376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bodySprites:
+  - {fileID: 21300000, guid: 812fed6182c311346b00e5dd9c102f4b, type: 3}
+  - {fileID: 21300000, guid: 425c29a578218f14496085ba6a26faad, type: 3}
+  - {fileID: 21300000, guid: e62d3b6f8c76d094d9237cc4d51957dc, type: 3}
+  - {fileID: 21300000, guid: eca598c7baadb2b4d854ab3f131c5735, type: 3}
+  _rightArmSprites: []
+  _leftArmSprites: []
+  _bodyRender: {fileID: 1624313780}
+  _rightArmRender: {fileID: 32897484}
+  _leftArmRender: {fileID: 1953041834}
+--- !u!212 &1953041834 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1953041834, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+  m_PrefabInstance: {fileID: 2619042566747792503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2039820057
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +255,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 32897482, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 885012083066232913, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619042568206500186, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2619042568326500032, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_RootOrder
       value: 1

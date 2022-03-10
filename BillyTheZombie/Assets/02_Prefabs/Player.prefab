@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &32897483
 Transform:
   m_ObjectHideFlags: 0
@@ -28,8 +28,8 @@ Transform:
   m_LocalPosition: {x: -0.315, y: -0.265, z: 0}
   m_LocalScale: {x: 0.28717, y: 0.28717, z: 0.28717}
   m_Children: []
-  m_Father: {fileID: 2619042568326500032}
-  m_RootOrder: 2
+  m_Father: {fileID: 3504187169100981079}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &32897484
 SpriteRenderer:
@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1953041833
 Transform:
   m_ObjectHideFlags: 0
@@ -110,8 +110,8 @@ Transform:
   m_LocalPosition: {x: 0.318, y: -0.265, z: 0}
   m_LocalScale: {x: 0.28717, y: 0.28717, z: 0.28717}
   m_Children: []
-  m_Father: {fileID: 2619042568326500032}
-  m_RootOrder: 3
+  m_Father: {fileID: 3504187169100981079}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1953041834
 SpriteRenderer:
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 3504187169100981079}
   - component: {fileID: 6752433910420508882}
   m_Layer: 0
-  m_Name: Visuals
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 32897483}
+  - {fileID: 1953041833}
   m_Father: {fileID: 2619042568326500032}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -364,8 +366,6 @@ Transform:
   m_Children:
   - {fileID: 2619042568206500185}
   - {fileID: 3504187169100981079}
-  - {fileID: 32897483}
-  - {fileID: 1953041833}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -505,3 +505,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aim: {fileID: 2619042568206500186}
+  _body: {fileID: 885012083066232913}
+  _armR: {fileID: 32897482}
+  _armL: {fileID: 1953041832}
