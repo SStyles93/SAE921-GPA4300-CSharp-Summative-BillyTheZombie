@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3734507307
+    locked: 0
+  - name: LevelAssets
+    uniqueID: 971991361
+    locked: 0
+  - name: Characters
+    uniqueID: 3918885867
+    locked: 0

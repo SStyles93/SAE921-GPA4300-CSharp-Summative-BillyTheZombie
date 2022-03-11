@@ -6,13 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     //Reference Scripts
     private PlayerController _controller;
-
+    //Variables
     [SerializeField] private float _speed = 2.0f;
 
     private bool _canMove = true;
     public bool CanMove { get => _canMove; set => _canMove = value; }
 
-    void Start()
+    void Awake()
     {
         _controller = GetComponent<PlayerController>();
     }
