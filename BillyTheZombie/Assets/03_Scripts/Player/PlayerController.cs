@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     
     public Vector2 Movement { get => _movement; set => _movement = value; }
     public Vector2 Look { get => _look; set => _look = value; }
+    public bool Head { get => _head; set => _head = value; }
+    public bool ArmR { get => _armR; set => _armR = value; }
+    public bool ArmL { get => _armL; set => _armL = value; }
 
     public void OnMove(InputValue value)
     {
