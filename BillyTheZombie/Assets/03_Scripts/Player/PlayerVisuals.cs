@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerVisual : MonoBehaviour
+public class PlayerVisuals : MonoBehaviour
 {
     //Reference Scripts
-    [SerializeField] private PlayerController _controller;
+    private PlayerController _controller;
 
     //Reference Components
-    [SerializeField] private Animator _animator;
+    private Animator _animator;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class PlayerVisual : MonoBehaviour
             _animator.SetFloat("Movement", 0.0f);
         }
     }
-    #region SpritePosition
+    #region SpritePosition NOT USED
 
     //
     //    [Header("Sprite Bank")]

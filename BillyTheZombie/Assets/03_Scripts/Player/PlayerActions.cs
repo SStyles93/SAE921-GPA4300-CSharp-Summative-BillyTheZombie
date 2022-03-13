@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAction : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
     //Reference Scripts
     private PlayerController _controller;
@@ -17,10 +17,21 @@ public class PlayerAction : MonoBehaviour
 
     //Prefabs
     [Header("Arm Prefabs")]
+    [Tooltip("Contains all arm prefabs for the right arm")]
     [SerializeField] private List<GameObject> _rightArm;
+    [Tooltip("Contains all arm prefabs for the left arm")]
     [SerializeField] private List<GameObject> _leftArm;
 
+    //List of bools used for Actions
+    [Header("Action's variables")]
+    [SerializeField] private float _headbuttCoolDownTime = 1.0f;
+    private float _headbuttCoolDown = 1.0f;
+    private bool _canHeadbutt = true;
     private List<bool> _canThrow = new List<bool> { true, true };
+
+    //Properties
+    public List<bool> CanThrow { get => _canThrow; set => _canThrow = value; }
+    public bool CanHit { get => _canHeadbutt; set => _canHeadbutt = value; }
 
     void Awake()
     {
@@ -29,15 +40,25 @@ public class PlayerAction : MonoBehaviour
 
     void Update()
     {
+        UpdatePlayerLookDirection();
+        ActionCheck();
+        
+    }
+
+    /// <summary>
+    /// Updates the player look direction
+    /// </summary>
+    private void UpdatePlayerLookDirection()
+    {
         //Look direction
         Vector2 look = _controller.Look;
-        Vector3 currentAimPos = _aim.transform.localPosition; 
-        if (look != Vector2.zero) 
+        Vector3 currentAimPos = _aim.transform.localPosition;
+        if (look != Vector2.zero)
         {
             _cameraTarget.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
             _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
         }
-        else if(_controller.Movement != Vector2.zero)
+        else if (_controller.Movement != Vector2.zero)
         {
             _cameraTarget.transform.localPosition = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
             _aim.transform.localPosition = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
@@ -47,7 +68,14 @@ public class PlayerAction : MonoBehaviour
             _cameraTarget.transform.localPosition = Vector3.zero;
             _aim.transform.localPosition = currentAimPos;
         }
+    }
 
+    /// <summary>
+    /// Activates the player's actions
+    /// </summary>
+    private void ActionCheck()
+    {
+        //RightArm Throw
         if (_controller.ArmR && _canThrow[(int)ARMSIDE.RIGHT])
         {
             EnablePlayersArm(ARMSIDE.RIGHT, false);
@@ -55,15 +83,29 @@ public class PlayerAction : MonoBehaviour
             _canThrow[(int)ARMSIDE.RIGHT] = false;
 
         }
+        
+        //LeftArm Throw
         if (_controller.ArmL && _canThrow[(int)ARMSIDE.LEFT])
         {
             EnablePlayersArm(ARMSIDE.LEFT, false);
             InstantiateArm(ARMSIDE.LEFT);
             _canThrow[(int)ARMSIDE.LEFT] = false;
         }
-        if (_controller.Head)
+
+        //Headbutt
+        if (_controller.Head && _canHeadbutt)
         {
-            //Headtbutt
+            //TODO : Headtbutt
+            _canHeadbutt = false;
+        }
+        else if(!_canHeadbutt)
+        {
+            _headbuttCoolDown -= Time.deltaTime;
+            if (_headbuttCoolDown <= 0.0f)
+            {
+                _headbuttCoolDown = _headbuttCoolDownTime;
+                _canHeadbutt = true;
+            }
         }
     }
 
@@ -78,6 +120,11 @@ public class PlayerAction : MonoBehaviour
         _canThrow[(int)armSide] = true;
 
     }
+    
+    /// <summary>
+    /// Instantiates an arm
+    /// </summary>
+    /// <param name="armSide">Define which arm to instantiate</param>
     private void InstantiateArm(ARMSIDE armSide)
     {
         int rightArmAbilityIndex = 0;
@@ -87,6 +134,7 @@ public class PlayerAction : MonoBehaviour
         {
             //will have to adapt to ability chosen
             Instantiate(_rightArm[rightArmAbilityIndex].gameObject, _aim.transform.position, Quaternion.identity);
+            
         }
         if (armSide == ARMSIDE.LEFT)
         {

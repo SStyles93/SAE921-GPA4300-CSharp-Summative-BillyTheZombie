@@ -6,15 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     //Reference Scripts
     private PlayerController _controller;
-    //Variables
-    [SerializeField] private float _speed = 2.0f;
-
+    private PlayerStats _stats;
+    
     private bool _canMove = true;
     public bool CanMove { get => _canMove; set => _canMove = value; }
 
     void Awake()
     {
         _controller = GetComponent<PlayerController>();
+        _stats = GetComponent<PlayerStats>();
     }
     private void Update()
     {
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         if (_canMove)
         {
             Vector3 movement = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
-            transform.Translate(movement * _speed * Time.deltaTime);
+            transform.Translate(movement * _stats.Speed * Time.deltaTime);
         }
     }
 }

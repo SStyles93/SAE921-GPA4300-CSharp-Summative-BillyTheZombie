@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Vector2 _movement;
-    [SerializeField] private Vector2 _look;
+    private Vector2 _movement;
+    private Vector2 _look;
 
-    [SerializeField] private bool _head;
-    [SerializeField] private bool _armR;
-    [SerializeField] private bool _armL;
+    private bool _head;
+    private bool _armR;
+    private bool _armL;
     
     public Vector2 Movement { get => _movement; set => _movement = value; }
     public Vector2 Look { get => _look; set => _look = value; }

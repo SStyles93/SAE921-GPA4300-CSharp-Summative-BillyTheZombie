@@ -10,13 +10,15 @@ public enum ARMSIDE
 
 public class Arm : MonoBehaviour
 {
-    [SerializeField] private ARMSIDE arm;
+    [SerializeField] private ARMSIDE armSide;
+
+    [SerializeField] private float _damage;
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
-            collision.gameObject.GetComponent<PlayerAction>().EnablePlayersArm(arm, true);
+            collision.gameObject.GetComponent<PlayerActions>().EnablePlayersArm(armSide, true);
             Destroy(gameObject);
         }
     }
