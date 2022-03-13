@@ -8,6 +8,12 @@ public class PlayerStats : MonoBehaviour
     [Header("Player Stats ScriptableObject")]
     [SerializeField] private PlayerStatsSO _statSO;
 
+    //players basic stats
+    private float _basicHealth = 100.0f;
+    private float _basicSpeed = 2.0f;
+    private float _basicPushPower = 1.0f;
+    private float _basicDamageRight = 10.0f;
+    private float _basicDamageLeft = 10.0f;
 
     //player final stats
     [Header("Player's Stats")]
@@ -17,13 +23,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _pushPower = 1.0f;
     [SerializeField] private float _damageRight = 10.0f;
     [SerializeField] private float _damageLeft = 10.0f;
-
-    //players basic stats
-    private float _basicHealth = 100.0f;
-    private float _basicSpeed = 2.0f;
-    private float _basicPushPower = 1.0f;
-    private float _basicDamageRight = 10.0f;
-    private float _basicDamageLeft = 10.0f;
     
     //Properties
     public float Health { get => _health; set => _health = value; }

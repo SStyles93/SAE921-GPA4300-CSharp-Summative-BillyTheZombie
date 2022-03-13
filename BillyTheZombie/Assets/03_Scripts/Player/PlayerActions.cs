@@ -6,6 +6,7 @@ public class PlayerActions : MonoBehaviour
 {
     //Reference Scripts
     private PlayerController _controller;
+    private PlayerStats _stats;
 
     //Reference GameObjects
     [Header("Player's body parts")]
@@ -18,9 +19,9 @@ public class PlayerActions : MonoBehaviour
     //Prefabs
     [Header("Arm Prefabs")]
     [Tooltip("Contains all arm prefabs for the right arm")]
-    [SerializeField] private List<GameObject> _rightArm;
+    [SerializeField] private List<GameObject> _rightArms;
     [Tooltip("Contains all arm prefabs for the left arm")]
-    [SerializeField] private List<GameObject> _leftArm;
+    [SerializeField] private List<GameObject> _leftArms;
 
     //List of bools used for Actions
     [Header("Action's variables")]
@@ -36,13 +37,13 @@ public class PlayerActions : MonoBehaviour
     void Awake()
     {
         _controller = GetComponent<PlayerController>();
+        _stats = GetComponent<PlayerStats>();
     }
 
     void Update()
     {
         UpdatePlayerLookDirection();
-        ActionCheck();
-        
+        ActionCheck();        
     }
 
     /// <summary>
@@ -133,13 +134,18 @@ public class PlayerActions : MonoBehaviour
         if (armSide == ARMSIDE.RIGHT)
         {
             //will have to adapt to ability chosen
-            Instantiate(_rightArm[rightArmAbilityIndex].gameObject, _aim.transform.position, Quaternion.identity);
-            
+            GameObject currentArm = Instantiate(_rightArms[rightArmAbilityIndex].gameObject, _aim.transform.position, Quaternion.identity);
+            Arm arm = currentArm.GetComponent<Arm>();
+            arm.ArmDirection = _aim.transform.localPosition;
+            arm.Damage *= _stats.DamageRight;
         }
         if (armSide == ARMSIDE.LEFT)
         {
             //will have to adapt to ability chosen
-            Instantiate(_leftArm[leftArmAbilityIndex].gameObject,_aim.transform.position, Quaternion.identity);
+            GameObject currentArm = Instantiate(_leftArms[leftArmAbilityIndex].gameObject,_aim.transform.position, Quaternion.identity);
+            Arm arm = currentArm.GetComponent<Arm>();
+            arm.ArmDirection = _aim.transform.localPosition;
+            arm.Damage *= _stats.DamageLeft;
         }
     }
 }
