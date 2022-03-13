@@ -43,7 +43,7 @@ public class Arm : MonoBehaviour
     {
         _canMove = false;
         
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (collision.gameObject.GetComponent<PlayerController>() && !_canHurt)
         {
             collision.gameObject.GetComponent<PlayerActions>().EnablePlayersArm(armSide, true);
             Destroy(gameObject);
@@ -56,10 +56,17 @@ public class Arm : MonoBehaviour
                 _canHurt = false;
             }
         }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            _canHurt = false;
+        }
     }
     private void Move()
     {
+        ////Non physic movement
         //transform.Translate(_armDirection * _speed * Time.deltaTime);
+        
+        //Physic movement
         Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
         rb.AddForce(_armDirection * _speed, ForceMode2D.Impulse);
     }
