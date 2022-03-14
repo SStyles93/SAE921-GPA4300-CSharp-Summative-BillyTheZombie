@@ -124,10 +124,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 1ac06449335066c4994a91be3d906ad1, type: 2}
+  m_Material: {fileID: 6200000, guid: b5877023bfeaae046ae97cd51ca3112c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -145,4 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armSide: 1
-  _speed: 0.1
+  armType: 0
+  _speed: 1

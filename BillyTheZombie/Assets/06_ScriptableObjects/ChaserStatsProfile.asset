@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9705bcc1a9c4f44aed6c490fad4036, type: 3}
   m_Name: ChaserStatsProfile
   m_EditorClassIdentifier: 
-  _health: 22
+  _health: 100
   _speed: 1
   _damage: 1

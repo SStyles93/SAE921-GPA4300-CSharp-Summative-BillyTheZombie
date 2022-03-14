@@ -20,8 +20,12 @@ public class PlayerActions : MonoBehaviour
     [Header("Arm Prefabs")]
     [Tooltip("Contains all arm prefabs for the right arm")]
     [SerializeField] private List<GameObject> _rightArms;
+    [Tooltip("The Index of ability chosen for rightArm")]
+    [SerializeField] private int chosenAbilityIdxR = 0;
     [Tooltip("Contains all arm prefabs for the left arm")]
     [SerializeField] private List<GameObject> _leftArms;
+    [Tooltip("The Index of ability chosen for leftArm")]
+    [SerializeField] private int chosenAbilityIdxL = 0;
 
     //List of bools used for Actions
     [Header("Action's variables")]
@@ -38,6 +42,10 @@ public class PlayerActions : MonoBehaviour
     {
         _controller = GetComponent<PlayerController>();
         _stats = GetComponent<PlayerStats>();
+    }
+    private void Start()
+    {
+        _aim.transform.localPosition = new Vector3(0.0f, -1.0f, 0.0f);
     }
 
     void Update()
@@ -121,31 +129,32 @@ public class PlayerActions : MonoBehaviour
         _canThrow[(int)armSide] = true;
 
     }
-    
+
     /// <summary>
     /// Instantiates an arm
     /// </summary>
     /// <param name="armSide">Define which arm to instantiate</param>
     private void InstantiateArm(ARMSIDE armSide)
     {
-        int rightArmAbilityIndex = 0;
-        int leftArmAbilityIndex = 0;
-
         if (armSide == ARMSIDE.RIGHT)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_rightArms[rightArmAbilityIndex].gameObject, _aim.transform.position, Quaternion.identity);
+            GameObject currentArm = Instantiate(_rightArms[chosenAbilityIdxR].gameObject, _aim.transform.position, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _stats.DamageRight;
+            //ThrowPosition used for BommerangArm
+            arm.ThrowPosition = transform.position;
         }
         if (armSide == ARMSIDE.LEFT)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_leftArms[leftArmAbilityIndex].gameObject,_aim.transform.position, Quaternion.identity);
+            GameObject currentArm = Instantiate(_leftArms[chosenAbilityIdxL].gameObject,_aim.transform.position, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _stats.DamageLeft;
+            //ThrowPosition used for BommerangArm
+            arm.ThrowPosition = transform.position;
         }
     }
 }
