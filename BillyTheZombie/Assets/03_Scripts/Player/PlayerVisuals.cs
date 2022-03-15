@@ -6,6 +6,7 @@ public class PlayerVisuals : MonoBehaviour
 {
     //Reference Scripts
     private PlayerController _controller;
+    private PlayerMovement _movement;
     private PlayerActions _actions;
 
     //Reference Components
@@ -16,6 +17,7 @@ public class PlayerVisuals : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponentInParent<PlayerController>();
+        _movement = GetComponentInParent<PlayerMovement>();
         _actions = GetComponentInParent<PlayerActions>();
         _animator = GetComponent<Animator>();
     }
@@ -56,15 +58,23 @@ public class PlayerVisuals : MonoBehaviour
             _animator.SetFloat("Movement", 0.0f);
         }
     }
-
-    public void Headbutt()
+    
+    /// <summary>
+    /// Launch headbutt
+    /// </summary>
+    public void StartHeadbutt()
     {
         _animator.SetBool("Headbutt", true);
+        _movement.CanMove = false;
 
     }
+    /// <summary>
+    /// Method used to disable Headbutt bool in animator
+    /// </summary>
     public void EndHeadbutt()
     {
         _animator.SetBool("Headbutt", false);
+        _movement.CanMove = true;
     }
 
     #region SpritePosition NOT USED

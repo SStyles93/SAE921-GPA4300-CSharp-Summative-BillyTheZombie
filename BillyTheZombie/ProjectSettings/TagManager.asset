@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< HEAD
-  - Enemy
-=======
-  - Wall
->>>>>>> 3882dd00c4d23f6d05b3fcc4ba86f008bfe6b6b7
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -16,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Arm
+  - 
   - 
   - 
   - 
@@ -45,13 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Ground
-    uniqueID: 3734507307
-    locked: 0
-  - name: LevelAssets
-    uniqueID: 971991361
-    locked: 0
-  - name: Characters
-    uniqueID: 3918885867
     locked: 0

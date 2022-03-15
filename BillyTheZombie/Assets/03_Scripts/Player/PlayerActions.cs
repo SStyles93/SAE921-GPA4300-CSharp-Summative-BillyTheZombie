@@ -14,6 +14,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject _cameraTarget;
     [SerializeField] private GameObject _aim;
     [SerializeField] private GameObject _body;
+    [SerializeField] private GameObject _head;
     [Tooltip("Insert the player's Arms: [0]-Right || [1]-Left")]
     [SerializeField] private List<GameObject> _arms;
 
@@ -54,7 +55,9 @@ public class PlayerActions : MonoBehaviour
     void Update()
     {
         UpdatePlayerLookDirection();
-        ActionCheck();        
+        ActionCheck();
+        //Sets the position of the head at the aim position;
+        _head.transform.position = _aim.transform.position;
     }
 
     /// <summary>
@@ -112,7 +115,7 @@ public class PlayerActions : MonoBehaviour
         if (_controller.Head && _canHeadbutt)
         {
             _canHeadbutt = false;
-            _visuals.Headbutt();
+            Headbutt();
         }
         else if(!_canHeadbutt)
         {
@@ -165,4 +168,12 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Launches the Headbutt
+    /// </summary>
+    private void Headbutt()
+    {
+        _visuals.StartHeadbutt();
+        _head.GetComponent<Headbutt>().PushPower = _stats.PushPower;
+    }
 }

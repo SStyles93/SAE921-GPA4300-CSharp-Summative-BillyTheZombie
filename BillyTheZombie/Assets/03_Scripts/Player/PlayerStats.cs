@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
     //players basic stats
     private float _basicHealth = 100.0f;
     private float _basicSpeed = 2.0f;
-    private float _basicPushPower = 1.0f;
+    private float _basicPushPower = 10.0f;
     private float _basicDamageRight = 10.0f;
     private float _basicDamageLeft = 10.0f;
 
@@ -20,7 +20,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _health = 100.0f;
     private float _maxHealth = 100.0f;
     [SerializeField] private float _speed = 2.0f;
-    [SerializeField] private float _pushPower = 1.0f;
+    [SerializeField] private float _pushPower = 10.0f;
     [SerializeField] private float _damageRight = 10.0f;
     [SerializeField] private float _damageLeft = 10.0f;
     
@@ -43,9 +43,5 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         _health = _maxHealth;
-    }
-    private void Update()
-    {
-        
     }
 }
