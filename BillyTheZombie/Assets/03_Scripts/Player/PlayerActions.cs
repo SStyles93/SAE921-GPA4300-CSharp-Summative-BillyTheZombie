@@ -37,6 +37,7 @@ public class PlayerActions : MonoBehaviour
     //Properties
     public List<bool> CanThrow { get => _canThrow; set => _canThrow = value; }
     public bool CanHit { get => _canHeadbutt; set => _canHeadbutt = value; }
+    public GameObject Aim { get => _aim; private set => _aim = value; }
 
     void Awake()
     {

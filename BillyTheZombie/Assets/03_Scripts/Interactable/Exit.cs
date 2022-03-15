@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DoctorAlbert : Interactable
+public class Exit : Interactable
 {
     [SerializeField] private Canvas _canvas;
     [SerializeField] private EventSystem _eventSystem;
-    [SerializeField] private GameObject _headSlider;
+    [SerializeField] private GameObject _exitButton;
+    [SerializeField] private GameObject _returnButton;
 
     public void Start()
     {
-        _canvas.gameObject.SetActive(true);
+        _canvas.gameObject.SetActive(false);
     }
     public override void Act()
     {
-        Debug.Log("Acting");
         _canvas.gameObject.SetActive(true);
 
         //Disable Player
@@ -23,25 +23,22 @@ public class DoctorAlbert : Interactable
         player.GetComponent<PlayerActions>().enabled = false;
         player.GetComponent<PlayerVisuals>().enabled = false;
 
-        //Disables the "InfoBubble"
+        //Enables the "InfoBubble"
         _infoBubble.SetActive(false);
 
-        //TODO : UI Nav
-        _eventSystem.SetSelectedGameObject(_headSlider);
-
+        _eventSystem.SetSelectedGameObject(_returnButton);
+        
     }
 
     public override void StopActing()
     {
-        Debug.Log("Stops Acting");
         _canvas.gameObject.SetActive(false);
 
         //Enable Player
         player.GetComponent<PlayerMovement>().CanMove = true;
         player.GetComponent<PlayerActions>().enabled = true;
         player.GetComponent<PlayerVisuals>().enabled = true;
-        
-        //Stops the UI Navigation
+
         _eventSystem.SetSelectedGameObject(null);
     }
 }

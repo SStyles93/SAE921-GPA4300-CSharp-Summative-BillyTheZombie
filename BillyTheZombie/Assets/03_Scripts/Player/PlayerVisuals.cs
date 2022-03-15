@@ -6,6 +6,7 @@ public class PlayerVisuals : MonoBehaviour
 {
     //Reference Scripts
     private PlayerController _controller;
+    private PlayerActions _actions;
 
     //Reference Components
     private Animator _animator;
@@ -13,6 +14,7 @@ public class PlayerVisuals : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<PlayerController>();
+        _actions = GetComponent<PlayerActions>();
         _animator = GetComponentInChildren<Animator>();
     }
 
@@ -25,8 +27,8 @@ public class PlayerVisuals : MonoBehaviour
         }
         else
         {
-            _animator.SetFloat("xPosition", _controller.Movement.x);
-            _animator.SetFloat("yPosition", _controller.Movement.y);
+            _animator.SetFloat("xPosition", _actions.Aim.transform.localPosition.x);
+            _animator.SetFloat("yPosition", _actions.Aim.transform.localPosition.y);
         }
 
         if(_controller.Movement != Vector2.zero)
