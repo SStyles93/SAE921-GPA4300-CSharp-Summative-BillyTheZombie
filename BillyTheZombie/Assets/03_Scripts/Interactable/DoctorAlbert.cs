@@ -5,9 +5,15 @@ using UnityEngine.EventSystems;
 
 public class DoctorAlbert : Interactable
 {
+    //Reference GameObjects
     [SerializeField] private Canvas _canvas;
-    [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _headSlider;
+
+    //Reference Components
+    [SerializeField] private EventSystem _eventSystem;
+
+    //Reference ScriptableObject
+    [SerializeField] private PlayerStatsSO _playerStatsSO;
 
     public void Start()
     {
