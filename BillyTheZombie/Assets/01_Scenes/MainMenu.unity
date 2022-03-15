@@ -390,9 +390,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.110137045, g: 0.9339623, b: 0.20605446, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.10980393, g: 0.9333334, b: 0.20784315, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.5471698, b: 0.06513927, a: 1}
+    m_PressedColor: {r: 0, g: 1, b: 0.027116776, a: 1}
+    m_SelectedColor: {r: 0, g: 0.4811321, b: 0.057277642, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -413,13 +413,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2060963421}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayGame
-        m_Mode: 1
+        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
+        m_MethodName: ActivateScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -727,17 +727,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_PointAction: {fileID: -5121406535741301726, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_MoveAction: {fileID: 4250740829629323148, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_SubmitAction: {fileID: 811955933467253999, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_CancelAction: {fileID: 4155391737636703479, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_LeftClickAction: {fileID: -1913919928768938867, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_MiddleClickAction: {fileID: 2666973929926835756, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_RightClickAction: {fileID: -5817771600257867555, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_ScrollWheelAction: {fileID: -4832722343935835062, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 966384352615256430, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -108413766525543115, guid: b44d47e40dc715f429a4154ee285c4cf, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
 --- !u!114 &288127473
@@ -2243,9 +2243,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.6226415, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0.5, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

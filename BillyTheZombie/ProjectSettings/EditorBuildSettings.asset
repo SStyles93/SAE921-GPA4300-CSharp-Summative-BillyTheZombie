@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01_Scenes/TestSceneAidan.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/01_Scenes/MainMenu.unity
+    guid: de569c1c99ba068408aaa2c23bd305f9
+  - enabled: 1
+    path: Assets/01_Scenes/City.unity
+    guid: c2f1879f028a3374ba117a7af563ad6d
+  - enabled: 1
+    path: Assets/01_Scenes/Billy's House.unity
+    guid: 52f924cc479ae904faa46c080c718087
   m_configObjects: {}

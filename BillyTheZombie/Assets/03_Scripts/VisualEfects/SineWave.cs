@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SineWave : MonoBehaviour
 {
@@ -8,8 +9,14 @@ public class SineWave : MonoBehaviour
 	[SerializeField] private float alphaFactor;
 	[SerializeField] private Color color;
 
+	[SerializeField] private SpriteRenderer spriteRenderer;
 
-	public void SineWaveEffect()
+    public void Update()
+    {
+		SineWaveEffect();
+    }
+
+    public void SineWaveEffect()
     {
 		if (period <= Mathf.Epsilon) return;
 
@@ -20,6 +27,7 @@ public class SineWave : MonoBehaviour
 
 		color.a = alphaFactor;
 		//GetComponent</*ComponentToGet*/>().color = color;
+		spriteRenderer.color = color;
 	}
     
 }

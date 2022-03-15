@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 movement = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
             transform.Translate(movement * _stats.Speed * Time.deltaTime);
+
         }
     }
 }
