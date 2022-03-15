@@ -108,6 +108,7 @@ public class DoctorAlbert : Interactable
             && slider.GetComponent<Slider>().value < 1.0f)
         {
             _gameStatsSO.mutagenPoints -= 0.1f;
+            slider.GetComponent<PlayerStatUpdate>().Stat += 0.1f; 
             slider.GetComponent<Slider>().value += 0.1f/ 100.0f;
         }
     }
@@ -120,7 +121,16 @@ public class DoctorAlbert : Interactable
         for (int i = 0; i < _sliders.Count; i++)
         {
             _gameStatsSO.mutagenPoints += _sliders[i].GetComponent<Slider>().value * 100.0f;
+            _sliders[i].GetComponent<PlayerStatUpdate>().Stat = 0.0f;
             _sliders[i].GetComponent<Slider>().value = 0.0f;
+        }
+    }
+
+    public void SavePoints()
+    {
+        for (int i = 0; i < _sliders.Count; i++)
+        {
+            _sliders[i].GetComponent<PlayerStatUpdate>().UpdateStat();
         }
     }
 }
