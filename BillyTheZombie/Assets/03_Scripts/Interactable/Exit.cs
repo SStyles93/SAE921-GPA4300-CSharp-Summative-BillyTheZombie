@@ -10,9 +10,12 @@ public class Exit : Interactable
     [SerializeField] private GameObject _exitButton;
     [SerializeField] private GameObject _returnButton;
 
+    [SerializeField] private SpriteRenderer _doorSpriteRender;
+
     public void Start()
     {
         _canvas.gameObject.SetActive(false);
+        _doorSpriteRender.enabled = false;
     }
     public override void Act()
     {
@@ -21,10 +24,12 @@ public class Exit : Interactable
         //Disable Player
         player.GetComponent<PlayerMovement>().CanMove = false;
         player.GetComponent<PlayerActions>().enabled = false;
-        player.GetComponent<PlayerVisuals>().enabled = false;
+        player.GetComponentInChildren<PlayerVisuals>().enabled = false;
 
         //Enables the "InfoBubble"
         _infoBubble.SetActive(false);
+        
+        _doorSpriteRender.enabled = true;
 
         _eventSystem.SetSelectedGameObject(_returnButton);
         
@@ -37,7 +42,9 @@ public class Exit : Interactable
         //Enable Player
         player.GetComponent<PlayerMovement>().CanMove = true;
         player.GetComponent<PlayerActions>().enabled = true;
-        player.GetComponent<PlayerVisuals>().enabled = true;
+        player.GetComponentInChildren<PlayerVisuals>().enabled = true;
+
+        _doorSpriteRender.enabled = false;
 
         _eventSystem.SetSelectedGameObject(null);
     }

@@ -17,13 +17,15 @@ public class DoctorAlbert : Interactable
 
     //Reference ScriptableObjects
     [Header("Scriptable Objects")]
-    [SerializeField] private PlayerStatsSO _playerStatsSO;
     [SerializeField] private GameStatsSO _gameStatsSO;
+    [SerializeField] private PlayerStatsSO _playerStatsSO;
+    
 
     public void Start()
     {
         _canvas.gameObject.SetActive(false);
-        foreach(GameObject slider in _sliders)
+
+        foreach (GameObject slider in _sliders)
         {
             slider.GetComponentInChildren<Text>().text =
                 $"{slider.name}";
@@ -98,14 +100,15 @@ public class DoctorAlbert : Interactable
     /// Adds MutagenPoints to a slider
     /// </summary>
     /// <param name="slider">The slider to add points to</param>
+    /// <param name="playerStat">The playerStat to add points to</param>
     private void AddPoints(GameObject slider)
     {
         if (player.GetComponent<PlayerController>().Head 
             && _gameStatsSO.mutagenPoints > 0.0f 
             && slider.GetComponent<Slider>().value < 1.0f)
         {
-            _gameStatsSO.mutagenPoints -= 1.0f;
-            slider.GetComponent<Slider>().value += 1.0f/ 100.0f;
+            _gameStatsSO.mutagenPoints -= 0.1f;
+            slider.GetComponent<Slider>().value += 0.1f/ 100.0f;
         }
     }
 
@@ -114,10 +117,10 @@ public class DoctorAlbert : Interactable
     /// </summary>
     public void ResetPoints()
     {
-        foreach(GameObject slider in _sliders)
+        for (int i = 0; i < _sliders.Count; i++)
         {
-            _gameStatsSO.mutagenPoints += slider.GetComponent<Slider>().value * 100.0f;
-            slider.GetComponent<Slider>().value = 0.0f;
+            _gameStatsSO.mutagenPoints += _sliders[i].GetComponent<Slider>().value * 100.0f;
+            _sliders[i].GetComponent<Slider>().value = 0.0f;
         }
     }
 }

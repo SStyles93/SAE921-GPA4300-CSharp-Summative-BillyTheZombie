@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SineWave : MonoBehaviour
+public class SineWaveRender : MonoBehaviour
 {
 	[SerializeField] private float period;
 	[SerializeField] private float alphaFactor;
