@@ -27,7 +27,7 @@
                     "name": "Head",
                     "type": "Value",
                     "id": "6fdb4ef4-f5ec-4218-9446-4e7674efafd2",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true

@@ -11,16 +11,27 @@ public class PlayerVisuals : MonoBehaviour
     //Reference Components
     private Animator _animator;
 
+    public Animator Animator { get => _animator; private set => _animator = value; }
+
     private void Awake()
     {
-        _controller = GetComponent<PlayerController>();
-        _actions = GetComponent<PlayerActions>();
-        _animator = GetComponentInChildren<Animator>();
+        _controller = GetComponentInParent<PlayerController>();
+        _actions = GetComponentInParent<PlayerActions>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if(_controller.Look != Vector2.zero)
+        Look();
+        Move();
+    }
+
+    /// <summary>
+    /// Method used to update Animator Positions
+    /// </summary>
+    private void Look()
+    {
+        if (_controller.Look != Vector2.zero)
         {
             _animator.SetFloat("xPosition", _controller.Look.x);
             _animator.SetFloat("yPosition", _controller.Look.y);
@@ -30,8 +41,13 @@ public class PlayerVisuals : MonoBehaviour
             _animator.SetFloat("xPosition", _actions.Aim.transform.localPosition.x);
             _animator.SetFloat("yPosition", _actions.Aim.transform.localPosition.y);
         }
-
-        if(_controller.Movement != Vector2.zero)
+    }
+    /// <summary>
+    /// Method used to update Animator Movement
+    /// </summary>
+    private void Move()
+    {
+        if (_controller.Movement != Vector2.zero)
         {
             _animator.SetFloat("Movement", 1.0f);
         }
@@ -40,6 +56,17 @@ public class PlayerVisuals : MonoBehaviour
             _animator.SetFloat("Movement", 0.0f);
         }
     }
+
+    public void Headbutt()
+    {
+        _animator.SetBool("Headbutt", true);
+
+    }
+    public void EndHeadbutt()
+    {
+        _animator.SetBool("Headbutt", false);
+    }
+
     #region SpritePosition NOT USED
 
     //

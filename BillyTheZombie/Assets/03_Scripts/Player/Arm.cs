@@ -102,6 +102,7 @@ public class Arm : MonoBehaviour
                 break;
             default:
                 _canMove = false;
+               
                 //Deals damage once before enabling pickup
                 if (!_canBePickedUp)
                 {

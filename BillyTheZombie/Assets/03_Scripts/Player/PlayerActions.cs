@@ -7,6 +7,7 @@ public class PlayerActions : MonoBehaviour
     //Reference Scripts
     private PlayerController _controller;
     private PlayerStats _stats;
+    private PlayerVisuals _visuals;
 
     //Reference GameObjects
     [Header("Player's body parts")]
@@ -43,6 +44,7 @@ public class PlayerActions : MonoBehaviour
     {
         _controller = GetComponent<PlayerController>();
         _stats = GetComponent<PlayerStats>();
+        _visuals = GetComponentInChildren<PlayerVisuals>();
     }
     private void Start()
     {
@@ -63,19 +65,23 @@ public class PlayerActions : MonoBehaviour
         //Look direction
         Vector2 look = _controller.Look;
         Vector3 currentAimPos = _aim.transform.localPosition;
+        
         if (look != Vector2.zero)
         {
             _cameraTarget.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
             _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
+            _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
         }
         else if (_controller.Movement != Vector2.zero)
         {
             _cameraTarget.transform.localPosition = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
             _aim.transform.localPosition = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
+            _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
         }
         else
         {
             _cameraTarget.transform.localPosition = Vector3.zero;
+            _cameraTarget.GetComponent<SpriteRenderer>().enabled = false;
             _aim.transform.localPosition = currentAimPos;
         }
     }
@@ -105,8 +111,8 @@ public class PlayerActions : MonoBehaviour
         //Headbutt
         if (_controller.Head && _canHeadbutt)
         {
-            //TODO : Headtbutt
             _canHeadbutt = false;
+            _visuals.Headbutt();
         }
         else if(!_canHeadbutt)
         {
@@ -158,4 +164,5 @@ public class PlayerActions : MonoBehaviour
             arm.ThrowPosition = transform.position;
         }
     }
+
 }
