@@ -17,6 +17,7 @@ public class Exit : Interactable
         _canvas.gameObject.SetActive(false);
         _doorSpriteRender.enabled = false;
     }
+
     public override void Act()
     {
         _canvas.gameObject.SetActive(true);
@@ -29,8 +30,6 @@ public class Exit : Interactable
         //Enables the "InfoBubble"
         _infoBubble.SetActive(false);
         
-        _doorSpriteRender.enabled = true;
-
         _eventSystem.SetSelectedGameObject(_returnButton);
         
     }
@@ -44,8 +43,33 @@ public class Exit : Interactable
         player.GetComponent<PlayerActions>().enabled = true;
         player.GetComponentInChildren<PlayerVisuals>().enabled = true;
 
-        _doorSpriteRender.enabled = false;
-
         _eventSystem.SetSelectedGameObject(null);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerController>())
+        {
+            player = collision.gameObject;
+
+            _doorSpriteRender.enabled = true;
+
+            //Enables the "InfoBubble"
+            _infoBubble.SetActive(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (player != null)
+        {
+            StopActing();
+            player = null;
+            hasInteracted = false;
+            //Disables the "InfoBubble"
+            _infoBubble.SetActive(false);
+
+            _doorSpriteRender.enabled = false;
+        }
+
     }
 }
