@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStats", 
-    menuName = "ScriptableObject/Stats/PlayerStats", order = 3)]
+    menuName = "ScriptableObject/Stats/PlayerStats", order = 2)]
 public class PlayerStatsSO : ScriptableObject
 {
     public float _healthPercentage = 0.0f;

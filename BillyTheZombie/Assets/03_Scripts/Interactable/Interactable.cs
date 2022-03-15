@@ -5,8 +5,9 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     protected GameObject player;
-    private bool hasInteracted = false;
+    protected bool hasInteracted = false;
 
+    [Header("Game Objects")]
     [SerializeField] protected GameObject _infoBubble;
 
     public void Awake()

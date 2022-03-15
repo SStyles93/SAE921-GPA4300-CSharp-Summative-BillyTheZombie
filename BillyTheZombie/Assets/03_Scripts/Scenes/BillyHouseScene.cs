@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BillyHouseScene : MonoBehaviour
 {
-    [SerializeField] PlayerStats _playerStats;
+    [SerializeField] GameObject _player;
 
     private void Start()
     {
@@ -12,6 +12,9 @@ public class BillyHouseScene : MonoBehaviour
     }
     private void OverrideStats()
     {
-        _playerStats.Speed = 4.0f;
+        _player.GetComponent<PlayerStats>().Speed = 4.0f;
+        PlayerActions playerActions = _player.GetComponent<PlayerActions>();
+        playerActions.CanHit = false;
+       
     }
 }

@@ -35,10 +35,12 @@ public class PlayerActions : MonoBehaviour
     private float _headbuttCoolDown = 1.0f;
     private bool _canHeadbutt = true;
     private List<bool> _canThrow = new List<bool> { true, true };
+    private bool _canHit = true;
 
     //Properties
+    public bool CanHit { get => _canHit; set => _canHit = value; }
     public List<bool> CanThrow { get => _canThrow; set => _canThrow = value; }
-    public bool CanHit { get => _canHeadbutt; set => _canHeadbutt = value; }
+    public bool CanHeadbutt { get => _canHeadbutt; set => _canHeadbutt = value; }
     public GameObject Aim { get => _aim; private set => _aim = value; }
 
     void Awake()
@@ -55,7 +57,12 @@ public class PlayerActions : MonoBehaviour
     void Update()
     {
         UpdatePlayerLookDirection();
-        ActionCheck();
+
+        if (_canHit)
+        {
+            ActionCheck();
+        }
+        
         //Sets the position of the head at the aim position;
         _head.transform.position = _aim.transform.position;
     }

@@ -83,7 +83,7 @@ public class PlayerUI : MonoBehaviour
 
         //Head
         _bodyImages[2].color =
-            _playerActions.CanHit ? _normalColor : _blockedColor;
+            _playerActions.CanHeadbutt ? _normalColor : _blockedColor;
     }
 
     /// <summary>
