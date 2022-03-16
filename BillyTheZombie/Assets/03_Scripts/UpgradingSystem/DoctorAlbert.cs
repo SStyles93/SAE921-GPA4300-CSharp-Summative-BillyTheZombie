@@ -9,7 +9,7 @@ public class DoctorAlbert : Interactable
     //Reference GameObjects
     [Header("UI Objects")]
     [SerializeField] private Canvas _canvas;
-    [SerializeField] private List<GameObject> _sliders;
+    [SerializeField] private GameObject[] _sliders;
 
     //Reference Components
     [Header("Components")]
@@ -19,7 +19,12 @@ public class DoctorAlbert : Interactable
     [Header("Scriptable Objects")]
     [SerializeField] private GameStatsSO _gameStatsSO;
     [SerializeField] private PlayerStatsSO _playerStatsSO;
-    
+
+    //Variables
+    [Header("Variables")]
+    [Tooltip("The coefficient of MutagenPoints, 1 => 1pt/%")]
+    [SerializeField] private float _pointsCoef = 1.0f;
+
 
     public void Start()
     {
@@ -44,7 +49,7 @@ public class DoctorAlbert : Interactable
         }
         if(_eventSystem.currentSelectedGameObject != null)
         {
-            for (int i = 0; i < _sliders.Count; i++)
+            for (int i = 0; i < _sliders.Length; i++)
             {
                 if(_eventSystem.currentSelectedGameObject == _sliders[i])
                 {
@@ -107,8 +112,8 @@ public class DoctorAlbert : Interactable
             && _gameStatsSO.mutagenPoints > 0.0f 
             && slider.GetComponent<Slider>().value < 1.0f)
         {
-            _gameStatsSO.mutagenPoints -= 0.1f;
-            slider.GetComponent<PlayerStatUpdate>().Stat += 0.1f; 
+            _gameStatsSO.mutagenPoints -= (0.1f * _pointsCoef);
+            slider.GetComponent<PlayerStatUpdate>().Stat += (0.1f * _pointsCoef); 
             slider.GetComponent<Slider>().value += 0.1f/ 100.0f;
         }
     }
@@ -118,9 +123,9 @@ public class DoctorAlbert : Interactable
     /// </summary>
     public void ResetPoints()
     {
-        for (int i = 0; i < _sliders.Count; i++)
+        for (int i = 0; i < _sliders.Length; i++)
         {
-            _gameStatsSO.mutagenPoints += _sliders[i].GetComponent<Slider>().value * 100.0f;
+            _gameStatsSO.mutagenPoints += _sliders[i].GetComponent<Slider>().value * (100.0f * _pointsCoef);
             _sliders[i].GetComponent<PlayerStatUpdate>().Stat = 0.0f;
             _sliders[i].GetComponent<Slider>().value = 0.0f;
         }
@@ -128,7 +133,7 @@ public class DoctorAlbert : Interactable
 
     public void SavePoints()
     {
-        for (int i = 0; i < _sliders.Count; i++)
+        for (int i = 0; i < _sliders.Length; i++)
         {
             _sliders[i].GetComponent<PlayerStatUpdate>().UpdateStat();
         }

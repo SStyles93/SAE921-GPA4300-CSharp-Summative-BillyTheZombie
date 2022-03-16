@@ -7208,6 +7208,7 @@ MonoBehaviour:
   _eventSystem: {fileID: 110219824}
   _gameStatsSO: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _playerStatsSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
+  _pointsCoef: 1
 --- !u!1 &1987545615
 GameObject:
   m_ObjectHideFlags: 0
@@ -8157,6 +8158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pushPower: 10
+  _headDamage: 5
 --- !u!4 &1697183798782316685
 Transform:
   m_ObjectHideFlags: 0
@@ -9031,6 +9033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3e6f35be942d54ca487205510aca20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sceneManagement: {fileID: 0}
   _statSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
   _health: 100
   _speed: 2

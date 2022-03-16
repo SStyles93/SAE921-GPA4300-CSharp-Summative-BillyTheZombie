@@ -51,7 +51,7 @@ public class PlayerActions : MonoBehaviour
     }
     private void Start()
     {
-        _aim.transform.localPosition = new Vector3(0.0f, -1.0f, 0.0f);
+        _aim.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
     }
 
     void Update()
@@ -75,6 +75,7 @@ public class PlayerActions : MonoBehaviour
     {
         //Look direction
         Vector2 look = _controller.Look;
+        Vector2 movement = _controller.Movement;
         Vector3 currentAimPos = _aim.transform.localPosition;
         
         if (look != Vector2.zero)
@@ -85,8 +86,8 @@ public class PlayerActions : MonoBehaviour
         }
         else if (_controller.Movement != Vector2.zero)
         {
-            _cameraTarget.transform.localPosition = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
-            _aim.transform.localPosition = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
+            _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+            _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
             _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
         }
         else
@@ -154,10 +155,12 @@ public class PlayerActions : MonoBehaviour
     /// <param name="armSide">Define which arm to instantiate</param>
     private void InstantiateArm(ARMSIDE armSide)
     {
+        Vector3 InstantiationPos = _aim.transform.position;
+        
         if (armSide == ARMSIDE.RIGHT)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_rightArms[chosenAbilityIdxR].gameObject, _aim.transform.position, Quaternion.identity);
+            GameObject currentArm = Instantiate(_rightArms[chosenAbilityIdxR].gameObject, InstantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _stats.DamageRight;
@@ -167,7 +170,7 @@ public class PlayerActions : MonoBehaviour
         if (armSide == ARMSIDE.LEFT)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_leftArms[chosenAbilityIdxL].gameObject,_aim.transform.position, Quaternion.identity);
+            GameObject currentArm = Instantiate(_leftArms[chosenAbilityIdxL].gameObject, InstantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _stats.DamageLeft;

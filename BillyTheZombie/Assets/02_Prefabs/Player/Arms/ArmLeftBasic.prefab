@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armSide: 1
-  armType: 0
+  armType: 2
   _speed: 1

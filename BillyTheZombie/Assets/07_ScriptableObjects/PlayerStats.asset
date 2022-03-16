@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthPercentage: 0
   _speedPercentage: 0
-  _pushPowerPercentage: 50
+  _pushPowerPercentage: 0
   _damageRightPercentage: 0
   _damageLeftPercentage: 0

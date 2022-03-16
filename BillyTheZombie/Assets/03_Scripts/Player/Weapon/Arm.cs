@@ -88,8 +88,11 @@ public class Arm : MonoBehaviour
         switch (armType)
         {
             case ARMTYPE.BOOMERANG:
-                _rb.velocity = Vector2.zero;
-                _canMove = false;
+                if (!collision.gameObject.GetComponent<PlayerActions>())
+                {
+                    _rb.velocity = Vector2.zero;
+                    _canMove = false;
+                }
                 _canBePickedUp = false;
                 if (!_canBePickedUp)
                 {

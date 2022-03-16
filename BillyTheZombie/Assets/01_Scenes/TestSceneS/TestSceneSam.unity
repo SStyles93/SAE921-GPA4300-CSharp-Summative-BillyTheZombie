@@ -3828,8 +3828,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1033425733}
   - component: {fileID: 1033425732}
+  - component: {fileID: 1033425734}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3861,6 +3862,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1033425734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033425731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac534ff6694e5240be329405fbdf1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefabs: []
 --- !u!1 &1043799840
 GameObject:
   m_ObjectHideFlags: 0
@@ -7026,6 +7040,10 @@ PrefabInstance:
       propertyPath: _sceneManagement
       value: 
       objectReference: {fileID: 1033425732}
+    - target: {fileID: 7097809988505044850, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fb5437d9d02898a49a2174d38101a208, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
 --- !u!1001 &7407292689443874599

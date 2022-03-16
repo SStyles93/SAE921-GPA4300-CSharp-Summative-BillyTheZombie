@@ -71,6 +71,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Headbutt
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: yPosition
+    m_EventTreshold: 0.7
+  - m_ConditionMode: 3
+    m_ConditionEvent: yPosition
+    m_EventTreshold: -0.7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1189464888807553739}
   m_Solo: 0
@@ -423,6 +429,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Headbutt
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: yPosition
+    m_EventTreshold: 0.7
+  - m_ConditionMode: 3
+    m_ConditionEvent: yPosition
+    m_EventTreshold: -0.7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7917642476972825529}
   m_Solo: 0
@@ -508,25 +520,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: yPosition
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Movement
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Headbutt
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -794,6 +806,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Headbutt
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: xPosition
+    m_EventTreshold: -0.7
+  - m_ConditionMode: 4
+    m_ConditionEvent: xPosition
+    m_EventTreshold: 0.7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1219542409813523690}
   m_Solo: 0
@@ -849,6 +867,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Headbutt
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: xPosition
+    m_EventTreshold: -0.7
+  - m_ConditionMode: 4
+    m_ConditionEvent: xPosition
+    m_EventTreshold: 0.7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1988585405034070734}
   m_Solo: 0
