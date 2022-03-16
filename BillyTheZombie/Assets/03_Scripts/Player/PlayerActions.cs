@@ -63,8 +63,9 @@ public class PlayerActions : MonoBehaviour
             ActionCheck();
         }
         
-        //Sets the position of the head at the aim position;
+        //Sets the position of the head at half the aim's position;
         _head.transform.position = _aim.transform.position;
+        _head.transform.localPosition /= 2.0f;
     }
 
     /// <summary>

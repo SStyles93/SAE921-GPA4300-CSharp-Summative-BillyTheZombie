@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [SerializeField] private SceneManagement _sceneManagement;
+
     //statSO is used to increse the players stats (in %)
     [Header("Player Stats ScriptableObject")]
     [SerializeField] private PlayerStatsSO _statSO;
@@ -43,5 +45,17 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         _health = _maxHealth;
+    }
+    private void Update()
+    {
+        if(_health <= 0.0f)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        _sceneManagement.ActivateScene(2);
     }
 }

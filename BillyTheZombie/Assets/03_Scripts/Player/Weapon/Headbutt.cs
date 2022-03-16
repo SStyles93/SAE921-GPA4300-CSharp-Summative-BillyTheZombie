@@ -5,6 +5,8 @@ using UnityEngine;
 public class Headbutt : MonoBehaviour
 {
     [SerializeField] private float _pushPower;
+    [Tooltip("HeadDamage should NOT be changed (5.0f)")]
+    [SerializeField] private float _headDamage = 5.0f;
 
     public float PushPower { get => _pushPower; set => _pushPower = value; }
 
@@ -12,9 +14,12 @@ public class Headbutt : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<EnemyStats>())
         {
+            //Send enemy in opposite direction from player
             Vector2 forceDirection = collision.gameObject.transform.position -
                 gameObject.transform.position;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * _pushPower, ForceMode2D.Impulse);
+
+            collision.gameObject.GetComponent<EnemyStats>().TakeDamage(_headDamage);
         }
     }
 }

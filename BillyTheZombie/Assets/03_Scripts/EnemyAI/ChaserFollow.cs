@@ -47,4 +47,12 @@ public class ChaserFollow : MonoBehaviour
             followingPlayer_ = false;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerStats>())
+        {
+            collision.gameObject.GetComponent<PlayerStats>().Health -= 10.0f;
+        }
+    }
 }
