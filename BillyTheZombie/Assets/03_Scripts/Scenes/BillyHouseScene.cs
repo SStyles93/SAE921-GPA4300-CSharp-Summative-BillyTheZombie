@@ -15,6 +15,7 @@ public class BillyHouseScene : MonoBehaviour
         _player.GetComponent<PlayerStats>().Speed = 4.0f;
         PlayerActions playerActions = _player.GetComponent<PlayerActions>();
         playerActions.CanHit = false;
+        playerActions.IsInCombat = false;
        
     }
 }

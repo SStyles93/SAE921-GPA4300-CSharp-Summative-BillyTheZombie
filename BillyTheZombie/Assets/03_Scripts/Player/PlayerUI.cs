@@ -79,12 +79,12 @@ public class PlayerUI : MonoBehaviour
         //If CanThrow => normalColor
 
         //Right arm
-        _bodyImages[(int)ARMSIDE.RIGHT].color = 
-            _playerActions.CanThrow[(int)ARMSIDE.RIGHT] ? _normalColor : _blockedColor;
+        _bodyImages[(int)BODYPART.RIGHTARM].color = 
+            _playerActions.CanThrow[(int)BODYPART.RIGHTARM] ? _normalColor : _blockedColor;
 
         //Left arm
-        _bodyImages[(int)ARMSIDE.LEFT].color =
-            _playerActions.CanThrow[(int)ARMSIDE.LEFT] ? _normalColor : _blockedColor;
+        _bodyImages[(int)BODYPART.LEFTARM].color =
+            _playerActions.CanThrow[(int)BODYPART.LEFTARM] ? _normalColor : _blockedColor;
 
         //Head
         _bodyImages[2].color =
@@ -99,11 +99,11 @@ public class PlayerUI : MonoBehaviour
         // If button pressed => blockedColor
 
         //Right arm trigger
-        _buttonImages[(int)ARMSIDE.RIGHT].color =
+        _buttonImages[(int)BODYPART.RIGHTARM].color =
             _playerController.ArmR ? _blockedColor : _normalColor;
 
         //Left arm trigger
-        _buttonImages[(int)ARMSIDE.LEFT].color =
+        _buttonImages[(int)BODYPART.LEFTARM].color =
             _playerController.ArmL ? _blockedColor : _normalColor;
 
         //Head button

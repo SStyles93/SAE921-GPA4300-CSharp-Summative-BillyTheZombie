@@ -9,7 +9,8 @@ public abstract class Interactable : MonoBehaviour
 
     [Header("Game Objects")]
     [SerializeField] protected GameObject _infoBubble;
-
+    [Header("UI Library")]
+    [SerializeField] protected UIButtonsSO _uIButtonsLibrary;
     public void Awake()
     {
         _infoBubble.SetActive(false);
@@ -41,12 +42,15 @@ public abstract class Interactable : MonoBehaviour
     {
         if(player != null)
         {
+            UpdateUIButton();
+
             if (player.GetComponent<PlayerController>().Head && !hasInteracted)
             {
                 Act();
                 hasInteracted = true;
             }
         }
+
     }
 
     /// <summary>
@@ -57,4 +61,22 @@ public abstract class Interactable : MonoBehaviour
     /// Stops acting with the Interacable
     /// </summary>
     public abstract void StopActing();
+
+    /// <summary>
+    /// Update UI Button SpriteRenderer according to PlayerController.ControlScheme
+    /// </summary>
+    protected void UpdateUIButton()
+    {
+        switch (player.GetComponent<PlayerController>().ControlScheme)
+        {
+            case "Keyboard":
+                _infoBubble.GetComponent<SpriteRenderer>().sprite =
+                    _uIButtonsLibrary._keyboardSprites[(int)BODYPART.HEAD];
+                break;
+            case "Gamepad":
+                _infoBubble.GetComponent<SpriteRenderer>().sprite =
+                    _uIButtonsLibrary._gamepadSprites[(int)BODYPART.HEAD];
+                break;
+        }
+    }
 }

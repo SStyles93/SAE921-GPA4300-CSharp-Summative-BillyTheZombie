@@ -41,10 +41,11 @@ public class PlayerController : MonoBehaviour
         switch (_controlScheme)
         {
             case "Keyboard":
-                _look = Vector2.zero;
                 break;
             case "Gamepad":
                 _look = value.Get<Vector2>();
+                break;
+            default:
                 break;
         }
         

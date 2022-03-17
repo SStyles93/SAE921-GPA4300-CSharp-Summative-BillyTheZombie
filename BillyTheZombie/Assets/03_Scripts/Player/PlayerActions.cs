@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerActions : MonoBehaviour
 {
+    public GameObject mouseTarget;
+
     //Reference Scripts
     private PlayerController _playerController;
     private PlayerStats _playerStats;
@@ -15,7 +18,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject _aim;
     [SerializeField] private GameObject _body;
     [SerializeField] private GameObject _head;
-    [Tooltip("Insert the player's Arms: [0]-Right || [1]-Left")]
+    [Tooltip("Insert the player's Arms:\n[0]-Right\n[1]-Left")]
     [SerializeField] private List<GameObject> _arms;
 
     //Prefabs
@@ -34,14 +37,16 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private float _headbuttCoolDownTime = 1.0f;
     private float _headbuttCoolDown = 1.0f;
     private bool _canHeadbutt = true;
-    private List<bool> _canThrow = new List<bool> { true, true };
+    private bool[] _canThrow = new bool[2] { true, true };
     private bool _canHit = true;
+    private bool _isInCombat = true;
 
     //Properties
     public bool CanHit { get => _canHit; set => _canHit = value; }
-    public List<bool> CanThrow { get => _canThrow; set => _canThrow = value; }
+    public bool[] CanThrow { get => _canThrow; set => _canThrow = value; }
     public bool CanHeadbutt { get => _canHeadbutt; set => _canHeadbutt = value; }
     public GameObject Aim { get => _aim; private set => _aim = value; }
+    public bool IsInCombat { get => _isInCombat; set => _isInCombat = value; }
 
     void Awake()
     {
@@ -56,7 +61,15 @@ public class PlayerActions : MonoBehaviour
 
     void Update()
     {
-        UpdatePlayerLookDirection();
+        if (_isInCombat)
+        {
+            PlayerCombatLook();
+        }
+        else
+        {
+            PlayerPasiveLook();
+        }
+        
 
         if (_canHit)
         {
@@ -71,26 +84,75 @@ public class PlayerActions : MonoBehaviour
     /// <summary>
     /// Updates the player look direction
     /// </summary>
-    private void UpdatePlayerLookDirection()
+    private void PlayerCombatLook()
     {
-        //Look direction
-        Vector2 look = _playerController.Look;
-        //Vector2 movement = _controller.Movement;
-        //TODO: MOUSE POSE !!!
-        Vector3 currentAimPos = _aim.transform.localPosition;
-        
-        if (look != Vector2.zero)
+        switch (_playerController.ControlScheme)
         {
-            _cameraTarget.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
-            _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
+            case "Gamepad":
+
+                //Switches from MouseTarget to GamepadTarget
+                mouseTarget.gameObject.SetActive(false);
+                _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
+
+                //Updates the Aim position according to the Gamepad input
+                Vector2 look = _playerController.Look;
+                Vector3 currentAimPos = _aim.transform.localPosition;
+                if (look != Vector2.zero)
+                {
+                    _cameraTarget.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
+                    _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
+                    _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
+                }
+                #region MoveToAim
+
+                //Vector2 movement = _controller.Movement;
+                //else if (_controller.Movement != Vector2.zero)
+                //{
+                //    _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+                //    _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+                //    _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
+                //}
+
+                #endregion
+                else
+                {
+                    _cameraTarget.transform.localPosition = Vector3.zero;
+                    _cameraTarget.GetComponent<SpriteRenderer>().enabled = false;
+                    _aim.transform.localPosition = currentAimPos;
+                }
+                break;
+            case "Keyboard":
+                
+                //Switches from GamepadTarget to MouseTarget
+                mouseTarget.gameObject.SetActive(true);
+                _cameraTarget.GetComponent<SpriteRenderer>().enabled = false;
+
+                //Updates the Aim position according to the Mouse position 
+                Vector3 mousePos = Input.mousePosition;
+                mousePos.z = 0.0f;
+                mouseTarget.transform.position = mousePos;
+                _aim.transform.localPosition = 
+                _cameraTarget.transform.localPosition = 
+                    mouseTarget.transform.localPosition.normalized;
+                break;
+
+            default:
+                mouseTarget.gameObject.SetActive(false);
+                break;
+        }
+        
+    }
+
+    private void PlayerPasiveLook()
+    {
+        Vector3 currentAimPos = _aim.transform.localPosition;
+        Vector2 movement = _playerController.Movement;
+        if (_playerController.Movement != Vector2.zero)
+        {
+            _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+            _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
             _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
         }
-        //else if (_controller.Movement != Vector2.zero)
-        //{
-        //    _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-        //    _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-        //    _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
-        //}
         else
         {
             _cameraTarget.transform.localPosition = Vector3.zero;
@@ -105,20 +167,20 @@ public class PlayerActions : MonoBehaviour
     private void ActionCheck()
     {
         //RightArm Throw
-        if (_playerController.ArmR && _canThrow[(int)ARMSIDE.RIGHT])
+        if (_playerController.ArmR && _canThrow[(int)BODYPART.RIGHTARM])
         {
-            EnablePlayersArm(ARMSIDE.RIGHT, false);
-            InstantiateArm(ARMSIDE.RIGHT);
-            _canThrow[(int)ARMSIDE.RIGHT] = false;
+            EnablePlayersArm(BODYPART.RIGHTARM, false);
+            InstantiateArm(BODYPART.RIGHTARM);
+            _canThrow[(int)BODYPART.RIGHTARM] = false;
 
         }
         
         //LeftArm Throw
-        if (_playerController.ArmL && _canThrow[(int)ARMSIDE.LEFT])
+        if (_playerController.ArmL && _canThrow[(int)BODYPART.LEFTARM])
         {
-            EnablePlayersArm(ARMSIDE.LEFT, false);
-            InstantiateArm(ARMSIDE.LEFT);
-            _canThrow[(int)ARMSIDE.LEFT] = false;
+            EnablePlayersArm(BODYPART.LEFTARM, false);
+            InstantiateArm(BODYPART.LEFTARM);
+            _canThrow[(int)BODYPART.LEFTARM] = false;
         }
 
         //Headbutt
@@ -143,7 +205,7 @@ public class PlayerActions : MonoBehaviour
     /// </summary>
     /// <param name="armSide">Enum use to indicate which arms to interact with</param>
     /// <param name="enable">Bool to enable or disable</param>
-    public void EnablePlayersArm(ARMSIDE armSide, bool enable)
+    public void EnablePlayersArm(BODYPART armSide, bool enable)
     {
         _arms[(int)armSide].SetActive(enable);
         _canThrow[(int)armSide] = true;
@@ -154,24 +216,24 @@ public class PlayerActions : MonoBehaviour
     /// Instantiates an arm
     /// </summary>
     /// <param name="armSide">Define which arm to instantiate</param>
-    private void InstantiateArm(ARMSIDE armSide)
+    private void InstantiateArm(BODYPART armSide)
     {
-        Vector3 InstantiationPos = _aim.transform.position;
+        Vector3 instantiationPos = _aim.transform.position;
         
-        if (armSide == ARMSIDE.RIGHT)
+        if (armSide == BODYPART.RIGHTARM)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_rightArms[chosenAbilityIdxR].gameObject, InstantiationPos, Quaternion.identity);
+            GameObject currentArm = Instantiate(_rightArms[chosenAbilityIdxR].gameObject, instantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _playerStats.DamageRight;
             //ThrowPosition used for BommerangArm
             arm.ThrowPosition = transform.position;
         }
-        if (armSide == ARMSIDE.LEFT)
+        if (armSide == BODYPART.LEFTARM)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_leftArms[chosenAbilityIdxL].gameObject, InstantiationPos, Quaternion.identity);
+            GameObject currentArm = Instantiate(_leftArms[chosenAbilityIdxL].gameObject, instantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _playerStats.DamageLeft;

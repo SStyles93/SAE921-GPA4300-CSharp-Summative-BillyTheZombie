@@ -586,7 +586,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.18
 --- !u!1001 &135217212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -804,7 +804,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.18
 --- !u!1 &233031092
 GameObject:
   m_ObjectHideFlags: 0
@@ -5780,7 +5780,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.18
 --- !u!1001 &1651381827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6080,7 +6080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7398610349916813323, guid: 94d8326080a4afb4c857fae6fb506ce7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7398610349916813323, guid: 94d8326080a4afb4c857fae6fb506ce7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6362,7 +6362,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.18
 --- !u!1 &1816396674
 GameObject:
   m_ObjectHideFlags: 0
@@ -6973,28 +6973,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &2619042566747792503
+--- !u!1001 &6327888844292766076
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
-      propertyPath: _buttonImagesLibrary.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
-      propertyPath: _buttonImagesLibrary.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 57da65b68cd65d147990b8ddbfdcbd9d, type: 2}
-    - target: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
-      propertyPath: _buttonImagesLibrary.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 2008b1327e080d14a970fab2bdea07ee, type: 2}
     - target: {fileID: 2619042568326500032, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2619042568326500032, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7046,18 +7034,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4633051691886695518, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6725792000420809198, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
-      propertyPath: _sceneManagement
-      value: 
-      objectReference: {fileID: 1033425732}
-    - target: {fileID: 7097809988505044850, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: fb5437d9d02898a49a2174d38101a208, type: 3}
-    - target: {fileID: 7769927165255852279, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
-      propertyPath: m_NotificationBehavior
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

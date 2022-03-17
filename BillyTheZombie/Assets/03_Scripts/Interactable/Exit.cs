@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Exit : Interactable
 {
+    [Header("UI Objects")]
     [SerializeField] private Canvas _canvas;
     [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject _exitButton;

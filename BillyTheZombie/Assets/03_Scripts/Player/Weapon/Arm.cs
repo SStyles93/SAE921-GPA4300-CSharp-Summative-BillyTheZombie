@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ARMSIDE
-{
-    RIGHT,
-    LEFT
-}
-
 public class Arm : MonoBehaviour
 {
     //Refenrence Components
     private Rigidbody2D _rb;
 
     //ArmType
-    [SerializeField] private ARMSIDE armSide;
+    [SerializeField] private BODYPART armSide;
     private enum ARMTYPE
     {
         BASIC,
@@ -90,22 +84,31 @@ public class Arm : MonoBehaviour
             case ARMTYPE.BOOMERANG:
                 if (!collision.gameObject.GetComponent<PlayerActions>())
                 {
+                    //on collision stops the rb from working
                     _rb.velocity = Vector2.zero;
+                    //stops applying force to the object
                     _canMove = false;
                 }
-                _canBePickedUp = false;
+                else
+                {
+                    _canBePickedUp = false;
+                    Physics2D.IgnoreCollision(
+                        transform.GetComponent<BoxCollider2D>(), 
+                        collision.gameObject.GetComponent<CapsuleCollider2D>());
+                }
                 if (!_canBePickedUp)
                 {
                     collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                     _canBePickedUp = true;
                 }
                 break;
+                
             case ARMTYPE.LAWNMOWER:
                 _canMove = true;
                 break;
+
             default:
                 _canMove = false;
-               
                 //Deals damage once before enabling pickup
                 if (!_canBePickedUp)
                 {

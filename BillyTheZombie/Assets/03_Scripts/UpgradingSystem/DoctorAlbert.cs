@@ -41,17 +41,20 @@ public class DoctorAlbert : Interactable
     {
         if (player != null)
         {
+            UpdateUIButton();
+
+            //Interact
             if (player.GetComponent<PlayerController>().Head && !hasInteracted)
             {
                 Act();
                 hasInteracted = true;
             }
         }
-        if(_eventSystem.currentSelectedGameObject != null)
+        if (_eventSystem.currentSelectedGameObject != null)
         {
             for (int i = 0; i < _sliders.Length; i++)
             {
-                if(_eventSystem.currentSelectedGameObject == _sliders[i])
+                if (_eventSystem.currentSelectedGameObject == _sliders[i])
                 {
                     AddPoints(_sliders[i]);
                 }
