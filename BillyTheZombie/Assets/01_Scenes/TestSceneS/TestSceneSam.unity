@@ -6980,6 +6980,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: _buttonImagesLibrary.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: _buttonImagesLibrary.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 57da65b68cd65d147990b8ddbfdcbd9d, type: 2}
+    - target: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: _buttonImagesLibrary.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2008b1327e080d14a970fab2bdea07ee, type: 2}
     - target: {fileID: 2619042568326500032, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7044,6 +7056,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: fb5437d9d02898a49a2174d38101a208, type: 3}
+    - target: {fileID: 7769927165255852279, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
 --- !u!1001 &7407292689443874599

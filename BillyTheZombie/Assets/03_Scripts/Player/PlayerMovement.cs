@@ -5,24 +5,24 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //Reference Scripts
-    private PlayerController _controller;
-    private PlayerStats _stats;
+    private PlayerController _playerController;
+    private PlayerStats _playerStats;
     
     private bool _canMove = true;
     public bool CanMove { get => _canMove; set => _canMove = value; }
 
     void Awake()
     {
-        _controller = GetComponent<PlayerController>();
-        _stats = GetComponent<PlayerStats>();
+        _playerController = GetComponent<PlayerController>();
+        _playerStats = GetComponent<PlayerStats>();
     }
     private void Update()
     {
         //Movement
         if (_canMove)
         {
-            Vector3 movement = new Vector3(_controller.Movement.x, _controller.Movement.y, 0.0f);
-            transform.Translate(movement * _stats.Speed * Time.deltaTime);
+            Vector3 movement = new Vector3(_playerController.Movement.x, _playerController.Movement.y, 0.0f);
+            transform.Translate(movement * _playerStats.Speed * Time.deltaTime);
 
         }
     }

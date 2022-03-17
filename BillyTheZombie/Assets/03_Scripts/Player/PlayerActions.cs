@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     //Reference Scripts
-    private PlayerController _controller;
-    private PlayerStats _stats;
-    private PlayerVisuals _visuals;
+    private PlayerController _playerController;
+    private PlayerStats _playerStats;
+    private PlayerVisuals _playerVisuals;
 
     //Reference GameObjects
     [Header("Player's body parts")]
@@ -45,9 +45,9 @@ public class PlayerActions : MonoBehaviour
 
     void Awake()
     {
-        _controller = GetComponent<PlayerController>();
-        _stats = GetComponent<PlayerStats>();
-        _visuals = GetComponentInChildren<PlayerVisuals>();
+        _playerController = GetComponent<PlayerController>();
+        _playerStats = GetComponent<PlayerStats>();
+        _playerVisuals = GetComponentInChildren<PlayerVisuals>();
     }
     private void Start()
     {
@@ -74,8 +74,9 @@ public class PlayerActions : MonoBehaviour
     private void UpdatePlayerLookDirection()
     {
         //Look direction
-        Vector2 look = _controller.Look;
-        Vector2 movement = _controller.Movement;
+        Vector2 look = _playerController.Look;
+        //Vector2 movement = _controller.Movement;
+        //TODO: MOUSE POSE !!!
         Vector3 currentAimPos = _aim.transform.localPosition;
         
         if (look != Vector2.zero)
@@ -84,12 +85,12 @@ public class PlayerActions : MonoBehaviour
             _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
             _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
         }
-        else if (_controller.Movement != Vector2.zero)
-        {
-            _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-            _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-            _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
-        }
+        //else if (_controller.Movement != Vector2.zero)
+        //{
+        //    _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+        //    _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+        //    _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
+        //}
         else
         {
             _cameraTarget.transform.localPosition = Vector3.zero;
@@ -104,7 +105,7 @@ public class PlayerActions : MonoBehaviour
     private void ActionCheck()
     {
         //RightArm Throw
-        if (_controller.ArmR && _canThrow[(int)ARMSIDE.RIGHT])
+        if (_playerController.ArmR && _canThrow[(int)ARMSIDE.RIGHT])
         {
             EnablePlayersArm(ARMSIDE.RIGHT, false);
             InstantiateArm(ARMSIDE.RIGHT);
@@ -113,7 +114,7 @@ public class PlayerActions : MonoBehaviour
         }
         
         //LeftArm Throw
-        if (_controller.ArmL && _canThrow[(int)ARMSIDE.LEFT])
+        if (_playerController.ArmL && _canThrow[(int)ARMSIDE.LEFT])
         {
             EnablePlayersArm(ARMSIDE.LEFT, false);
             InstantiateArm(ARMSIDE.LEFT);
@@ -121,7 +122,7 @@ public class PlayerActions : MonoBehaviour
         }
 
         //Headbutt
-        if (_controller.Head && _canHeadbutt)
+        if (_playerController.Head && _canHeadbutt)
         {
             _canHeadbutt = false;
             Headbutt();
@@ -163,7 +164,7 @@ public class PlayerActions : MonoBehaviour
             GameObject currentArm = Instantiate(_rightArms[chosenAbilityIdxR].gameObject, InstantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
-            arm.Damage *= _stats.DamageRight;
+            arm.Damage *= _playerStats.DamageRight;
             //ThrowPosition used for BommerangArm
             arm.ThrowPosition = transform.position;
         }
@@ -173,7 +174,7 @@ public class PlayerActions : MonoBehaviour
             GameObject currentArm = Instantiate(_leftArms[chosenAbilityIdxL].gameObject, InstantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
-            arm.Damage *= _stats.DamageLeft;
+            arm.Damage *= _playerStats.DamageLeft;
             //ThrowPosition used for BommerangArm
             arm.ThrowPosition = transform.position;
         }
@@ -184,7 +185,7 @@ public class PlayerActions : MonoBehaviour
     /// </summary>
     private void Headbutt()
     {
-        _visuals.StartHeadbutt();
-        _head.GetComponent<Headbutt>().PushPower = _stats.PushPower;
+        _playerVisuals.StartHeadbutt();
+        _head.GetComponent<Headbutt>().PushPower = _playerStats.PushPower;
     }
 }

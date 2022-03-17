@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerUI : MonoBehaviour
 {
     //Reference Scripts
     [Header("Player Scripts")]
-    [SerializeField] private PlayerStats _playerStats;
-    [SerializeField] private PlayerActions _playerActions;
+    [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private PlayerActions _playerActions;
+    [SerializeField] private PlayerStats _playerStats;
 
     //Reference Components
     [Header("Player Health UI")]
@@ -23,15 +25,17 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Color _blockedColor = Color.gray;
     private Color _normalColor = Color.white;
     [Tooltip("List of ArmImages: [0]-Right || [1]-Left || [2]-Head")]
-    [SerializeField] private List<Image> _bodyImages;
+    [SerializeField] private Image[] _bodyImages;
     [Tooltip("List of ButtonImages: [0]-Right || [1]-Left || [2]-Head")]
-    [SerializeField] private List<Image> _buttonImages;
+    [SerializeField] private Image[] _buttonImages;
+    [SerializeField] private UIButtonsSO _buttonImagesLibrary;
 
     private void Awake()
     {
         _playerStats = GetComponentInParent<PlayerStats>();
         _playerActions = GetComponentInParent<PlayerActions>();
         _playerController = GetComponentInParent<PlayerController>();
+        _playerInput = GetComponentInParent<PlayerInput>();
 
         _healthSlider = GetComponentInChildren<Slider>();
     }
@@ -46,7 +50,8 @@ public class PlayerUI : MonoBehaviour
     {
         UpdateHealthBar();
         UpdateActionsUI();
-        UpdateButtonsUI();
+        UpdateButtonUi();
+        UpdateButtonsUiColor();
     }
 
     /// <summary>
@@ -89,7 +94,7 @@ public class PlayerUI : MonoBehaviour
     /// <summary>
     /// Updated the button UI according to PlayerController
     /// </summary>
-    private void UpdateButtonsUI()
+    private void UpdateButtonsUiColor()
     {
         // If button pressed => blockedColor
 
@@ -104,6 +109,27 @@ public class PlayerUI : MonoBehaviour
         //Head button
         _buttonImages[2].color =
             _playerController.Head ? _blockedColor : _normalColor;
+    }
+    private void UpdateButtonUi()
+    {
+        switch (_playerController.ControlScheme)
+        {
+            case "Keyboard":
+                for (int i = 0; i < _buttonImages.Length; i++)
+                {
+                    _buttonImages[i].sprite = _buttonImagesLibrary._keyboardSprites[i];
+                }
+                break;
+            case "Gamepad":
+                for (int i = 0; i < _buttonImages.Length; i++)
+                {
+                    _buttonImages[i].sprite = _buttonImagesLibrary._gamepadSprites[i];
+                }
+                break;
+            default:
+                break;
+        }
+        
     }
 
 }
