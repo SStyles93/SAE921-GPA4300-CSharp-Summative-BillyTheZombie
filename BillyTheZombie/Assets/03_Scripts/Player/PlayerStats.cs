@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
 
     //players basic stats
     private float _basicHealth = 100.0f;
-    private float _basicSpeed = 2.0f;
+    private float _basicSpeed = 4.0f;
     private float _basicPushPower = 10.0f;
     private float _basicDamageRight = 10.0f;
     private float _basicDamageLeft = 10.0f;

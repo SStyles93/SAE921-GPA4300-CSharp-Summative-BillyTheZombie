@@ -752,7 +752,7 @@ MonoBehaviour:
   _sceneManagement: {fileID: 0}
   _statSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
   _health: 100
-  _speed: 2
+  _speed: 4
   _pushPower: 10
   _damageRight: 10
   _damageLeft: 10
