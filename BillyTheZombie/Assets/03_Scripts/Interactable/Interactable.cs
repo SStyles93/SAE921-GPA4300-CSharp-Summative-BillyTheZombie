@@ -44,7 +44,7 @@ public abstract class Interactable : MonoBehaviour
         {
             UpdateUIButton();
 
-            if (player.GetComponent<PlayerController>().Head && !hasInteracted)
+            if (player.GetComponent<PlayerController>().ArmL && !hasInteracted)
             {
                 Act();
                 hasInteracted = true;
@@ -71,11 +71,11 @@ public abstract class Interactable : MonoBehaviour
         {
             case "Keyboard":
                 _infoBubble.GetComponent<SpriteRenderer>().sprite =
-                    _uIButtonsLibrary._keyboardSprites[(int)BODYPART.HEAD];
+                    _uIButtonsLibrary._keyboardSprites[(int)BODYPART.LEFTARM];
                 break;
             case "Gamepad":
                 _infoBubble.GetComponent<SpriteRenderer>().sprite =
-                    _uIButtonsLibrary._gamepadSprites[(int)BODYPART.HEAD];
+                    _uIButtonsLibrary._gamepadSprites[(int)BODYPART.LEFTARM];
                 break;
         }
     }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7407292690543233739}
   - component: {fileID: 794993809}
   - component: {fileID: 7407292690543233742}
-  m_Layer: 0
+  - component: {fileID: 917505265}
+  m_Layer: 2
   m_Name: EnemyPlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +124,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -148,3 +149,20 @@ MonoBehaviour:
   _health: 0
   _speed: 0
   _damage: 0
+--- !u!114 &917505265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407292690543233743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293dff03f1f2a3c45b1e0609f9a7ac14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickTimer: 1
+  _numberOfRays: 4
+  _rayDirections: []
+  _detectionDistance: 2
+  _playersLastPosition: {x: 0, y: 0, z: 0}

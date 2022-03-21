@@ -44,7 +44,7 @@ public class DoctorAlbert : Interactable
             UpdateUIButton();
 
             //Interact
-            if (player.GetComponent<PlayerController>().Head && !hasInteracted)
+            if (player.GetComponent<PlayerController>().ArmL && !hasInteracted)
             {
                 Act();
                 hasInteracted = true;
@@ -56,7 +56,14 @@ public class DoctorAlbert : Interactable
             {
                 if (_eventSystem.currentSelectedGameObject == _sliders[i])
                 {
-                    AddPoints(_sliders[i]);
+                    if (player.GetComponent<PlayerController>().ArmL)
+                    {
+                        AddPoints(_sliders[i]);
+                    }
+                    if(player.GetComponent<PlayerController>().ArmR)
+                    {
+                        SubstractPoints(_sliders[i]);
+                    }
                 }
             }
         }
@@ -108,16 +115,29 @@ public class DoctorAlbert : Interactable
     /// Adds MutagenPoints to a slider
     /// </summary>
     /// <param name="slider">The slider to add points to</param>
-    /// <param name="playerStat">The playerStat to add points to</param>
     private void AddPoints(GameObject slider)
     {
-        if (player.GetComponent<PlayerController>().Head 
-            && _gameStatsSO.mutagenPoints > 0.0f 
+        if (_gameStatsSO.mutagenPoints > 0.0f 
             && slider.GetComponent<Slider>().value < 1.0f)
         {
             _gameStatsSO.mutagenPoints -= (0.1f * _pointsCoef);
             slider.GetComponent<PlayerStatUpdate>().Stat += (0.1f * _pointsCoef); 
             slider.GetComponent<Slider>().value += 0.1f/ 100.0f;
+        }
+    }
+
+    /// <summary>
+    /// Substracts MutagenPoints to a slider
+    /// </summary>
+    /// <param name="slider"></param>
+    private void SubstractPoints(GameObject slider)
+    {
+        if (_gameStatsSO.mutagenPoints > 0.0f
+            && slider.GetComponent<Slider>().value < 1.0f)
+        {
+            _gameStatsSO.mutagenPoints += (0.1f * _pointsCoef);
+            slider.GetComponent<PlayerStatUpdate>().Stat -= (0.1f * _pointsCoef);
+            slider.GetComponent<Slider>().value -= 0.1f / 100.0f;
         }
     }
 
