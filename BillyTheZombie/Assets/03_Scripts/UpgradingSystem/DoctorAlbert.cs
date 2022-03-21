@@ -10,6 +10,7 @@ public class DoctorAlbert : Interactable
     [Header("UI Objects")]
     [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject[] _sliders;
+    [SerializeField] private GameObject[] _hightLights;
 
     //Reference Components
     [Header("Components")]
@@ -56,19 +57,30 @@ public class DoctorAlbert : Interactable
             {
                 if (_eventSystem.currentSelectedGameObject == _sliders[i])
                 {
-                    if (player.GetComponent<PlayerController>().ArmL)
+                    HighlightSlider(_hightLights[i], true);
+                    if (player.GetComponent<PlayerController>().ArmR)
                     {
                         AddPoints(_sliders[i]);
                     }
-                    if(player.GetComponent<PlayerController>().ArmR)
+                    else if(player.GetComponent<PlayerController>().ArmL)
                     {
                         SubstractPoints(_sliders[i]);
                     }
+                }
+                else
+                {
+                    HighlightSlider(_hightLights[i], false);
                 }
             }
         }
         UpdateSlidersVisuals();
     }
+
+    public void HighlightSlider(GameObject highlightedImage, bool enable)
+    {
+        highlightedImage.SetActive(enable);
+    }
+
     public override void Act()
     {
         _canvas.gameObject.SetActive(true);
@@ -133,7 +145,7 @@ public class DoctorAlbert : Interactable
     private void SubstractPoints(GameObject slider)
     {
         if (_gameStatsSO.mutagenPoints > 0.0f
-            && slider.GetComponent<Slider>().value < 1.0f)
+            && slider.GetComponent<Slider>().value > 0.0f)
         {
             _gameStatsSO.mutagenPoints += (0.1f * _pointsCoef);
             slider.GetComponent<PlayerStatUpdate>().Stat -= (0.1f * _pointsCoef);
