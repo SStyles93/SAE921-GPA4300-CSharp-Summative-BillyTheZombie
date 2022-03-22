@@ -1,91 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    private float tickTime = 0.0f;
-    [SerializeField] private float tickTimer = 1.0f;
+    private EnemyStats _enemyStats;
+    private EnemyRayCaster _rayCaster;
+    private AIDestinationSetter _destinationSetter;
+    private AIPath _aIPath;
 
-    [SerializeField] private int _numberOfRays = 4;
-    [SerializeField] private Vector3[] _rayDirections;
-    [SerializeField] private float _detectionDistance = 10.0f;
-    [SerializeField] private Vector3 _playersLastPosition;
+    [SerializeField] private float recoveryTimer = 1.0f;
+    private float recoveryTime;
+    [SerializeField] private float attackTimer = 2.0f;
+    [SerializeField] private float attackTime;
+    [SerializeField] private bool isHit = false;
+
+    //[SerializeField] float _searchRange = 1.0f;
+    //[SerializeField] float _searchMagnitude = 1.0f;
 
     private void Awake()
     {
-        //Set TickTime
-        tickTime = tickTimer;
-
-        InitRays(_numberOfRays);
-        
+        _enemyStats = GetComponent<EnemyStats>();
+        _rayCaster = GetComponentInChildren<EnemyRayCaster>();
+        _destinationSetter = GetComponent<AIDestinationSetter>();
+        _aIPath = GetComponent<AIPath>();
+    }
+    private void Start()
+    {
+        recoveryTime = recoveryTimer;
+        attackTime = attackTimer;
+        _aIPath.maxSpeed = _enemyStats.Speed;
+        _destinationSetter.target = _rayCaster.Target;
     }
 
     private void Update()
     {
-        tickTime -= Time.deltaTime;
-        if (tickTime <= 0.0f)
+        if(isHit == true)
         {
-            Tick();
-            tickTime = tickTimer;
+            _aIPath.canMove = false;
+            recoveryTime -= Time.deltaTime;
+        }
+        if(recoveryTime <= 0.0f)
+        {
+            recoveryTime = recoveryTimer;
+            _aIPath.canMove = true;
+            isHit = false;
         }
     }
-
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        RayCast();
-    }
-
-    /// <summary>
-    /// Tick is a delayed Update
-    /// </summary>
-    protected void Tick()
-    {
-       
-    }
-
-    /// <summary>
-    /// Initializes the rays
-    /// </summary>
-    /// <param name="NumberOfRays">Number of rays we want to Initialize</param>
-    protected void InitRays(int NumberOfRays)
-    {
-        //Set size of rayPosition array
-        _rayDirections = new Vector3[_numberOfRays + 1];
-        //Set the x value of the rays (forward = +x)
-        for (int rayIndex = 0; rayIndex < _rayDirections.Length; rayIndex++)
+        if (collision.gameObject.CompareTag("Player")) 
         {
-            _rayDirections[rayIndex].x = 1.0f;
+            isHit = true;
         }
-
-        //Sets the y position of all the rays in _rayPositions
-        for (int i = 0; i < NumberOfRays + 1; i++)
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerController>())
         {
-            if(i == 0)
+            Debug.Log("Collision Entre");
+            if (_rayCaster.PlayerInSight)
             {
-                _rayDirections[i].y = 1.0f;
-            }
-            else
-            {
-                _rayDirections[i].y = (_rayDirections[i - 1].y - (1.0f / (float)NumberOfRays*2));
+                Debug.Log("is in sight");
+                _aIPath.canMove = false;
             }
         }
     }
-
-    protected void RayCast()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        for (int i = 0; i < _rayDirections.Length; i++)
+        _aIPath.canMove = true;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerStats>()) 
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirections[i].normalized, _detectionDistance);
-            if (hit.collider != null && hit.transform.GetComponent<PlayerController>())
+            if (_rayCaster.PlayerInSight)
             {
-                _playersLastPosition = hit.transform.position;
+                attackTime -= Time.deltaTime;
+            }
+            if(attackTime < 0.0f)
+            {
+                collision.GetComponent<PlayerStats>().Health -= _enemyStats.Damage;
+                attackTime = attackTimer;
+                Debug.Log("Hit");
             }
             
-            Debug.DrawRay(transform.position, _rayDirections[i].normalized * _detectionDistance, Color.red);
         }
-        
     }
-
-    protected void Attack() { }
 }

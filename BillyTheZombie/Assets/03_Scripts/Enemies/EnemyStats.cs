@@ -10,19 +10,15 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
 
-    private void Awake()
-    {
-        
-    }
-
-    void Start()
+    public float Speed { get => _speed; private set => _speed = value; }
+    public float Damage { get => _damage; set => _damage = value; }
+    public void Awake()
     {
         _health = enemyStats._health;
         _speed = enemyStats._speed;
         _damage = enemyStats._damage;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(_health <= 0.0f)

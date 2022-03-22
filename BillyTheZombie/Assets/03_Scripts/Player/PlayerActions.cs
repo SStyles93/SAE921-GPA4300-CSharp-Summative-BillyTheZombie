@@ -143,6 +143,9 @@ public class PlayerActions : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Updates the player look when out of combat
+    /// </summary>
     private void PlayerPasiveLook()
     {
         Vector3 currentAimPos = _aim.transform.localPosition;
