@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2841871998815478060}
   - component: {fileID: 6693062172291444171}
   m_Layer: 6
-  m_Name: ArmLeftBasic
+  m_Name: LeftExplosive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armSide: 1
-  armType: 2
+  armType: 1
   _speed: 1

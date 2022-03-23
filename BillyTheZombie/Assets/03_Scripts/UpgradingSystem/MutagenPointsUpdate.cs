@@ -19,7 +19,7 @@ public class MutagenPointsUpdate : MonoBehaviour
     public void Update()
     {
         _mpSlider.value = _gameStats.mutagenPoints / 1000.0f;
-        _mpText.text = $"{_gameStats.mutagenPoints}";
+        _mpText.text = $"{Mathf.Round(_gameStats.mutagenPoints)}";
     }
 
 }

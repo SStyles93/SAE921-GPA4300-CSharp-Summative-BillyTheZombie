@@ -5,15 +5,15 @@ using Cinemachine;
 
 public class PlayerActions : MonoBehaviour
 {
-    public GameObject mouseTarget;
-
     //Reference Scripts
     private PlayerController _playerController;
     private PlayerStats _playerStats;
     private PlayerVisuals _playerVisuals;
+    [SerializeField] private PlayerStatsSO _playerStatSO;
 
     //Reference GameObjects
     [Header("Player's body parts")]
+    [SerializeField] private GameObject mouseTarget;
     [SerializeField] private GameObject _cameraTarget;
     [SerializeField] private GameObject _aim;
     [SerializeField] private GameObject _body;
@@ -26,11 +26,11 @@ public class PlayerActions : MonoBehaviour
     [Tooltip("Contains all arm prefabs for the right arm")]
     [SerializeField] private List<GameObject> _rightArms;
     [Tooltip("The Index of ability chosen for rightArm")]
-    [SerializeField] private int chosenAbilityIdxR = 0;
+    [SerializeField] private int _chosenAbilityIdxR = 0;
     [Tooltip("Contains all arm prefabs for the left arm")]
     [SerializeField] private List<GameObject> _leftArms;
     [Tooltip("The Index of ability chosen for leftArm")]
-    [SerializeField] private int chosenAbilityIdxL = 0;
+    [SerializeField] private int _chosenAbilityIdxL = 0;
 
     //List of bools used for Actions
     [Header("Action's variables")]
@@ -57,6 +57,8 @@ public class PlayerActions : MonoBehaviour
     private void Start()
     {
         _aim.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
+        _chosenAbilityIdxR = _playerStatSO._rightArmType;
+        _chosenAbilityIdxL = _playerStatSO._leftArmType;
     }
 
     void Update()
@@ -226,7 +228,7 @@ public class PlayerActions : MonoBehaviour
         if (armSide == BODYPART.RIGHTARM)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_rightArms[chosenAbilityIdxR].gameObject, instantiationPos, Quaternion.identity);
+            GameObject currentArm = Instantiate(_rightArms[_chosenAbilityIdxR].gameObject, instantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _playerStats.DamageRight;
@@ -236,7 +238,7 @@ public class PlayerActions : MonoBehaviour
         if (armSide == BODYPART.LEFTARM)
         {
             //will have to adapt to ability chosen
-            GameObject currentArm = Instantiate(_leftArms[chosenAbilityIdxL].gameObject, instantiationPos, Quaternion.identity);
+            GameObject currentArm = Instantiate(_leftArms[_chosenAbilityIdxL].gameObject, instantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
             arm.Damage *= _playerStats.DamageLeft;

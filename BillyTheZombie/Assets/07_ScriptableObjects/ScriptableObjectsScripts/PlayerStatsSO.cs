@@ -11,4 +11,8 @@ public class PlayerStatsSO : ScriptableObject
     public float _damageLeftPercentage = 0.0f;
     public float _healthPercentage = 0.0f;
     public float _speedPercentage = 0.0f;
+
+    public int _rightArmType = 0;
+    public int _leftArmType = 0;
+
 }
