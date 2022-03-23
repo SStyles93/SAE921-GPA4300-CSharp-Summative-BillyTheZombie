@@ -7,5 +7,5 @@ public class GameStatsSO : ScriptableObject
 {
     public float mutagenPoints;
     public int currentWaveIndex;
-    public int maxWaveIndex;
+    public int maxReachedWaveIndex;
 }

@@ -67,16 +67,13 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _aIPath.canMove = true;
-    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerStats>()) 
         {
             if (_rayCaster.PlayerInSight)
             {
+                _aIPath.canMove = false;
                 attackTime -= Time.deltaTime;
             }
             if(attackTime < 0.0f)
@@ -87,5 +84,9 @@ public class EnemyAI : MonoBehaviour
             }
             
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _aIPath.canMove = true;
     }
 }

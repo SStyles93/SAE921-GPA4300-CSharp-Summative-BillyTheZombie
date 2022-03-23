@@ -119,7 +119,7 @@ public class DoctorAlbert : Interactable
         foreach (GameObject slider in _sliders)
         {
             slider.GetComponentInChildren<Text>().text =
-                $"{slider.GetComponent<Slider>().value * 100.0f} % {slider.name}";
+                $"{Mathf.Round(slider.GetComponent<Slider>().value * 100.0f)} % {slider.name}";
         }
     }
 
