@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    [SerializeField] private EnemyStatsSO enemyStats;
+    [SerializeField] private EnemyStatsSO _enemyStats;
 
+    [SerializeField] private GameStatsSO _gameStats;
+
+    [SerializeField] private float _mutagenValue;
     [SerializeField] private float _health;
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
@@ -14,15 +17,17 @@ public class EnemyStats : MonoBehaviour
     public float Damage { get => _damage; set => _damage = value; }
     public void Awake()
     {
-        _health = enemyStats._health;
-        _speed = enemyStats._speed;
-        _damage = enemyStats._damage;
+        _mutagenValue = _enemyStats._mutagenValue;
+        _health = _enemyStats._health;
+        _speed = _enemyStats._speed;
+        _damage = _enemyStats._damage;
     }
 
     void Update()
     {
         if(_health <= 0.0f)
         {
+            _gameStats.mutagenPoints += _mutagenValue;
             Destroy(gameObject);
         }
     }
