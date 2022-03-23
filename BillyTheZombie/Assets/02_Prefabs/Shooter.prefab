@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a142cef5b5425384a988c188b2d14ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUGMODE: 1
+  DEBUGMODE: 0
   tickTimer: 0.1
   _numberOfRays: 60
   _angleOfDetection: 210

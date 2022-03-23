@@ -17,11 +17,13 @@ public class Gate : MonoBehaviour
 
     private void Start()
     {
-        _leftDoorOpenPosition = _leftDoor.transform.position + new Vector3(-3.0f, 0.0f, 0.0f);
-        _rightDoorOpenPosition = _rightDoor.transform.position + new Vector3(3.0f, 0.0f, 0.0f);
+        _leftDoorOpenPosition = _leftDoor.transform.position + new Vector3(-3.0f, 0.001f, 0.0f);
+        _rightDoorOpenPosition = _rightDoor.transform.position + new Vector3(3.0f, 0.001f, 0.0f);
 
         //Set to open pos if already opened
-        if(_gameStats.maxReachedWaveIndex >= _indexToOpen || _openGate)
+        if (_gameStats.maxReachedWaveIndex >= _indexToOpen ||
+            _openGate ||
+            _gameStats.currentWaveIndex >= _indexToOpen)
         {
             _leftDoor.transform.position = _leftDoorOpenPosition;
             _rightDoor.transform.position = _rightDoorOpenPosition;
@@ -31,7 +33,9 @@ public class Gate : MonoBehaviour
 
     public void Update()
     {
-        if(_gameStats.maxReachedWaveIndex >= _indexToOpen || _openGate)
+        if(_gameStats.maxReachedWaveIndex >= _indexToOpen ||
+            _openGate ||
+            _gameStats.currentWaveIndex >= _indexToOpen)
         {
             OpenGate();
         }
