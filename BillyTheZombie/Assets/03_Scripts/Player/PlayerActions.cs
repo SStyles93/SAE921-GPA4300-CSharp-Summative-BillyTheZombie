@@ -231,7 +231,7 @@ public class PlayerActions : MonoBehaviour
             GameObject currentArm = Instantiate(_rightArms[_chosenAbilityIdxR].gameObject, instantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
-            arm.Damage *= _playerStats.DamageRight;
+            arm.Damage *= _playerStats.ArmDamage;
             //ThrowPosition used for BommerangArm
             arm.ThrowPosition = transform.position;
         }
@@ -241,7 +241,7 @@ public class PlayerActions : MonoBehaviour
             GameObject currentArm = Instantiate(_leftArms[_chosenAbilityIdxL].gameObject, instantiationPos, Quaternion.identity);
             Arm arm = currentArm.GetComponent<Arm>();
             arm.ArmDirection = _aim.transform.localPosition;
-            arm.Damage *= _playerStats.DamageLeft;
+            arm.Damage *= _playerStats.ArmDamage;
             //ThrowPosition used for BommerangArm
             arm.ThrowPosition = transform.position;
         }

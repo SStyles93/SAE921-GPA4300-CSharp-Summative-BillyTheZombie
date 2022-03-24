@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 769978087685323689}
   - component: {fileID: 769978087685323690}
   - component: {fileID: 590534632}
-  - component: {fileID: 590534633}
   m_Layer: 2
   m_Name: ChaserGFX
   m_TagString: Untagged
@@ -151,8 +150,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1027808603
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 266e161a82c79c143a19a4a89970ac95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -184,19 +183,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &590534633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769978087685323688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee610ca73cebc814d8003af18272ce03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rayCaster: {fileID: 769978086981784849}
 --- !u!1 &769978088285160711
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +200,7 @@ GameObject:
   - component: {fileID: 769978088285160734}
   - component: {fileID: 769978088285160733}
   - component: {fileID: 769978088285160728}
+  - component: {fileID: 8664281949515078408}
   m_Layer: 2
   m_Name: Chaser
   m_TagString: Untagged
@@ -398,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyStats: {fileID: 11400000, guid: 8774f9b3822bdf34589f777f3ccd013c, type: 2}
+  _enemyVisual: {fileID: 0}
   _gameStats: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _mutagenValue: 0
   _health: 0
@@ -429,6 +417,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.46, y: 0.72}
   m_EdgeRadius: 0
+--- !u!114 &8664281949515078408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769978088285160711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee610ca73cebc814d8003af18272ce03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRender: {fileID: 769978087685323690}
+  _rayCaster: {fileID: 769978086981784849}
+  _wasDamaged: 0
+  _damageTimer: 2
 --- !u!1 &3115718902779144163
 GameObject:
   m_ObjectHideFlags: 0

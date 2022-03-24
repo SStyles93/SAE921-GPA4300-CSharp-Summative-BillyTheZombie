@@ -11,6 +11,9 @@ public class DoctorAlbert : Interactable
     [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject[] _sliders;
     [SerializeField] private GameObject[] _hightLights;
+    [SerializeField] private GameObject[] _rightArmButtons;
+    [SerializeField] private GameObject[] _leftArmButtons;
+
 
     //Reference Components
     [Header("Components")]
@@ -25,7 +28,12 @@ public class DoctorAlbert : Interactable
     [Header("Variables")]
     [Tooltip("The coefficient of MutagenPoints, 1 => 1pt/%")]
     [SerializeField] private float _pointsCoef = 1.0f;
-
+    [SerializeField] private float _firstArmLimit = 33.0f;
+    private bool _activateFirst = false;
+    [SerializeField] private float _secondArmLimit = 66.0f;
+    private bool _activateSecond = false;
+    [SerializeField] private float _thirdArmLimit = 99.0f;
+    private bool _activateThird = false;
 
     public void Start()
     {
@@ -36,7 +44,15 @@ public class DoctorAlbert : Interactable
             slider.GetComponentInChildren<Text>().text =
                 $"{slider.name}";
         }
-        
+        foreach(GameObject button in _rightArmButtons)
+        {
+            button.SetActive(false);
+        }
+        foreach (GameObject button in _leftArmButtons)
+        {
+            button.SetActive(false);
+        }
+
     }
     private void Update()
     {
@@ -74,6 +90,7 @@ public class DoctorAlbert : Interactable
             }
         }
         UpdateSlidersVisuals();
+        UpdateArmButtons();
     }
 
     public void HighlightSlider(GameObject highlightedImage, bool enable)
@@ -154,6 +171,43 @@ public class DoctorAlbert : Interactable
     }
 
     /// <summary>
+    /// Activates or disactivates the button UIs
+    /// </summary>
+    private void UpdateArmButtons()
+    {
+        _activateFirst = (_sliders[1].GetComponent<Slider>().value * 100) >= _firstArmLimit;
+        _rightArmButtons[0].SetActive(_activateFirst);
+        _leftArmButtons[0].SetActive(_activateFirst);
+        
+        _activateSecond = (_sliders[1].GetComponent<Slider>().value * 100) >= _secondArmLimit;
+        _rightArmButtons[1].SetActive(_activateSecond);
+        _leftArmButtons[1].SetActive(_activateSecond);
+
+        _activateThird = (_sliders[1].GetComponent<Slider>().value * 100) >= _thirdArmLimit;
+        _rightArmButtons[2].SetActive(_activateThird);
+        _leftArmButtons[2].SetActive(_activateThird);
+    }
+
+    public void SetRightArmPower(int armIndex)
+    {
+        foreach(GameObject button in _rightArmButtons)
+        {
+            button.GetComponent<Image>().enabled = true;
+        }
+        _rightArmButtons[armIndex - 1].GetComponent<Image>().enabled = false;
+        _playerStatsSO._rightArmType = armIndex;
+    }
+    public void SetLeftArmPower(int armIndex)
+    {
+        foreach (GameObject button in _leftArmButtons)
+        {
+            button.GetComponent<Image>().enabled = true;
+        }
+        _leftArmButtons[armIndex - 1].GetComponent<Image>().enabled = false;
+        _playerStatsSO._leftArmType = armIndex;
+    }
+
+    /// <summary>
     /// Reset all slider values
     /// </summary>
     public void ResetPoints()
@@ -173,4 +227,5 @@ public class DoctorAlbert : Interactable
             _sliders[i].GetComponent<PlayerStatUpdate>().UpdateStat();
         }
     }
+
 }

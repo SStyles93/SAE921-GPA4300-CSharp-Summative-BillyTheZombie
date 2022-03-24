@@ -7,8 +7,7 @@ using UnityEngine;
 public class PlayerStatsSO : ScriptableObject
 {
     public float _pushPowerPercentage = 0.0f;
-    public float _damageRightPercentage = 0.0f;
-    public float _damageLeftPercentage = 0.0f;
+    public float _armDamagePercentage = 0.0f;
     public float _healthPercentage = 0.0f;
     public float _speedPercentage = 0.0f;
 

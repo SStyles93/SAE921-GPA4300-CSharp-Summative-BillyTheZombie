@@ -13,8 +13,7 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
     private enum STATTYPE
     {
         PUSHPOWER,
-        RIGHTDAMAGE,
-        LEFTDAMAGE,
+        ARMDAMAGE,
         HEALTH,
         SPEED
     }
@@ -36,11 +35,8 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
             case STATTYPE.PUSHPOWER:
                 stat = _playerStats._pushPowerPercentage;
                 break;
-            case STATTYPE.RIGHTDAMAGE:
-                stat = _playerStats._damageRightPercentage;
-                break;
-            case STATTYPE.LEFTDAMAGE:
-                stat = _playerStats._damageLeftPercentage;
+            case STATTYPE.ARMDAMAGE:
+                stat = _playerStats._armDamagePercentage;
                 break;
             case STATTYPE.HEALTH:
                 stat = _playerStats._healthPercentage;
@@ -58,11 +54,8 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
             case STATTYPE.PUSHPOWER:
                 _playerStats._pushPowerPercentage = stat;
                 break;
-            case STATTYPE.RIGHTDAMAGE:
-                _playerStats._damageRightPercentage = stat;
-                break;
-            case STATTYPE.LEFTDAMAGE:
-                _playerStats._damageLeftPercentage = stat;
+            case STATTYPE.ARMDAMAGE:
+                _playerStats._armDamagePercentage = stat;
                 break;
             case STATTYPE.HEALTH:
                 _playerStats._healthPercentage = stat;

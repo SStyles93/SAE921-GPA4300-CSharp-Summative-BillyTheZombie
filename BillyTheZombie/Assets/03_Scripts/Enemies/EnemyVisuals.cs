@@ -8,20 +8,19 @@ public class EnemyVisuals : MonoBehaviour
     private Animator _animator;
     private AIPath _aIPath;
 
+    [SerializeField] private SpriteRenderer _spriteRender;
     [SerializeField] private GameObject _rayCaster;
+
+    [SerializeField] private Color _currentColor;
+    private float _damageCooldown = 2f;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _aIPath = GetComponentInParent<AIPath>();
+        _animator = GetComponentInChildren<Animator>();
+        _spriteRender = GetComponentInChildren<SpriteRenderer>();
+        _aIPath = GetComponent<AIPath>();
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         _animator.SetFloat("xPosition", _rayCaster.transform.rotation.y);
@@ -38,7 +37,33 @@ public class EnemyVisuals : MonoBehaviour
         {
             _animator.SetFloat("Movement", 0.0f);
         }
-        
-        
+
+        RetriveNormalColor();
+       
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Colors the enemy on hit
+        if (collision.gameObject.GetComponent<Arm>())
+        {
+            _currentColor = Color.red;
+            _damageCooldown = 0.0f;
+        }
+    }
+
+    private void RetriveNormalColor()
+    {
+        if (_currentColor != Color.white)
+        {
+            _damageCooldown += Time.deltaTime;
+            _currentColor = Color.Lerp(_currentColor, Color.white, _damageCooldown);
+        }
+        else
+        {
+            _damageCooldown = 0.0f;
+        }
+        _spriteRender.color = _currentColor;
+    }
+
 }

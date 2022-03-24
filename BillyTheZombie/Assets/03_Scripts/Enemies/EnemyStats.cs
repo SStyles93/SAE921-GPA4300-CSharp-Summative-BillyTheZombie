@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private EnemyStatsSO _enemyStats;
+    [SerializeField] private EnemyVisuals _enemyVisual;
 
     [SerializeField] private GameStatsSO _gameStats;
 
@@ -17,6 +18,8 @@ public class EnemyStats : MonoBehaviour
     public float Damage { get => _damage; set => _damage = value; }
     public void Awake()
     {
+        _enemyVisual = GetComponentInChildren<EnemyVisuals>();
+
         _mutagenValue = _enemyStats._mutagenValue;
         _health = _enemyStats._health;
         _speed = _enemyStats._speed;
@@ -27,8 +30,7 @@ public class EnemyStats : MonoBehaviour
     {
         if(_health <= 0.0f)
         {
-            _gameStats.mutagenPoints += _mutagenValue;
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -39,5 +41,11 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _health -= damage;
+    }
+
+    private void Die()
+    {
+        _gameStats.mutagenPoints += _mutagenValue;
+        Destroy(gameObject);
     }
 }

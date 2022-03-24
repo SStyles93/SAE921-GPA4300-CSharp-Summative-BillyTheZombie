@@ -8,6 +8,9 @@ public class Gate : MonoBehaviour
     
     [SerializeField] private GameObject _leftDoor;
     [SerializeField] private GameObject _rightDoor;
+    [SerializeField] private GameObject _leftGate;
+    [SerializeField] private GameObject _rightGate;
+
     [SerializeField] bool _openGate = false;
     [SerializeField] int _indexToOpen;
 
@@ -17,8 +20,10 @@ public class Gate : MonoBehaviour
 
     private void Start()
     {
-        _leftDoorOpenPosition = _leftDoor.transform.position + new Vector3(-3.0f, 0.001f, 0.0f);
-        _rightDoorOpenPosition = _rightDoor.transform.position + new Vector3(3.0f, 0.001f, 0.0f);
+        _leftDoorOpenPosition = _leftGate.transform.position;
+        _leftDoorOpenPosition.y += 0.001f;
+        _rightDoorOpenPosition = _rightGate.transform.position;
+        _rightDoorOpenPosition.y += 0.001f;
 
         //Set to open pos if already opened
         if (_gameStats.maxReachedWaveIndex >= _indexToOpen ||
@@ -46,9 +51,9 @@ public class Gate : MonoBehaviour
     /// </summary>
     private void OpenGate()
     {
-        _leftDoor.transform.position = Vector3.Lerp(_leftDoor.transform.position, _leftDoorOpenPosition, Time.deltaTime);
+        _leftDoor.transform.position = Vector3.Lerp(_leftDoor.transform.position, _leftGate.transform.position, Time.deltaTime);
         _leftDoor.GetComponent<BoxCollider2D>().enabled = false;
-        _rightDoor.transform.position = Vector3.Lerp(_rightDoor.transform.position, _rightDoorOpenPosition, Time.deltaTime);
+        _rightDoor.transform.position = Vector3.Lerp(_rightDoor.transform.position, _rightGate.transform.position, Time.deltaTime);
         _rightDoor.GetComponent<BoxCollider2D>().enabled = false;
     }
 }

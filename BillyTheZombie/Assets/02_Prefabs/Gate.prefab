@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2034431379535571048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.93, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.23, y: 0.25, z: 1}
   m_Children:
   - {fileID: 2034431379652404727}
   - {fileID: 2034431380402074953}
@@ -50,6 +50,8 @@ MonoBehaviour:
   _gameStats: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _leftDoor: {fileID: 2034431380473149030}
   _rightDoor: {fileID: 2034431379541893652}
+  _leftGate: {fileID: 2034431379652404724}
+  _rightGate: {fileID: 2034431380402074958}
   _openGate: 0
   _indexToOpen: 3
 --- !u!1 &2034431379541893652

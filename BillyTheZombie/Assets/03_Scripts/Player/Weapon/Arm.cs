@@ -91,7 +91,8 @@ public class Arm : MonoBehaviour
                 }
                 else
                 {
-                    _canBePickedUp = false;
+                    //If the collision is with the player Ignore
+                    //_canBePickedUp = false;
                     Physics2D.IgnoreCollision(
                         transform.GetComponent<BoxCollider2D>(), 
                         collision.gameObject.GetComponent<CapsuleCollider2D>());
