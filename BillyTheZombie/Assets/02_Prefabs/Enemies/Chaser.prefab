@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUGMODE: 0
-  tickTimer: 0.1
-  _numberOfRays: 60
+  tickTimer: 2
+  _numberOfRays: 10
   _angleOfDetection: 210
   _detectionDistance: 10
   _target: {fileID: 769978087663957991}
@@ -431,8 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRender: {fileID: 769978087685323690}
   _rayCaster: {fileID: 769978086981784849}
-  _wasDamaged: 0
-  _damageTimer: 2
+  _currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3115718902779144163
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,13 +18,17 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     /// <param name="NumberOfEnemies">The number of enemies to spawn</param>
     /// <param name="EnemyIndex">The wanted enemy Index</param>
-    private void InstantiateWave(int NumberOfEnemies, int EnemyIndex, int PositionIndex)
+    /// <param name="PositionIndex">The Index of the position in spawnPosition</param>
+    /// <param name="rangeAroundPosition">Range around the spawnPosition</param>
+    private void InstantiateWave(int NumberOfEnemies, int EnemyIndex, int PositionIndex, float rangeAroundPosition)
     {
         for (int i = 0; i < NumberOfEnemies; i++)
         {
             _enemyTracked.Add(Instantiate(
                 _enemyPrefabs[EnemyIndex],
-                _spawnPositions[PositionIndex].transform.position,
+                _spawnPositions[PositionIndex].transform.position +
+                new Vector3(Random.Range(-rangeAroundPosition, rangeAroundPosition),
+                Random.Range(-rangeAroundPosition, rangeAroundPosition), 0.0f),
                 Quaternion.identity));
         }
     }
@@ -60,10 +64,13 @@ public class EnemySpawner : MonoBehaviour
         switch (WaveCount)
         {
             case 1:
-                InstantiateWave(1, 0, 0);
+                InstantiateWave(1, 0, 0, 0.0f);
                 break;
             case 2:
-                InstantiateWave(4, 0, 0);
+                InstantiateWave(4, 0, 0, 1.0f);
+                break;
+            case 3:
+                InstantiateWave(100, 0, 0, 5.0f);
                 break;
             default:
                 return;
