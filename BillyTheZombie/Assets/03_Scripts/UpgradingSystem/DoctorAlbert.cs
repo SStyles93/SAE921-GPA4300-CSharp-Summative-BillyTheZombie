@@ -89,7 +89,7 @@ public class DoctorAlbert : Interactable
                 }
             }
         }
-        UpdateSlidersVisuals();
+        UpdateSliders();
         UpdateArmButtons();
     }
 
@@ -131,15 +131,16 @@ public class DoctorAlbert : Interactable
     /// <summary>
     /// Updates the text contained in the Sliders
     /// </summary>
-    private void UpdateSlidersVisuals()
+    private void UpdateSliders()
     {
         foreach (GameObject slider in _sliders)
         {
             slider.GetComponentInChildren<Text>().text =
                 $"{Mathf.Round(slider.GetComponent<Slider>().value * 100.0f)} % {slider.name}";
+
+            slider.GetComponent<PlayerStatUpdate>().UpdateSlider();
         }
     }
-
     /// <summary>
     /// Adds MutagenPoints to a slider
     /// </summary>

@@ -30,31 +30,27 @@ public class EnemyRayCaster : MonoBehaviour
         //Set TickTime
         tickTime = tickTimer;        
     }
-
     private void Update()
     {
-        if (DEBUGMODE)
+        if (DEBUGMODE && _rayDirections != null)
         {
             for (int i = 0; i < _rayDirections.Length; i++)
             {
                 Debug.DrawRay(transform.position, _rayDirections[i] * _detectionDistance, Color.red);
             }
         }
-        
     }
-
 
     private void FixedUpdate()
     {
-        CastRays(_numberOfRays, _angleOfDetection);
-
+        
         tickTime -= Time.deltaTime;
         if (tickTime <= 0.0f)
         {
+            CastRays(_numberOfRays, _angleOfDetection);
             Tick();
             tickTime = tickTimer;
         }
-       
     }
 
     /// <summary>

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ButtonPrompt", menuName = "ScriptableObject/UIButtons", order = 2)]
+[CreateAssetMenu(fileName = "ButtonPrompt", menuName = "ScriptableObject/UIButtons", order = 4)]
 public class UIButtonsSO : ScriptableObject
 {
     [Tooltip("UI Sprites for Keyboard:\n[0]-Right\n[1]-Left\n[2]-Head")]

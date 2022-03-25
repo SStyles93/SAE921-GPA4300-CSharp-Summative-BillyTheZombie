@@ -3869,6 +3869,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4633051691886695518, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633051691886695518, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6725792000420809198, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: _sceneManagement
       value: 
@@ -3884,6 +3892,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 769978086981784851, guid: c05b1a1daf33e5742a51c474a72de992, type: 3}
       propertyPath: DEBUGMODE
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 769978086981784851, guid: c05b1a1daf33e5742a51c474a72de992, type: 3}
+      propertyPath: tickTimer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 769978088285160707, guid: c05b1a1daf33e5742a51c474a72de992, type: 3}

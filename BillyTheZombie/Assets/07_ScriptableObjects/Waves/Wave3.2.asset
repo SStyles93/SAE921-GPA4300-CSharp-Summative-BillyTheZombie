@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de5338b6424c1942a193f9c6cd724fb, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: ad14376d5782123459253f3681c27ad7, type: 3}
+  m_Name: Wave3.2
   m_EditorClassIdentifier: 
-  _pushPowerPercentage: 0
-  _armDamagePercentage: 0
-  _healthPercentage: 0
-  _speedPercentage: 0
-  _rightArmType: 1
-  _leftArmType: 1
+  NumberOfEnemies: 2
+  EnemyIndex: 0
+  PositionIndex: 1
+  rangeAroundPosition: 0

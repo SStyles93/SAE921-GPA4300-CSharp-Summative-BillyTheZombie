@@ -65,12 +65,16 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
                 break;
         }
     }
+    public void UpdateSlider()
+    {
+        _slider.value = stat /100.0f;
+    }
 
-    /// <summary>
-    /// Sets the behaviour of the slider OnMove
-    /// </summary>
-    /// <param name="eventData">The movement event</param>
-    public void OnMove(AxisEventData eventData)
+        /// <summary>
+        /// Sets the behaviour of the slider OnMove
+        /// </summary>
+        /// <param name="eventData">The movement event</param>
+        public void OnMove(AxisEventData eventData)
     {
         // override the slider value using our previousSliderValue and the desired step
         if (eventData.moveDir == MoveDirection.Left)

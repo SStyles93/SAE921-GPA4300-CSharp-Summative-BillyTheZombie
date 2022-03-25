@@ -10,28 +10,12 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] GameObject[] _spawnPositions;
 
+    [SerializeField] private WavesSO[] _waves;
+
     [SerializeField] private bool _waveStarted = false;
     [SerializeField] private bool _waveEnded = false;
 
-    /// <summary>
-    /// Instantiate a number of enemies of the enemyIndex
-    /// </summary>
-    /// <param name="NumberOfEnemies">The number of enemies to spawn</param>
-    /// <param name="EnemyIndex">The wanted enemy Index</param>
-    /// <param name="PositionIndex">The Index of the position in spawnPosition</param>
-    /// <param name="rangeAroundPosition">Range around the spawnPosition</param>
-    private void InstantiateWave(int NumberOfEnemies, int EnemyIndex, int PositionIndex, float rangeAroundPosition)
-    {
-        for (int i = 0; i < NumberOfEnemies; i++)
-        {
-            _enemyTracked.Add(Instantiate(
-                _enemyPrefabs[EnemyIndex],
-                _spawnPositions[PositionIndex].transform.position +
-                new Vector3(Random.Range(-rangeAroundPosition, rangeAroundPosition),
-                Random.Range(-rangeAroundPosition, rangeAroundPosition), 0.0f),
-                Quaternion.identity));
-        }
-    }
+    [SerializeField] private float rangeAroundPos;
 
     public void Update()
     {
@@ -63,21 +47,45 @@ public class EnemySpawner : MonoBehaviour
     {
         switch (WaveCount)
         {
-            case 1:
-                InstantiateWave(1, 0, 0, 0.0f);
-                break;
-            case 2:
-                InstantiateWave(4, 0, 0, 1.0f);
-                break;
             case 3:
-                InstantiateWave(100, 0, 0, 5.0f);
+                InstantiateWave(2);
+                InstantiateWave(3);
+                InstantiateWave(4);
+                break;
+            case 4:
                 break;
             default:
-                return;
+                if(_gameStats.currentWaveIndex < _waves.Length)
+                {
+                    InstantiateWave(WaveCount);
+                }
+                else
+                {
+                    _waveEnded = true;
+                    return;
+                }
+                break;
         }
         
         _waveStarted = true;
         _waveEnded = false;
+    }
+
+    /// <summary>
+    /// Instantiate a number of enemies of the enemyIndex
+    /// </summary>
+    /// <param name="WaveIndex">The Index of the wave we want to spawn</param>
+    private void InstantiateWave(int WaveIndex)
+    {
+        for (int i = 0; i < _waves[WaveIndex].NumberOfEnemies; i++)
+        {
+            _enemyTracked.Add(Instantiate(
+                _enemyPrefabs[_waves[WaveIndex].EnemyIndex],
+                _spawnPositions[_waves[WaveIndex].PositionIndex].transform.position +
+                new Vector3(Random.Range(_waves[WaveIndex].rangeAroundPosition * -1.0f, _waves[WaveIndex].rangeAroundPosition),
+                Random.Range(_waves[WaveIndex].rangeAroundPosition * -1.0f, _waves[WaveIndex].rangeAroundPosition), 0.0f),
+                Quaternion.identity));
+        }
     }
 
     /// <summary>
@@ -98,7 +106,11 @@ public class EnemySpawner : MonoBehaviour
         }
         _waveEnded = true;
         _waveStarted = false;
-        
-        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangeAroundPos);
     }
 }

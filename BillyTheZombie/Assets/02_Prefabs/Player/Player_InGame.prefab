@@ -743,6 +743,7 @@ MonoBehaviour:
   - {fileID: 6693062172291444175, guid: b566505cb12a7764e9d48b3819d85aea, type: 3}
   - {fileID: 6693062172291444175, guid: 438e7f11e56a7ea419d48b37f6a871ea, type: 3}
   _chosenAbilityIdxL: 0
+  _aimCorrection: 0.55
   _headbuttCoolDownTime: 1
 --- !u!114 &6725792000420809198
 MonoBehaviour:

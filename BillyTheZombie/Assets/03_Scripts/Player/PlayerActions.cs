@@ -34,6 +34,8 @@ public class PlayerActions : MonoBehaviour
 
     //List of bools used for Actions
     [Header("Action's variables")]
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float _aimCorrection;
     [SerializeField] private float _headbuttCoolDownTime = 1.0f;
     private float _headbuttCoolDown = 1.0f;
     private bool _canHeadbutt = true;
@@ -99,23 +101,27 @@ public class PlayerActions : MonoBehaviour
                 //Updates the Aim position according to the Gamepad input
                 Vector2 look = _playerController.Look;
                 Vector3 currentAimPos = _aim.transform.localPosition;
+                //Movement used for headbut aiming
+                Vector2 movement = _playerController.Movement;
+
                 if (look != Vector2.zero)
                 {
                     _cameraTarget.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
                     _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
                     _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
                 }
+
                 #region MoveToAim
 
-                //Vector2 movement = _controller.Movement;
-                //else if (_controller.Movement != Vector2.zero)
-                //{
-                //    _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-                //    _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-                //    _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
-                //}
-
+                else if (_playerController.Movement != Vector2.zero)
+                {
+                    _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+                    _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+                    _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
+                }
+                
                 #endregion
+
                 else
                 {
                     _cameraTarget.transform.localPosition = Vector3.zero;
@@ -142,7 +148,10 @@ public class PlayerActions : MonoBehaviour
                 mouseTarget.gameObject.SetActive(false);
                 break;
         }
-        
+        Vector3 correctedPos = _aim.transform.localPosition;
+        correctedPos.x += correctedPos.x * -_aimCorrection;
+        correctedPos.y += correctedPos.y * -_aimCorrection;
+        _aim.transform.localPosition = correctedPos;
     }
 
     /// <summary>

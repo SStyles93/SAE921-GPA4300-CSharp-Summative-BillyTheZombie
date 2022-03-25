@@ -92,9 +92,9 @@ public class Arm : MonoBehaviour
                 else
                 {
                     //If the collision is with the player Ignore
-                    //_canBePickedUp = false;
+                    _canBePickedUp = true;
                     Physics2D.IgnoreCollision(
-                        transform.GetComponent<BoxCollider2D>(), 
+                        transform.GetComponent<BoxCollider2D>(),
                         collision.gameObject.GetComponent<CapsuleCollider2D>());
                 }
                 if (!_canBePickedUp)
@@ -135,8 +135,13 @@ public class Arm : MonoBehaviour
     {
         if (_canMove)
         {
+            _rb.constraints = RigidbodyConstraints2D.None;
             //Physic movement
             _rb.AddForce(_armDirection * _speed / 10.0f, ForceMode2D.Impulse);
+        }
+        else
+        {
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         //Boomerang return
         if (armType == ARMTYPE.BOOMERANG && !_canMove)

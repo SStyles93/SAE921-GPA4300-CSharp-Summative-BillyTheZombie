@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUGMODE: 0
-  tickTimer: 2
-  _numberOfRays: 10
-  _angleOfDetection: 210
+  tickTimer: 0.5
+  _numberOfRays: 40
+  _angleOfDetection: 360
   _detectionDistance: 10
   _target: {fileID: 769978087663957991}
   _playerInSight: 0
