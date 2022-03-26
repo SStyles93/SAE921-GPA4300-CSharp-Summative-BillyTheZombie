@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   _pushPowerPercentage: 0
-  _armDamagePercentage: 0
+  _armDamagePercentage: 100.099045
   _healthPercentage: 0
   _speedPercentage: 0
-  _rightArmType: 1
-  _leftArmType: 3
+  _rightArmType: 2
+  _leftArmType: 2

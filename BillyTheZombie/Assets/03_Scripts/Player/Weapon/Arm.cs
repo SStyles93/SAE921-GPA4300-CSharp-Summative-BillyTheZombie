@@ -96,7 +96,7 @@ public class Arm : MonoBehaviour
                 }
                 else
                 {
-                    _canBePickedUp = true;
+                    _canBePickedUp = false;
                     //If the collision is with the player Ignore
                     Physics2D.IgnoreCollision(
                         transform.GetComponent<BoxCollider2D>(),
@@ -139,7 +139,7 @@ public class Arm : MonoBehaviour
                 else
                 {
                     
-                    _canBePickedUp = true;
+                    _canBePickedUp = false;
                     //If the collision is with the player Ignore
                     Physics2D.IgnoreCollision(
                         transform.GetComponent<CircleCollider2D>(),
@@ -229,6 +229,7 @@ public class Arm : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.None;
             //Physic movement
             _rb.AddForce(_armDirection * _speed / 10.0f, ForceMode2D.Impulse);
+            transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
         }
         else
         {
@@ -238,6 +239,10 @@ public class Arm : MonoBehaviour
         if (armType == ARMTYPE.BOOMERANG && !_canMove)
         {
             transform.position = Vector3.Lerp(transform.position, throwPosition, _speed * 2.0f * Time.deltaTime);
+        }
+        if(armType == ARMTYPE.LAWNMOWER)
+        {
+            transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
         }
         
         

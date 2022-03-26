@@ -15,6 +15,15 @@ public class PlayerController : MonoBehaviour
     private bool _armR;
     private bool _armL;
 
+    private float timerDelay = 0.1f;
+
+    float _repeatTimerHead;
+    float _repeatTimerArmR;
+    float _repeatTimerArmL;
+    bool _repeatingHead = false;
+    bool _repeatingArmR = false;
+    bool _repeatingArmL = false;
+
     
     public string ControlScheme { get => _controlScheme; set => _controlScheme = value; }
     public Vector2 Movement { get => _movement; set => _movement = value; }
@@ -27,9 +36,61 @@ public class PlayerController : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
     }
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         _controlScheme = _playerInput.currentControlScheme;
+
+        //Prevents from repeating input HEAD
+        if (_repeatingHead)
+        {
+            _repeatTimerHead += Time.deltaTime;
+        }
+        if(_repeatTimerHead >= timerDelay)
+        {
+            _head = true;
+            _repeatingHead = false;
+            _repeatTimerHead = 0.0f;
+        }
+        else
+        {
+            _head = false;
+        }
+
+        //Prevents from repeating input ArmR
+        if (_repeatingArmR)
+        {
+            _repeatTimerArmR += Time.deltaTime;
+        }
+        if (_repeatTimerArmR >= timerDelay)
+        {
+            _armR = true;
+            _repeatingArmR = false;
+            _repeatTimerArmR = 0.0f;
+        }
+        else
+        {
+            _armR = false;
+        }
+
+        //Prevents from repeating input ArmL
+        if (_repeatingArmL)
+        {
+            _repeatTimerArmL += Time.deltaTime;
+        }
+        if (_repeatTimerArmL >= timerDelay)
+        {
+            _armL = true;
+            _repeatingArmL = false;
+            _repeatTimerArmL = 0.0f;
+        }
+        else
+        {
+            _armL = false;
+        }
     }
 
     public void OnMove(InputValue value)
@@ -52,14 +113,23 @@ public class PlayerController : MonoBehaviour
     }
     public void OnHead(InputValue value)
     {
-        _head = value.isPressed;
+        if (value.isPressed)
+        {
+            _repeatingHead = true;
+        }
     }
     public void OnArmR(InputValue value)
     {
-        _armR = value.isPressed;
+        if (value.isPressed)
+        {
+            _repeatingArmR = true;
+        }
     }
     public void OnArmL(InputValue value)
     {
-        _armL = value.isPressed;
+        if (value.isPressed)
+        {
+            _repeatingArmL = true;
+        }
     }
 }
