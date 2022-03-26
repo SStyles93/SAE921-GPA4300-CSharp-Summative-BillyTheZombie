@@ -312,6 +312,22 @@ PrefabInstance:
       propertyPath: _sceneManagement
       value: 
       objectReference: {fileID: 667126630}
+    - target: {fileID: 7451198393036407820, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451198393036407820, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451198393036407820, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451198393036407820, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
 --- !u!1 &548733625

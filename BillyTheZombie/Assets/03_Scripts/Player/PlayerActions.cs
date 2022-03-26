@@ -245,6 +245,7 @@ public class PlayerActions : MonoBehaviour
             arm.ThrowPosition = transform.position;
             //PushPower used for Explosive
             arm.PushPower *= _playerStats.PushPower;
+            arm.Player = gameObject;
         }
         if (armSide == BODYPART.LEFTARM)
         {
@@ -257,6 +258,7 @@ public class PlayerActions : MonoBehaviour
             arm.ThrowPosition = transform.position;
             //PushPower used for Explosive
             arm.PushPower *= _playerStats.PushPower;
+            arm.Player = gameObject;
         }
     }
 

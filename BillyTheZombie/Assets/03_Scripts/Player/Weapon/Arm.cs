@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Arm : MonoBehaviour
 {
+    //Reference GameObject
+    private GameObject _player;
+
     //Refenrence Components
     private Rigidbody2D _rb;
+    private ParticleSystem _particleSystem;
 
     //ArmType
     [SerializeField] private BODYPART armSide;
@@ -21,8 +25,9 @@ public class Arm : MonoBehaviour
     //Arm stats
     [SerializeField] private float _speed = 1.0f;
     [SerializeField] private float _damage = 1.0f;
-    [SerializeField] private float _explosiveArmRadius = 1.0f;
-    [SerializeField] private float _pushPower = 50.0f;
+    [SerializeField] private float _explosiveArmRadius = 0.5f;
+    [SerializeField] private float _pushPower = 500.0f;
+    private float _pickUpTimer = 1.0f;
 
     //ArmThrow
     private Vector3 _armDirection;
@@ -33,16 +38,20 @@ public class Arm : MonoBehaviour
 
     //Vec3 Used to Boomerang
     private Vector3 throwPosition;
+    //ParticleSystem
+    private bool _particlewasPlayed = false;
 
     //Properties
     public Vector3 ArmDirection { get => _armDirection; set => _armDirection = value; }
     public float Damage { get => _damage; set => _damage = value; }
     public Vector3 ThrowPosition { get => throwPosition; set => throwPosition = value; }
     public float PushPower { get => _pushPower; set => _pushPower = value; }
+    public GameObject Player { get => _player; set => _player = value; }
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        
     }
     private void Start()
     {
@@ -59,6 +68,14 @@ public class Arm : MonoBehaviour
                 _speed = 1.0f;
                 GetComponent<CircleCollider2D>().radius = _explosiveArmRadius;
                 GetComponent<CircleCollider2D>().enabled = false;
+                Physics2D.IgnoreCollision(
+                        transform.GetComponent<CircleCollider2D>(),
+                        _player.gameObject.GetComponent<CapsuleCollider2D>());
+                Physics2D.IgnoreCollision(
+                       transform.GetComponent<CircleCollider2D>(),
+                       _player.gameObject.GetComponent<BoxCollider2D>());
+                _particleSystem = GetComponent<ParticleSystem>();
+                _particleSystem.Stop();
                 break;
             case ARMTYPE.LAWNMOWER:
                 _rb.drag = 0.1f;
@@ -79,7 +96,8 @@ public class Arm : MonoBehaviour
 
     private void Update()
     {
-            Move();   
+        Move();
+        _pickUpTimer -= Time.deltaTime;    
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -131,27 +149,23 @@ public class Arm : MonoBehaviour
                         Vector2 forceDirection = collision.gameObject.transform.position -
                             gameObject.transform.position;
                         collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * PushPower, ForceMode2D.Force);
-
                         collision.gameObject.GetComponent<EnemyStats>().TakeDamage(_damage);
-                    }
 
+                        if (!_particlewasPlayed)
+                        {
+                            _particleSystem.Play();
+                            _particlewasPlayed = true;
+                        }
+                    }
                 }
                 else
                 {
-                    
-                    _canBePickedUp = false;
-                    //If the collision is with the player Ignore
-                    Physics2D.IgnoreCollision(
-                        transform.GetComponent<CircleCollider2D>(),
-                        collision.gameObject.GetComponent<CapsuleCollider2D>());
-                    Physics2D.IgnoreCollision(
-                           transform.GetComponent<CircleCollider2D>(),
-                           collision.gameObject.GetComponent<BoxCollider2D>());
-                    
+                    _canBePickedUp = false;   
                 }
                 if (!_canBePickedUp)
                 {
                     collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                    if(_pickUpTimer <= 0.0f)
                     _canBePickedUp = true;
                 }
                 break;
@@ -188,36 +202,14 @@ public class Arm : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (armType)
+        if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
         {
-            case ARMTYPE.EXPLOSIVE:
-                if (collision.gameObject.GetComponent<PlayerController>())
-                {
-                    Physics2D.IgnoreCollision(
-                                transform.GetComponent<CircleCollider2D>(),
-                                collision.gameObject.GetComponent<CapsuleCollider2D>());
-                    Physics2D.IgnoreCollision(
-                           transform.GetComponent<CircleCollider2D>(),
-                           collision.gameObject.GetComponent<BoxCollider2D>());
-
-                    if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
-                    {
-                        collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
-                        Destroy(gameObject);
-                    }
-                }
-                break;
-            default:
-                if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
-                {
-                    collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
-                    Destroy(gameObject);
-                }
-                break;
+            collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
+            Destroy(gameObject);
         }
-        
-        
     }
+        
+        
     
     /// <summary>
     /// Updates the movement of the Arm
