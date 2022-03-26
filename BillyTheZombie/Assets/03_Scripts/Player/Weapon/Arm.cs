@@ -162,11 +162,10 @@ public class Arm : MonoBehaviour
                 {
                     _canBePickedUp = false;   
                 }
-                if (!_canBePickedUp)
+                if (!_canBePickedUp && _pickUpTimer <= 0.0f)
                 {
-                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                    if(_pickUpTimer <= 0.0f)
-                    _canBePickedUp = true;
+                        _canBePickedUp = true;
+                        GetComponent<CircleCollider2D>().enabled = false;
                 }
                 break;
 
