@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7051114896888605954}
   - component: {fileID: -6728522441090210309}
   - component: {fileID: 7051114896888605955}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: RightBoomerang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,8 +129,8 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 1ac06449335066c4994a91be3d906ad1, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &7051114896888605955
 MonoBehaviour:
@@ -147,3 +147,4 @@ MonoBehaviour:
   armSide: 0
   armType: 3
   _speed: 1
+  _explosiveArmRadius: 1

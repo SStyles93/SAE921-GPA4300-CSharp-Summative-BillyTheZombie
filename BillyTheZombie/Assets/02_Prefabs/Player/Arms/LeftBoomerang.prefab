@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6693062172291444174}
   - component: {fileID: 2841871998815478060}
   - component: {fileID: 6693062172291444171}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: LeftBoomerang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,8 +129,8 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: b5877023bfeaae046ae97cd51ca3112c, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &6693062172291444171
 MonoBehaviour:
@@ -147,3 +147,4 @@ MonoBehaviour:
   armSide: 1
   armType: 3
   _speed: 1
+  _explosiveArmRadius: 1

@@ -305,6 +305,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6725792000420809198, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: _pushPower
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725792000420809198, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: _sceneManagement
       value: 
       objectReference: {fileID: 667126630}

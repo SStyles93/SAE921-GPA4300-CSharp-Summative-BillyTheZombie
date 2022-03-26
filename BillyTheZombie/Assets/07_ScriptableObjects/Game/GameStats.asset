@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252cad223fd039047ad82c0af3f10869, type: 3}
   m_Name: GameStats
   m_EditorClassIdentifier: 
-  mutagenPoints: 0
-  currentWaveIndex: 0
-  maxReachedWaveIndex: 0
+  mutagenPoints: 3159.8723
+  currentWaveIndex: 5
+  maxReachedWaveIndex: 5

@@ -20,7 +20,9 @@ public class Arm : MonoBehaviour
 
     //Arm stats
     [SerializeField] private float _speed = 1.0f;
-    private float _damage = 1.0f;
+    [SerializeField] private float _damage = 1.0f;
+    [SerializeField] private float _explosiveArmRadius = 1.0f;
+    [SerializeField] private float _pushPower = 50.0f;
 
     //ArmThrow
     private Vector3 _armDirection;
@@ -36,6 +38,7 @@ public class Arm : MonoBehaviour
     public Vector3 ArmDirection { get => _armDirection; set => _armDirection = value; }
     public float Damage { get => _damage; set => _damage = value; }
     public Vector3 ThrowPosition { get => throwPosition; set => throwPosition = value; }
+    public float PushPower { get => _pushPower; set => _pushPower = value; }
 
     private void Awake()
     {
@@ -54,6 +57,8 @@ public class Arm : MonoBehaviour
                 _rb.drag = 10.0f;
                 _rb.sharedMaterial.bounciness = 0.0f;
                 _speed = 1.0f;
+                GetComponent<CircleCollider2D>().radius = _explosiveArmRadius;
+                GetComponent<CircleCollider2D>().enabled = false;
                 break;
             case ARMTYPE.LAWNMOWER:
                 _rb.drag = 0.1f;
@@ -84,15 +89,15 @@ public class Arm : MonoBehaviour
             case ARMTYPE.BOOMERANG:
                 if (!collision.gameObject.GetComponent<PlayerActions>())
                 {
-                    //on collision stops the rb from working
+                    //on collision stops the rb from moving
                     _rb.velocity = Vector2.zero;
                     //stops applying force to the object
                     _canMove = false;
                 }
                 else
                 {
-                    //If the collision is with the player Ignore
                     _canBePickedUp = true;
+                    //If the collision is with the player Ignore
                     Physics2D.IgnoreCollision(
                         transform.GetComponent<BoxCollider2D>(),
                         collision.gameObject.GetComponent<CapsuleCollider2D>());
@@ -108,6 +113,49 @@ public class Arm : MonoBehaviour
                 _canMove = true;
                 break;
 
+            case ARMTYPE.EXPLOSIVE:
+                
+                if (!collision.gameObject.GetComponent<PlayerActions>())
+                {
+                    //enables the outer collider
+                    GetComponent<CircleCollider2D>().enabled = true;
+                    GetComponent<BoxCollider2D>().isTrigger = true;
+                    //on collision stops the rb from moving
+                    _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                    //stops applying force to the object
+                    _canMove = false;
+
+                    if (collision.gameObject.GetComponent<EnemyStats>())
+                    {
+                        //Send enemy in opposite direction from player
+                        Vector2 forceDirection = collision.gameObject.transform.position -
+                            gameObject.transform.position;
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * PushPower, ForceMode2D.Force);
+
+                        collision.gameObject.GetComponent<EnemyStats>().TakeDamage(_damage);
+                    }
+
+                }
+                else
+                {
+                    
+                    _canBePickedUp = true;
+                    //If the collision is with the player Ignore
+                    Physics2D.IgnoreCollision(
+                        transform.GetComponent<CircleCollider2D>(),
+                        collision.gameObject.GetComponent<CapsuleCollider2D>());
+                    Physics2D.IgnoreCollision(
+                           transform.GetComponent<CircleCollider2D>(),
+                           collision.gameObject.GetComponent<BoxCollider2D>());
+                    
+                }
+                if (!_canBePickedUp)
+                {
+                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                    _canBePickedUp = true;
+                }
+                break;
+
             default:
                 _canMove = false;
                 //Deals damage once before enabling pickup
@@ -121,11 +169,54 @@ public class Arm : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(armType == ARMTYPE.LAWNMOWER)
+        switch (armType)
         {
-            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-            _canBePickedUp = true;
+            case ARMTYPE.BOOMERANG:
+                if (collision.gameObject.GetComponent<PlayerController>())
+                {
+                    _canBePickedUp = true;
+                }
+                break;
+
+            case ARMTYPE.LAWNMOWER:
+                collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                _canBePickedUp = true;
+                break;
+            default:
+                break;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (armType)
+        {
+            case ARMTYPE.EXPLOSIVE:
+                if (collision.gameObject.GetComponent<PlayerController>())
+                {
+                    Physics2D.IgnoreCollision(
+                                transform.GetComponent<CircleCollider2D>(),
+                                collision.gameObject.GetComponent<CapsuleCollider2D>());
+                    Physics2D.IgnoreCollision(
+                           transform.GetComponent<CircleCollider2D>(),
+                           collision.gameObject.GetComponent<BoxCollider2D>());
+
+                    if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
+                    {
+                        collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
+                        Destroy(gameObject);
+                    }
+                }
+                break;
+            default:
+                if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
+                {
+                    collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
+                    Destroy(gameObject);
+                }
+                break;
+        }
+        
+        
     }
     
     /// <summary>
@@ -152,16 +243,4 @@ public class Arm : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// This OnTiggerEnter2D is used to let the Arm be picked up by the player
-    /// </summary>
-    /// <param name="collision">collision with player</param>
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
-        {
-            collision.gameObject.GetComponent<PlayerActions>().EnablePlayersArm(armSide, true);
-            Destroy(gameObject);
-        }
-    }
 }

@@ -136,7 +136,7 @@ public class DoctorAlbert : Interactable
         foreach (GameObject slider in _sliders)
         {
             slider.GetComponentInChildren<Text>().text =
-                $"{Mathf.Round(slider.GetComponent<Slider>().value * 100.0f)} % {slider.name}";
+                $"{Mathf.Round(slider.GetComponent<Slider>().value * 100.0f)} %\n {slider.name}";
 
             slider.GetComponent<PlayerStatUpdate>().UpdateSlider();
         }
@@ -162,8 +162,7 @@ public class DoctorAlbert : Interactable
     /// <param name="slider"></param>
     private void SubstractPoints(GameObject slider)
     {
-        if (_gameStatsSO.mutagenPoints > 0.0f
-            && slider.GetComponent<Slider>().value > 0.0f)
+        if (slider.GetComponent<Slider>().value > 0.0f)
         {
             _gameStatsSO.mutagenPoints += (0.1f * _pointsCoef);
             slider.GetComponent<PlayerStatUpdate>().Stat -= (0.1f * _pointsCoef);
@@ -193,18 +192,18 @@ public class DoctorAlbert : Interactable
     {
         foreach(GameObject button in _rightArmButtons)
         {
-            button.GetComponent<Image>().enabled = true;
+            button.GetComponent<Image>().color = Color.gray;
         }
-        _rightArmButtons[armIndex - 1].GetComponent<Image>().enabled = false;
+        _rightArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
         _playerStatsSO._rightArmType = armIndex;
     }
     public void SetLeftArmPower(int armIndex)
     {
         foreach (GameObject button in _leftArmButtons)
         {
-            button.GetComponent<Image>().enabled = true;
+            button.GetComponent<Image>().color = Color.gray;
         }
-        _leftArmButtons[armIndex - 1].GetComponent<Image>().enabled = false;
+        _leftArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
         _playerStatsSO._leftArmType = armIndex;
     }
 

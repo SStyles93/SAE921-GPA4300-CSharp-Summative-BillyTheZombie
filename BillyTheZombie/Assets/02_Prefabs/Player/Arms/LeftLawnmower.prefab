@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6693062172291444174}
   - component: {fileID: 2841871998815478060}
   - component: {fileID: 6693062172291444171}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: LeftLawnmower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

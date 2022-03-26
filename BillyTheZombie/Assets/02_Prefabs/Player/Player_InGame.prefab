@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 2619042568326500036}
   - component: {fileID: 1709225247}
   - component: {fileID: 6725792000420809198}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_InGame
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -654,8 +654,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.7}
-  m_EdgeRadius: 0.07
+  m_Size: {x: 0.1, y: 0.46}
+  m_EdgeRadius: 0.11
 --- !u!114 &7769927165255852279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,13 +736,13 @@ MonoBehaviour:
   - {fileID: 7051114896888605980, guid: fb630c68dbde78046bba52a08314e322, type: 3}
   - {fileID: 7051114896888605980, guid: 6c4dcb5ee393bf44da81576ca909fd0b, type: 3}
   - {fileID: 7051114896888605980, guid: ea9d3787c74e0554b8a7276eaeea0a49, type: 3}
-  _chosenAbilityIdxR: 0
+  _chosenAbilityIdxR: 3
   _leftArms:
   - {fileID: 6693062172291444175, guid: 6ef8a6d2612a9004792f403a67b9cf61, type: 3}
   - {fileID: 6693062172291444175, guid: 3037068cbf94f074a9672634a5141f1a, type: 3}
   - {fileID: 6693062172291444175, guid: b566505cb12a7764e9d48b3819d85aea, type: 3}
   - {fileID: 6693062172291444175, guid: 438e7f11e56a7ea419d48b37f6a871ea, type: 3}
-  _chosenAbilityIdxL: 0
+  _chosenAbilityIdxL: 3
   _aimCorrection: 0.55
   _headbuttCoolDownTime: 1
 --- !u!114 &6725792000420809198

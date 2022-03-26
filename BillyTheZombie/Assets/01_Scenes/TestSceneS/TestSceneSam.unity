@@ -2062,8 +2062,10 @@ MonoBehaviour:
   _spawnPositions:
   - {fileID: 1834937922}
   - {fileID: 1487029452}
+  _waves: []
   _waveStarted: 0
   _waveEnded: 0
+  rangeAroundPos: 0
 --- !u!1 &1043799840
 GameObject:
   m_ObjectHideFlags: 0

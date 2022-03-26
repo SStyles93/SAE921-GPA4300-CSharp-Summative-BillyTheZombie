@@ -243,6 +243,8 @@ public class PlayerActions : MonoBehaviour
             arm.Damage *= _playerStats.ArmDamage;
             //ThrowPosition used for BommerangArm
             arm.ThrowPosition = transform.position;
+            //PushPower used for Explosive
+            arm.PushPower *= _playerStats.PushPower;
         }
         if (armSide == BODYPART.LEFTARM)
         {
@@ -253,6 +255,8 @@ public class PlayerActions : MonoBehaviour
             arm.Damage *= _playerStats.ArmDamage;
             //ThrowPosition used for BommerangArm
             arm.ThrowPosition = transform.position;
+            //PushPower used for Explosive
+            arm.PushPower *= _playerStats.PushPower;
         }
     }
 
