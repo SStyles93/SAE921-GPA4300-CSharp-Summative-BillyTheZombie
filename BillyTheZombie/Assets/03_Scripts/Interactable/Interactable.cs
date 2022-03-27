@@ -71,11 +71,11 @@ public abstract class Interactable : MonoBehaviour
         {
             case "Keyboard":
                 _infoBubble.GetComponent<SpriteRenderer>().sprite =
-                    _uIButtonsLibrary._keyboardSprites[(int)BODYPART.LEFTARM];
+                    _uIButtonsLibrary.keyboardSprites[(int)BODYPART.LEFTARM];
                 break;
             case "Gamepad":
                 _infoBubble.GetComponent<SpriteRenderer>().sprite =
-                    _uIButtonsLibrary._gamepadSprites[(int)BODYPART.LEFTARM];
+                    _uIButtonsLibrary.gamepadSprites[(int)BODYPART.LEFTARM];
                 break;
         }
     }

@@ -8,7 +8,7 @@ public class PlayerUI : MonoBehaviour
 {
     //Reference Scripts
     [Header("Player Scripts")]
-    [SerializeField] private PlayerInput _playerInput;
+    //[SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private PlayerActions _playerActions;
     [SerializeField] private PlayerStats _playerStats;
@@ -28,14 +28,18 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image[] _bodyImages;
     [Tooltip("List of ButtonImages: [0]-Right || [1]-Left || [2]-Head")]
     [SerializeField] private Image[] _buttonImages;
-    [SerializeField] private UIButtonsSO _buttonImagesLibrary;
+
+    //ScriptableObjects
+    [SerializeField] private UIButtonsSO _uIButtonsSO;
+    [SerializeField] private UIActionsSO _uIActionsSO;
+    [SerializeField] private PlayerStatsSO _playerStatsSO;
 
     private void Awake()
     {
         _playerStats = GetComponentInParent<PlayerStats>();
         _playerActions = GetComponentInParent<PlayerActions>();
         _playerController = GetComponentInParent<PlayerController>();
-        _playerInput = GetComponentInParent<PlayerInput>();
+        //_playerInput = GetComponentInParent<PlayerInput>();
 
         _healthSlider = GetComponentInChildren<Slider>();
     }
@@ -43,6 +47,9 @@ public class PlayerUI : MonoBehaviour
     {
         _healthSlider.maxValue = _playerStats.MaxHealth;
         _healthSlider.value = _playerStats.Health;
+        //Set Arm UIActions sprites 0-Right || 1- Left
+        _bodyImages[0].sprite = _uIActionsSO.actionSprites[_playerStatsSO._rightArmType];
+        _bodyImages[1].sprite = _uIActionsSO.actionSprites[_playerStatsSO._leftArmType];
     }
 
     // Update is called once per frame
@@ -77,7 +84,7 @@ public class PlayerUI : MonoBehaviour
     private void UpdateActionsUI()
     {
         //If CanThrow => normalColor
-
+        
         //Right arm
         _bodyImages[(int)BODYPART.RIGHTARM].color = 
             _playerActions.CanThrow[(int)BODYPART.RIGHTARM] ? _normalColor : _blockedColor;
@@ -117,13 +124,13 @@ public class PlayerUI : MonoBehaviour
             case "Keyboard":
                 for (int i = 0; i < _buttonImages.Length; i++)
                 {
-                    _buttonImages[i].sprite = _buttonImagesLibrary._keyboardSprites[i];
+                    _buttonImages[i].sprite = _uIButtonsSO.keyboardSprites[i];
                 }
                 break;
             case "Gamepad":
                 for (int i = 0; i < _buttonImages.Length; i++)
                 {
-                    _buttonImages[i].sprite = _buttonImagesLibrary._gamepadSprites[i];
+                    _buttonImages[i].sprite = _uIButtonsSO.gamepadSprites[i];
                 }
                 break;
             default:

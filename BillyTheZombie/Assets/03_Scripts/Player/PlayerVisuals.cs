@@ -11,6 +11,11 @@ public class PlayerVisuals : MonoBehaviour
 
     //Reference Components
     private Animator _animator;
+    //Animator Hashes
+    private int _xPositionHash;
+    private int _yPositionHash;
+    private int _movementHash;
+    private int _headbuttHash;
 
     public Animator Animator { get => _animator; private set => _animator = value; }
 
@@ -20,6 +25,12 @@ public class PlayerVisuals : MonoBehaviour
         _movement = GetComponentInParent<PlayerMovement>();
         _actions = GetComponentInParent<PlayerActions>();
         _animator = GetComponent<Animator>();
+
+        _xPositionHash = Animator.StringToHash("xPosition");
+        _yPositionHash = Animator.StringToHash("yPosition");
+        _movementHash = Animator.StringToHash("Movement");
+        _headbuttHash = Animator.StringToHash("Headbutt");
+
     }
 
     private void Update()
@@ -35,13 +46,13 @@ public class PlayerVisuals : MonoBehaviour
     {
         if (_controller.Look != Vector2.zero)
         {
-            _animator.SetFloat("xPosition", _controller.Look.x);
-            _animator.SetFloat("yPosition", _controller.Look.y);
+            _animator.SetFloat(_xPositionHash, _controller.Look.x);
+            _animator.SetFloat(_yPositionHash, _controller.Look.y);
         }
         else
         {
-            _animator.SetFloat("xPosition", _actions.Aim.transform.localPosition.x);
-            _animator.SetFloat("yPosition", _actions.Aim.transform.localPosition.y);
+            _animator.SetFloat(_xPositionHash, _actions.Aim.transform.localPosition.x);
+            _animator.SetFloat(_yPositionHash, _actions.Aim.transform.localPosition.y);
         }
     }
     /// <summary>
@@ -51,11 +62,11 @@ public class PlayerVisuals : MonoBehaviour
     {
         if (_controller.Movement != Vector2.zero)
         {
-            _animator.SetFloat("Movement", 1.0f);
+            _animator.SetFloat(_movementHash, 1.0f);
         }
         else
         {
-            _animator.SetFloat("Movement", 0.0f);
+            _animator.SetFloat(_movementHash, 0.0f);
         }
     }
     
@@ -64,7 +75,7 @@ public class PlayerVisuals : MonoBehaviour
     /// </summary>
     public void StartHeadbutt()
     {
-        _animator.SetBool("Headbutt", true);
+        _animator.SetBool(_headbuttHash, true);
         _movement.CanMove = false;
 
     }
@@ -73,7 +84,7 @@ public class PlayerVisuals : MonoBehaviour
     /// </summary>
     public void EndHeadbutt()
     {
-        _animator.SetBool("Headbutt", false);
+        _animator.SetBool(_headbuttHash, false);
         _movement.CanMove = true;
     }
 

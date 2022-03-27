@@ -26,8 +26,8 @@ public class Arm : MonoBehaviour
     [SerializeField] private float _speed = 1.0f;
     [SerializeField] private float _damage = 1.0f;
     [SerializeField] private float _explosiveArmRadius = 0.5f;
-    [SerializeField] private float _pushPower = 500.0f;
-    private float _pickUpTimer = 1.0f;
+    [SerializeField] private float _pushPower = 250.0f;
+    private float _pickUpTimer = 0.5f;
 
     //ArmThrow
     private Vector3 _armDirection;
@@ -133,6 +133,7 @@ public class Arm : MonoBehaviour
 
             case ARMTYPE.EXPLOSIVE:
                 
+                //collision with non-player
                 if (!collision.gameObject.GetComponent<PlayerActions>())
                 {
                     //enables the outer collider
@@ -143,6 +144,13 @@ public class Arm : MonoBehaviour
                     //stops applying force to the object
                     _canMove = false;
 
+                    if (!_canBePickedUp && _pickUpTimer <= 0.0f)
+                    {
+                        _canBePickedUp = true;
+                        GetComponent<CircleCollider2D>().enabled = false;
+                    }
+
+                    //collision with Enemy
                     if (collision.gameObject.GetComponent<EnemyStats>())
                     {
                         //Send enemy in opposite direction from player
@@ -156,26 +164,41 @@ public class Arm : MonoBehaviour
                             _particleSystem.Play();
                             _particlewasPlayed = true;
                         }
+                        _canBePickedUp = true;
                     }
+                    
                 }
+                //collision with player
                 else
                 {
-                    _canBePickedUp = false;   
-                }
-                if (!_canBePickedUp && _pickUpTimer <= 0.0f)
-                {
-                        _canBePickedUp = true;
-                        GetComponent<CircleCollider2D>().enabled = false;
+                    _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
                 }
                 break;
 
             default:
-                _canMove = false;
-                //Deals damage once before enabling pickup
-                if (!_canBePickedUp)
+                if (!collision.gameObject.GetComponent<PlayerActions>())
                 {
-                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                    _canBePickedUp = true;
+                    //stops applying force to the object
+                    _canMove = false;
+
+                    if (!_canBePickedUp && _pickUpTimer <= 0.0f)
+                    {
+                        _canBePickedUp = true;
+                    }
+
+                    //collision with enemy
+                    if (collision.gameObject.GetComponent<EnemyStats>())
+                    {
+                    if (!_canBePickedUp)
+                    {
+                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                        _canBePickedUp = true;
+                    }
+                    }
+                }
+                else
+                {
+                    _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
                 }
                 break;
         }

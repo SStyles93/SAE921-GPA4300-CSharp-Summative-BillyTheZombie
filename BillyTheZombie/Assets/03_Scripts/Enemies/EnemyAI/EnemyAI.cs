@@ -5,10 +5,11 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    private EnemyStats _enemyStats;
+    private AIPath _aIPath;
     private EnemyRayCaster _rayCaster;
     private AIDestinationSetter _destinationSetter;
-    private AIPath _aIPath;
+    private EnemyStats _enemyStats;
+    private EnemyVisuals _enemyVisuals;
 
     [SerializeField] private float recoveryTimer = 1.0f;
     private float recoveryTime;
@@ -21,10 +22,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        _enemyStats = GetComponent<EnemyStats>();
+        _aIPath = GetComponent<AIPath>();
         _rayCaster = GetComponentInChildren<EnemyRayCaster>();
         _destinationSetter = GetComponent<AIDestinationSetter>();
-        _aIPath = GetComponent<AIPath>();
+        _enemyStats = GetComponent<EnemyStats>();
+        _enemyVisuals = GetComponentInChildren<EnemyVisuals>();
     }
     private void Start()
     {
@@ -59,10 +61,8 @@ public class EnemyAI : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>())
         {
-            Debug.Log("Collision Entre");
             if (_rayCaster.PlayerInSight)
             {
-                Debug.Log("is in sight");
                 _aIPath.canMove = false;
             }
         }
@@ -80,7 +80,7 @@ public class EnemyAI : MonoBehaviour
             {
                 collision.GetComponent<PlayerStats>().Health -= _enemyStats.Damage;
                 attackTime = attackTimer;
-                Debug.Log("Hit");
+                _enemyVisuals.Attack = true;
             }
             
         }
@@ -88,5 +88,6 @@ public class EnemyAI : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _aIPath.canMove = true;
+        _enemyVisuals.Attack = false;
     }
 }

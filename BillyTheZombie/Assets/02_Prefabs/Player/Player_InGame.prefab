@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b591378ad40e4a94dae52bea642d906c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushPower: 10
+  _pushPower: 50
   _headDamage: 5
 --- !u!1 &885012083066232913
 GameObject:
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 3504187169100981079}
   - component: {fileID: 6752433910420508882}
   - component: {fileID: 6159097043134297104}
-  - component: {fileID: 9000364083638177250}
+  - component: {fileID: 2940698881990813076}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -374,7 +374,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9000364083638177250
+--- !u!114 &2940698881990813076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -654,8 +654,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.46}
-  m_EdgeRadius: 0.11
+  m_Size: {x: 0.51, y: 0.76}
+  m_EdgeRadius: 0
 --- !u!114 &7769927165255852279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneManagement: {fileID: 0}
   _statSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
-  _pushPower: 10
+  _pushPower: 100
   _armDamage: 10
   _health: 100
   _speed: 4
@@ -1261,7 +1261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7bb1d05ee27fc4e804c3e1300c7477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 0}
   _playerController: {fileID: 0}
   _playerActions: {fileID: 1709225247}
   _playerStats: {fileID: 6725792000420809198}
@@ -1309,4 +1308,6 @@ MonoBehaviour:
   - {fileID: 4966366777464120852}
   - {fileID: 570080597283372471}
   - {fileID: 7097809988505044850}
-  _buttonImagesLibrary: {fileID: 11400000, guid: a803d7a12cccbdb4e8eef03ad3413a21, type: 2}
+  _uIButtonsSO: {fileID: 11400000, guid: a803d7a12cccbdb4e8eef03ad3413a21, type: 2}
+  _uIActionsSO: {fileID: 11400000, guid: 06e7d0b37132db447ab9cd79aa4459da, type: 2}
+  _playerStatsSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
