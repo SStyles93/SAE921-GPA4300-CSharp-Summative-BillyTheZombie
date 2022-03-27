@@ -52,9 +52,14 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (collision.gameObject.CompareTag("Player"))
         {
             isHit = true;
+        }
+        //Colors the enemy on hit
+        if (collision.gameObject.GetComponent<Arm>())
+        {
+            _enemyVisuals.HitEffect();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

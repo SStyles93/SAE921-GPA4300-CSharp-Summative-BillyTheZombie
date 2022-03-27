@@ -181,20 +181,18 @@ public class Arm : MonoBehaviour
                     //stops applying force to the object
                     _canMove = false;
 
-                    if (!_canBePickedUp && _pickUpTimer <= 0.0f)
-                    {
-                        _canBePickedUp = true;
-                    }
 
                     //collision with enemy
                     if (collision.gameObject.GetComponent<EnemyStats>())
                     {
-                    if (!_canBePickedUp)
-                    {
-                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                        if (!_canBePickedUp)
+                        {
+                            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                            _canBePickedUp = true;
+                        }
+
+                    }
                         _canBePickedUp = true;
-                    }
-                    }
                 }
                 else
                 {
@@ -230,9 +228,17 @@ public class Arm : MonoBehaviour
             Destroy(gameObject);
         }
     }
-        
-        
-    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
+        {
+            collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
+            Destroy(gameObject);
+        }
+    }
+
+
+
     /// <summary>
     /// Updates the movement of the Arm
     /// </summary>
@@ -247,19 +253,23 @@ public class Arm : MonoBehaviour
         }
         else
         {
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _rb.velocity = Vector2.zero;
         }
         //Boomerang return
         if (armType == ARMTYPE.BOOMERANG && !_canMove)
         {
             transform.position = Vector3.Lerp(transform.position, throwPosition, _speed * 2.0f * Time.deltaTime);
         }
+        //Lawnmower rotation
         if(armType == ARMTYPE.LAWNMOWER)
         {
             transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
         }
-        
-        
+        //Explosive constraints
+        if(armType == ARMTYPE.EXPLOSIVE && !_canMove)
+        {
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 
 }

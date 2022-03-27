@@ -1398,7 +1398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7bb1d05ee27fc4e804c3e1300c7477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 0}
   _playerController: {fileID: 0}
   _playerActions: {fileID: 6538462541292726585}
   _playerStats: {fileID: 570718248172836296}
@@ -1446,7 +1445,9 @@ MonoBehaviour:
   - {fileID: 2184629879278877234}
   - {fileID: 6725031213322019217}
   - {fileID: 4052454191132826452}
-  _buttonImagesLibrary: {fileID: 11400000, guid: a803d7a12cccbdb4e8eef03ad3413a21, type: 2}
+  _uIButtonsSO: {fileID: 11400000, guid: a803d7a12cccbdb4e8eef03ad3413a21, type: 2}
+  _uIActionsSO: {fileID: 11400000, guid: 06e7d0b37132db447ab9cd79aa4459da, type: 2}
+  _playerStatsSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
 --- !u!1 &9143992105204028131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1640,7 @@ MonoBehaviour:
   - {fileID: 6693062172291444175, guid: 438e7f11e56a7ea419d48b37f6a871ea, type: 3}
   - {fileID: 6693062172291444175, guid: b566505cb12a7764e9d48b3819d85aea, type: 3}
   _chosenAbilityIdxL: 0
+  _aimCorrection: 0
   _headbuttCoolDownTime: 1
 --- !u!114 &570718248172836296
 MonoBehaviour:

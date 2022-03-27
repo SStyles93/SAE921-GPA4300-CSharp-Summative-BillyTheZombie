@@ -64,14 +64,10 @@ public class EnemyVisuals : MonoBehaviour
        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void HitEffect()
     {
-        //Colors the enemy on hit
-        if (collision.gameObject.GetComponent<Arm>())
-        {
-            _currentColor = Color.red;
-            _damageCooldown = 0.0f;
-        }
+        _currentColor = Color.red;
+        _damageCooldown = 0.0f;
     }
 
     private void RetriveNormalColor()
