@@ -587,7 +587,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee610ca73cebc814d8003af18272ce03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRender: {fileID: 0}
+  _spriteRenders:
+  - {fileID: 8495529115696167543}
+  - {fileID: 5808130506317787589}
+  - {fileID: 7910022476426210631}
+  - {fileID: 884701297765048363}
   _rayCaster: {fileID: 8495529116605207756}
   _currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8495529115717531195

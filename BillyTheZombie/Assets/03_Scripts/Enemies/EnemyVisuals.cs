@@ -9,7 +9,7 @@ public class EnemyVisuals : MonoBehaviour
     private AIPath _aIPath;
 
     //Reference Components
-    [SerializeField] private SpriteRenderer _spriteRender;
+    [SerializeField] private SpriteRenderer[] _spriteRenders;
     [SerializeField] private GameObject _rayCaster;
     private Animator _animator;
     //Animator Hashes
@@ -29,7 +29,6 @@ public class EnemyVisuals : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _spriteRender = GetComponent<SpriteRenderer>();
         _aIPath = GetComponentInParent<AIPath>();
 
         _xPositionHash = Animator.StringToHash("xPosition");
@@ -68,6 +67,9 @@ public class EnemyVisuals : MonoBehaviour
        
     }
 
+    /// <summary>
+    /// Slowly sets the color of SpriteRenderers back to white (normal) color
+    /// </summary>
     private void RetriveNormalColor()
     {
         if (_currentColor != Color.white)
@@ -79,15 +81,25 @@ public class EnemyVisuals : MonoBehaviour
         {
             _damageCooldown = 0.0f;
         }
-        _spriteRender.color = _currentColor;
+        foreach(SpriteRenderer renderer in _spriteRenders)
+        {
+            renderer.color = _currentColor;
+        }
+        
     }
 
+    /// <summary>
+    /// Visual feedack for when an enemy gets hit
+    /// </summary>
     public void HitEffect()
     {
         _currentColor = Color.red;
         _damageCooldown = 0.0f;
     }
 
+    /// <summary>
+    /// HasAttacked is used by the animator to signal the end of attack
+    /// </summary>
     public void HasAttacked()
     {
         _attack = false;

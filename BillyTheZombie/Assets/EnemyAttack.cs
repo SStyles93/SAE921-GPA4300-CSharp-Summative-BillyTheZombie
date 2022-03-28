@@ -10,12 +10,15 @@ public class EnemyAttack : MonoBehaviour
     {
         _enemyStats.GetComponentInParent<EnemyStats>();
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Uses the Trigger to hit
         if (collision.GetComponent<PlayerStats>())
         {
             collision.GetComponent<PlayerStats>().TakeDamage(_enemyStats.Damage);
-        }
+        } 
     }
+
+
+    
 }

@@ -17,9 +17,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackTime;
     [SerializeField] private bool _stopMoving = false;
 
-    //[SerializeField] float _searchRange = 1.0f;
-    //[SerializeField] float _searchMagnitude = 1.0f;
-
     private void Awake()
     {
         _aIPath = GetComponent<AIPath>();
