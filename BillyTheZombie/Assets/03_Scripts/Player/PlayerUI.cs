@@ -39,6 +39,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private PlayerStatsSO _playerStatsSO;
     [SerializeField] private GameStatsSO _gameStatsSO;
 
+    //GameStatsUI
+    [SerializeField] private Color _currentColor;
+    private float _colorCooldown;
+
     private void Awake()
     {
         _playerStats = GetComponentInParent<PlayerStats>();
@@ -123,6 +127,10 @@ public class PlayerUI : MonoBehaviour
         _buttonImages[2].color =
             _playerController.Head ? _blockedColor : _normalColor;
     }
+
+    /// <summary>
+    /// Updated the buttons UI to match the Controllers (ControlScheme)
+    /// </summary>
     private void UpdateButtonUi()
     {
         switch (_playerController.ControlScheme)
@@ -148,7 +156,23 @@ public class PlayerUI : MonoBehaviour
     private void UpdateTextUi()
     {
         _waveNumberText.text = $"Current Wave: {_gameStatsSO.currentWaveIndex} \n Max Wave: {_gameStatsSO.maxReachedWaveIndex}";
-        _mutagenPointsText.text = $"Mutagen Points: {_gameStatsSO.mutagenPoints}";
+        _mutagenPointsText.text = "Mutagen Points";
+        _currentColor = _mutagenPointsText.color;
+        if (_currentColor != Color.green)
+        {
+            _colorCooldown += Time.deltaTime/50.0f;
+            _currentColor = Color.Lerp(_currentColor, Color.green, _colorCooldown);
+        }
+        else
+        {
+            _colorCooldown = 0.0f;
+        }
+        _mutagenPointsText.color = _currentColor;
+    }
+
+    public void GainPointsColorText()
+    {
+        _mutagenPointsText.color = Color.red;
     }
 
 }

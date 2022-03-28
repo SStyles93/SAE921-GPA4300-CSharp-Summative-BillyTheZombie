@@ -56,6 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac534ff6694e5240be329405fbdf1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerUI: {fileID: 0}
   _gameStats: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _enemyPrefabs:
   - {fileID: 769978088285160711, guid: c05b1a1daf33e5742a51c474a72de992, type: 3}
@@ -74,6 +75,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5d577c1dc054224fa58b79ec4710af2, type: 2}
   - {fileID: 11400000, guid: 4e030a532325cd1498e6ea6b5042340b, type: 2}
   - {fileID: 11400000, guid: e5ba2685267b4ba4fae3612b4baa9bb3, type: 2}
+  - {fileID: 11400000, guid: 9c945441905ad6b4581446f93b25f0c4, type: 2}
   _waveStarted: 0
   _waveEnded: 0
   rangeAroundPos: 0

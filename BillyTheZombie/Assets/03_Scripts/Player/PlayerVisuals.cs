@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerVisuals : MonoBehaviour
 {
     //Reference Scripts
-    private PlayerController _controller;
-    private PlayerMovement _movement;
-    private PlayerActions _actions;
+    private PlayerController _playerController;
+    private PlayerMovement _playerMovement;
+    private PlayerActions _playerActions;
+    private PlayerStats _playerStats;
 
     //Reference Components
     private Animator _animator;
@@ -21,9 +22,10 @@ public class PlayerVisuals : MonoBehaviour
 
     private void Awake()
     {
-        _controller = GetComponentInParent<PlayerController>();
-        _movement = GetComponentInParent<PlayerMovement>();
-        _actions = GetComponentInParent<PlayerActions>();
+        _playerController = GetComponentInParent<PlayerController>();
+        _playerMovement = GetComponentInParent<PlayerMovement>();
+        _playerActions = GetComponentInParent<PlayerActions>();
+        _playerStats = GetComponentInParent<PlayerStats>();
         _animator = GetComponent<Animator>();
 
         _xPositionHash = Animator.StringToHash("xPosition");
@@ -31,6 +33,10 @@ public class PlayerVisuals : MonoBehaviour
         _movementHash = Animator.StringToHash("Movement");
         _headbuttHash = Animator.StringToHash("Headbutt");
 
+    }
+    private void Start()
+    {
+        _animator.speed = _playerStats.Speed/4.0f;
     }
 
     private void Update()
@@ -44,15 +50,15 @@ public class PlayerVisuals : MonoBehaviour
     /// </summary>
     private void Look()
     {
-        if (_controller.Look != Vector2.zero)
+        if (_playerController.Look != Vector2.zero)
         {
-            _animator.SetFloat(_xPositionHash, _controller.Look.x);
-            _animator.SetFloat(_yPositionHash, _controller.Look.y);
+            _animator.SetFloat(_xPositionHash, _playerController.Look.x);
+            _animator.SetFloat(_yPositionHash, _playerController.Look.y);
         }
         else
         {
-            _animator.SetFloat(_xPositionHash, _actions.Aim.transform.localPosition.x);
-            _animator.SetFloat(_yPositionHash, _actions.Aim.transform.localPosition.y);
+            _animator.SetFloat(_xPositionHash, _playerActions.Aim.transform.localPosition.x);
+            _animator.SetFloat(_yPositionHash, _playerActions.Aim.transform.localPosition.y);
         }
     }
     /// <summary>
@@ -60,7 +66,7 @@ public class PlayerVisuals : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        if (_controller.Movement != Vector2.zero)
+        if (_playerController.Movement != Vector2.zero)
         {
             _animator.SetFloat(_movementHash, 1.0f);
         }
@@ -76,7 +82,7 @@ public class PlayerVisuals : MonoBehaviour
     public void StartHeadbutt()
     {
         _animator.SetBool(_headbuttHash, true);
-        _movement.CanMove = false;
+        _playerMovement.CanMove = false;
 
     }
     /// <summary>
@@ -85,7 +91,7 @@ public class PlayerVisuals : MonoBehaviour
     public void EndHeadbutt()
     {
         _animator.SetBool(_headbuttHash, false);
-        _movement.CanMove = true;
+        _playerMovement.CanMove = true;
     }
 
     #region SpritePosition NOT USED

@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoveryTimer: 1
-  attackTimer: 4
+  attackTimer: 1
   attackTime: 0
   _stopMoving: 0
 --- !u!114 &8495529115230520512

@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &265030724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+  m_PrefabInstance: {fileID: 334458725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7bb1d05ee27fc4e804c3e1300c7477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &334295585
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +306,18 @@ PrefabInstance:
     - target: {fileID: 2619042568326500037, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161737476156737, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161738147447644, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161738147447644, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633051691886695518, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -632,17 +655,9 @@ PrefabInstance:
       value: SceneManager
       objectReference: {fileID: 0}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: rangeAroundPos
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _waves.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _waves.Array.data[7]
+      propertyPath: _playerUI
       value: 
-      objectReference: {fileID: 11400000, guid: 9c945441905ad6b4581446f93b25f0c4, type: 2}
+      objectReference: {fileID: 265030724}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _spawnPositions.Array.data[0]
       value: 

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private PlayerUI _playerUI;
+
+    //reference ScriptableObjects
     [SerializeField] private GameStatsSO _gameStats;
+
+
     [SerializeField] GameObject[] _enemyPrefabs;
     [SerializeField] private List<GameObject> _enemyTracked;
 
@@ -30,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
             if(_enemyTracked[i] == null)
             {
                 _enemyTracked.RemoveAt(i);
+                _playerUI.GainPointsColorText();
             }
         }
         //End

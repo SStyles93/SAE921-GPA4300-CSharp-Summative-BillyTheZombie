@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        _sceneManagement.ActivateScene(2);
+        _sceneManagement.ActivateScene(1);
     }
 
     /// <summary>
