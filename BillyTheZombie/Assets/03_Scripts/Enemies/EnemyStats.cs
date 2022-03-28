@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private EnemyStatsSO _enemyStats;
+    [SerializeField] private EnemyVisuals _enemyVisuals;
 
     [SerializeField] private GameStatsSO _gameStats;
 
@@ -39,8 +40,12 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _health -= damage;
+        _enemyVisuals.HitEffect();
     }
 
+    /// <summary>
+    /// Destroys the GameObject
+    /// </summary>
     private void Die()
     {
         _gameStats.mutagenPoints += _mutagenValue;

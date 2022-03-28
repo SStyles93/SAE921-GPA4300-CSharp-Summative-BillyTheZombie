@@ -56,18 +56,6 @@ public class EnemyAI : MonoBehaviour
         {
             _stopMoving = true;
         }
-        if(collision.gameObject.GetComponent<Arm>() || collision.gameObject.GetComponent<Headbutt>())
-        {
-            _enemyVisuals.HitEffect();
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.GetComponent<Arm>() || collision.gameObject.GetComponent<Headbutt>())
-        {
-            _enemyVisuals.HitEffect();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

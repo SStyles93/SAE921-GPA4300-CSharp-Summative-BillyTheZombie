@@ -54,4 +54,13 @@ public class PlayerStats : MonoBehaviour
     {
         _sceneManagement.ActivateScene(2);
     }
+
+    /// <summary>
+    /// lowers health according to the damage
+    /// </summary>
+    /// <param name="damage">The damage to substract to health</param>
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+    }
 }

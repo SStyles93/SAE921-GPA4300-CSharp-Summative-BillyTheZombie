@@ -59,6 +59,10 @@ public class EnemyVisuals : MonoBehaviour
         {
             _animator.SetBool(_attackHash, true);
         }
+        else
+        {
+            _animator.SetBool(_attackHash, false);
+        }
 
         RetriveNormalColor();
        
