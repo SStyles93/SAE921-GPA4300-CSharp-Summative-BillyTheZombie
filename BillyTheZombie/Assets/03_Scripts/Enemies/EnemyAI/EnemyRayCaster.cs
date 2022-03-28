@@ -95,6 +95,7 @@ public class EnemyRayCaster : MonoBehaviour
         for (int i = 0; i < _rayDirections.Length; i++)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirections[i].normalized, _detectionDistance);
+            
             if (hit.collider != null && hit.transform.GetComponent<PlayerController>())
             {
                 _playerInSight = true;

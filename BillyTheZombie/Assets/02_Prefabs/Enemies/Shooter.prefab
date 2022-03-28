@@ -550,7 +550,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 4.4
 --- !u!1 &8495529115696167541
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +694,7 @@ MonoBehaviour:
   _enemyRayCaster: {fileID: 8495529116605207758}
   _ribPrefab: {fileID: 3760512471503786121, guid: 25fef5221a5128c4092a669eebccd8b1, type: 3}
   _damage: 10
-  _ribSpeed: 1
+  _ribSpeed: 0.1
 --- !u!1 &8495529115717531195
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,8 +770,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUGMODE: 0
-  tickTimer: 0.1
-  _numberOfRays: 60
+  tickTimer: 0.25
+  _numberOfRays: 20
   _angleOfDetection: 210
   _detectionDistance: 10
   _target: {fileID: 8495529115717531194}

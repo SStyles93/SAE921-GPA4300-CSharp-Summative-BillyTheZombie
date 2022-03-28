@@ -74,6 +74,10 @@ public class EnemyAI : MonoBehaviour
                 _aIPath.canMove = false;
                 attackTime -= Time.deltaTime;
             }
+            else
+            {
+                _aIPath.canMove = true;
+            }
             if(attackTime < 0.0f)
             {
                 //collision.GetComponent<PlayerStats>().Health -= _enemyStats.Damage;

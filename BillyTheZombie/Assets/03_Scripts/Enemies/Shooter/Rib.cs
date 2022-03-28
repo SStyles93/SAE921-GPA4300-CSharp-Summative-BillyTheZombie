@@ -40,7 +40,7 @@ public class Rib : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.None;
             //Physic movement
             _rb.AddForce(_ribDirection * _speed / 10.0f, ForceMode2D.Impulse);
-            transform.Rotate(Vector3.back * Time.deltaTime * 500f);
+            transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
         }
         else
         {
