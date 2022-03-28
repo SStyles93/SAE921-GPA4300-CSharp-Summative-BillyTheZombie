@@ -20,6 +20,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image _healthFill;
     [SerializeField] private Image _headImage;
     [SerializeField] private List<Sprite> _headSprites;
+    [SerializeField] private Text _waveNumberText;
+    [SerializeField] private Text _mutagenPointsText;
+
+
 
     [Header("Player Actions UI")]
     [SerializeField] private Color _blockedColor = Color.gray;
@@ -33,6 +37,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private UIButtonsSO _uIButtonsSO;
     [SerializeField] private UIActionsSO _uIActionsSO;
     [SerializeField] private PlayerStatsSO _playerStatsSO;
+    [SerializeField] private GameStatsSO _gameStatsSO;
 
     private void Awake()
     {
@@ -59,6 +64,7 @@ public class PlayerUI : MonoBehaviour
         UpdateActionsUI();
         UpdateButtonUi();
         UpdateButtonsUiColor();
+        UpdateTextUi();
     }
 
     /// <summary>
@@ -137,6 +143,12 @@ public class PlayerUI : MonoBehaviour
                 break;
         }
         
+    }
+
+    private void UpdateTextUi()
+    {
+        _waveNumberText.text = $"Current Wave: {_gameStatsSO.currentWaveIndex} \n Max Wave: {_gameStatsSO.maxReachedWaveIndex}";
+        _mutagenPointsText.text = $"Mutagen Points: {_gameStatsSO.mutagenPoints}";
     }
 
 }

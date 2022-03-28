@@ -164,6 +164,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1647808933, guid: 4b320748de73c4541a7c8bda97e949dd, type: 3}
+      propertyPath: _sceneIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2034431379535571048, guid: 4b320748de73c4541a7c8bda97e949dd, type: 3}
       propertyPath: m_Name
       value: Gate
@@ -464,6 +468,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1936339255430794995, guid: f63986c04a6d90445880898e5483fcf4, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4525441836541871757, guid: f63986c04a6d90445880898e5483fcf4, type: 3}
       propertyPath: m_Name
       value: Camera

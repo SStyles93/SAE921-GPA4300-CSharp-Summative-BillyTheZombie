@@ -5,12 +5,13 @@ using UnityEngine;
 public class LoadTrigger : MonoBehaviour
 {
     [SerializeField] private SceneManagement _sceneManagement;
+    [SerializeField] private int _sceneIndex = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerController>())
         {
-            _sceneManagement.ActivateScene(1);
+            _sceneManagement.ActivateScene(_sceneIndex);
         } 
     }
 }
