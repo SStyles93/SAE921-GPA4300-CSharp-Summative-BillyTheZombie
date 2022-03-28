@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    [SerializeField] private EnemyStatsSO _enemyStats;
+    [SerializeField] private EnemyStatsSO _enemyStatsSO;
     [SerializeField] private EnemyVisuals _enemyVisuals;
 
     [SerializeField] private GameStatsSO _gameStats;
@@ -18,11 +18,12 @@ public class EnemyStats : MonoBehaviour
     public float Damage { get => _damage; set => _damage = value; }
     public void Awake()
     {
+        _enemyVisuals = GetComponentInChildren<EnemyVisuals>();
 
-        _mutagenValue = _enemyStats._mutagenValue;
-        _health = _enemyStats._health;
-        _speed = _enemyStats._speed;
-        _damage = _enemyStats._damage;
+        _mutagenValue = _enemyStatsSO._mutagenValue;
+        _health = _enemyStatsSO._health;
+        _speed = _enemyStatsSO._speed;
+        _damage = _enemyStatsSO._damage;
     }
 
     void Update()

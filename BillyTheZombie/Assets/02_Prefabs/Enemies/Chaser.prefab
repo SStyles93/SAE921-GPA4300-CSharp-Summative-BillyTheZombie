@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066678d63f1ea6c42a4e80862a034dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyStats: {fileID: 11400000, guid: 8774f9b3822bdf34589f777f3ccd013c, type: 2}
+  _enemyStatsSO: {fileID: 11400000, guid: 8774f9b3822bdf34589f777f3ccd013c, type: 2}
   _enemyVisuals: {fileID: 6236340145650738109}
   _gameStats: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _mutagenValue: 0

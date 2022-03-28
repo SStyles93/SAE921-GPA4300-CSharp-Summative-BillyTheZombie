@@ -433,7 +433,7 @@ MonoBehaviour:
   recoveryTimer: 1
   attackTimer: 4
   attackTime: 0
-  isHit: 0
+  _stopMoving: 0
 --- !u!114 &8495529115230520512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066678d63f1ea6c42a4e80862a034dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyStats: {fileID: 11400000, guid: 02cfa91255beb9a4a9d663014e4671ca, type: 2}
+  _enemyStatsSO: {fileID: 11400000, guid: 02cfa91255beb9a4a9d663014e4671ca, type: 2}
+  _enemyVisuals: {fileID: 1446596102}
   _gameStats: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _mutagenValue: 0
   _health: 0
