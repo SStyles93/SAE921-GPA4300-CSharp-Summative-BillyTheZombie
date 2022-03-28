@@ -7,7 +7,7 @@ public class Arm : MonoBehaviour
     //Reference GameObject
     private GameObject _player;
 
-    //Refenrence Components
+    //Reference Components
     private Rigidbody2D _rb;
     private ParticleSystem _particleSystem;
 
@@ -162,8 +162,8 @@ public class Arm : MonoBehaviour
                         //Send enemy in opposite direction from player
                         Vector2 forceDirection = collision.gameObject.transform.position -
                             gameObject.transform.position;
-                        collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
-                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * PushPower, ForceMode2D.Force);
+                        collision.gameObject.GetComponent<EnemyStats>().TakeDamage(_damage);
 
                         if (!_particlewasPlayed)
                         {
@@ -181,20 +181,8 @@ public class Arm : MonoBehaviour
                 {
                     //stops applying force to the object
                     _canMove = false;
-
-
-                    //collision with enemy
-                    if (collision.gameObject.GetComponent<EnemyStats>())
-                    {
-                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                        
-                        if (!_canBePickedUp)
-                        {
-                            _canBePickedUp = true;
-                        }
-
-                    }
-                        _canBePickedUp = true;
+                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                    _canBePickedUp = true;
                 }
                 break;
         }

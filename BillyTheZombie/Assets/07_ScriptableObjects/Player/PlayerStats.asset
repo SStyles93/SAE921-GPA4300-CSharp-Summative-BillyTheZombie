@@ -16,5 +16,5 @@ MonoBehaviour:
   _armDamagePercentage: 39.699966
   _healthPercentage: 0
   _speedPercentage: 0
-  _rightArmType: 1
-  _leftArmType: 2
+  _rightArmType: 0
+  _leftArmType: 0

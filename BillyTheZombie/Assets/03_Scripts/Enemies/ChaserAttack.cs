@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class ChaserAttack : MonoBehaviour
 {
     [SerializeField] private EnemyStats _enemyStats;
 
@@ -13,12 +13,6 @@ public class EnemyAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Uses the Trigger to hit
-        if (collision.GetComponent<PlayerStats>())
-        {
-            collision.GetComponent<PlayerStats>().TakeDamage(_enemyStats.Damage);
-        } 
+        collision.GetComponent<PlayerStats>()?.TakeDamage(_enemyStats.Damage);
     }
-
-
-    
 }

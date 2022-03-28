@@ -383,7 +383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyStats: {fileID: 769978088285160733}
-  _enemyType: 0
 --- !u!58 &6473585463172348479
 CircleCollider2D:
   m_ObjectHideFlags: 0
