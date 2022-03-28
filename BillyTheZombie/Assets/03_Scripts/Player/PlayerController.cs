@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     private bool _armR;
     private bool _armL;
 
-    private float timerDelay = 0.1f;
 
+    [SerializeField] private bool _canRepeateActions = false;
+    private float _repeatingTimer = 0.1f;
     float _repeatTimerHead;
     float _repeatTimerArmR;
     float _repeatTimerArmL;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public bool Head { get => _head; set => _head = value; }
     public bool ArmR { get => _armR; set => _armR = value; }
     public bool ArmL { get => _armL; set => _armL = value; }
+    public bool CanRepeateActions { get => _canRepeateActions; set => _canRepeateActions = value; }
 
     private void Awake()
     {
@@ -44,52 +46,55 @@ public class PlayerController : MonoBehaviour
     {
         _controlScheme = _playerInput.currentControlScheme;
 
-        //Prevents from repeating input HEAD
-        if (_repeatingHead)
+        if (!_canRepeateActions)
         {
-            _repeatTimerHead += Time.deltaTime;
-        }
-        if(_repeatTimerHead >= timerDelay)
-        {
-            _head = true;
-            _repeatingHead = false;
-            _repeatTimerHead = 0.0f;
-        }
-        else
-        {
-            _head = false;
-        }
+            //Prevents from repeating input HEAD
+            if (_repeatingHead)
+            {
+                _repeatTimerHead += Time.deltaTime;
+            }
+            if (_repeatTimerHead >= _repeatingTimer)
+            {
+                _head = true;
+                _repeatingHead = false;
+                _repeatTimerHead = 0.0f;
+            }
+            else
+            {
+                _head = false;
+            }
 
-        //Prevents from repeating input ArmR
-        if (_repeatingArmR)
-        {
-            _repeatTimerArmR += Time.deltaTime;
-        }
-        if (_repeatTimerArmR >= timerDelay)
-        {
-            _armR = true;
-            _repeatingArmR = false;
-            _repeatTimerArmR = 0.0f;
-        }
-        else
-        {
-            _armR = false;
-        }
+            //Prevents from repeating input ArmR
+            if (_repeatingArmR)
+            {
+                _repeatTimerArmR += Time.deltaTime;
+            }
+            if (_repeatTimerArmR >= _repeatingTimer)
+            {
+                _armR = true;
+                _repeatingArmR = false;
+                _repeatTimerArmR = 0.0f;
+            }
+            else
+            {
+                _armR = false;
+            }
 
-        //Prevents from repeating input ArmL
-        if (_repeatingArmL)
-        {
-            _repeatTimerArmL += Time.deltaTime;
-        }
-        if (_repeatTimerArmL >= timerDelay)
-        {
-            _armL = true;
-            _repeatingArmL = false;
-            _repeatTimerArmL = 0.0f;
-        }
-        else
-        {
-            _armL = false;
+            //Prevents from repeating input ArmL
+            if (_repeatingArmL)
+            {
+                _repeatTimerArmL += Time.deltaTime;
+            }
+            if (_repeatTimerArmL >= _repeatingTimer)
+            {
+                _armL = true;
+                _repeatingArmL = false;
+                _repeatTimerArmL = 0.0f;
+            }
+            else
+            {
+                _armL = false;
+            }
         }
     }
 
@@ -113,23 +118,41 @@ public class PlayerController : MonoBehaviour
     }
     public void OnHead(InputValue value)
     {
-        if (value.isPressed)
+        if (!_canRepeateActions)
         {
-            _repeatingHead = true;
+            if (value.isPressed)
+                _repeatingHead = true;
+
+        }
+        else
+        {
+            _head = value.isPressed;
         }
     }
     public void OnArmR(InputValue value)
     {
-        if (value.isPressed)
+        if (!_canRepeateActions)
         {
-            _repeatingArmR = true;
+            if (value.isPressed)
+                _repeatingArmR = true;
+
+        }
+        else
+        {
+            _armR = value.isPressed;
         }
     }
     public void OnArmL(InputValue value)
     {
-        if (value.isPressed)
+        if (!_canRepeateActions)
         {
+            if(value.isPressed)
             _repeatingArmL = true;
+
+        }
+        else
+        {
+            _armL = value.isPressed;
         }
     }
 }

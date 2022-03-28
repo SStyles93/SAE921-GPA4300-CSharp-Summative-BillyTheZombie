@@ -150,8 +150,8 @@ public class DoctorAlbert : Interactable
         if (_gameStatsSO.mutagenPoints > 0.0f 
             && slider.GetComponent<Slider>().value < 1.0f)
         {
-            _gameStatsSO.mutagenPoints -= (0.1f * _pointsCoef);
-            slider.GetComponent<PlayerStatUpdate>().Stat += (0.1f * _pointsCoef); 
+            _gameStatsSO.mutagenPoints -= 0.1f * _pointsCoef;
+            slider.GetComponent<PlayerStatUpdate>().Stat += 0.1f; 
             slider.GetComponent<Slider>().value += 0.1f/ 100.0f;
         }
     }
@@ -164,9 +164,9 @@ public class DoctorAlbert : Interactable
     {
         if (slider.GetComponent<Slider>().value > 0.0f)
         {
-            _gameStatsSO.mutagenPoints += (0.1f * _pointsCoef);
-            slider.GetComponent<PlayerStatUpdate>().Stat -= (0.1f * _pointsCoef);
-            slider.GetComponent<Slider>().value -= 0.1f / 100.0f;
+            _gameStatsSO.mutagenPoints += 0.1f * _pointsCoef;
+            slider.GetComponent<PlayerStatUpdate>().Stat -= 0.1f;
+            slider.GetComponent<Slider>().value -= 0.1f/ 100.0f;
         }
     }
 

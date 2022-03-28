@@ -16,6 +16,7 @@ public class BillyHouseScene : MonoBehaviour
         PlayerActions playerActions = _player.GetComponent<PlayerActions>();
         playerActions.CanHit = false;
         playerActions.IsInCombat = false;
+        _player.GetComponent<PlayerController>().CanRepeateActions = true;
        
     }
 }

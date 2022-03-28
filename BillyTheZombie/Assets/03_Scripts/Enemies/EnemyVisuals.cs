@@ -64,12 +64,6 @@ public class EnemyVisuals : MonoBehaviour
        
     }
 
-    public void HitEffect()
-    {
-        _currentColor = Color.red;
-        _damageCooldown = 0.0f;
-    }
-
     private void RetriveNormalColor()
     {
         if (_currentColor != Color.white)
@@ -84,4 +78,14 @@ public class EnemyVisuals : MonoBehaviour
         _spriteRender.color = _currentColor;
     }
 
+    public void HitEffect()
+    {
+        _currentColor = Color.red;
+        _damageCooldown = 0.0f;
+    }
+
+    public void HasAttacked()
+    {
+        _attack = false;
+    }
 }

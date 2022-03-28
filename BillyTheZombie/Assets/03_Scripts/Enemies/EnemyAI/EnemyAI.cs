@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
     private float recoveryTime;
     [SerializeField] private float attackTimer = 2.0f;
     [SerializeField] private float attackTime;
-    [SerializeField] private bool isHit = false;
+    [SerializeField] private bool _stopMoving = false;
 
     //[SerializeField] float _searchRange = 1.0f;
     //[SerializeField] float _searchMagnitude = 1.0f;
@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if(isHit == true)
+        if(_stopMoving == true)
         {
             _aIPath.canMove = false;
             recoveryTime -= Time.deltaTime;
@@ -47,21 +47,29 @@ public class EnemyAI : MonoBehaviour
         {
             recoveryTime = recoveryTimer;
             _aIPath.canMove = true;
-            isHit = false;
+            _stopMoving = false;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isHit = true;
+            _stopMoving = true;
         }
-        //Colors the enemy on hit
-        if (collision.gameObject.GetComponent<Arm>())
+        if(collision.gameObject.GetComponent<Arm>() || collision.gameObject.GetComponent<Headbutt>())
         {
             _enemyVisuals.HitEffect();
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.GetComponent<Arm>() || collision.gameObject.GetComponent<Headbutt>())
+        {
+            _enemyVisuals.HitEffect();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerController>())
@@ -83,8 +91,9 @@ public class EnemyAI : MonoBehaviour
             }
             if(attackTime < 0.0f)
             {
-                collision.GetComponent<PlayerStats>().Health -= _enemyStats.Damage;
+                //collision.GetComponent<PlayerStats>().Health -= _enemyStats.Damage;
                 attackTime = attackTimer;
+                //Launches the Attack of the enemy
                 _enemyVisuals.Attack = true;
             }
             

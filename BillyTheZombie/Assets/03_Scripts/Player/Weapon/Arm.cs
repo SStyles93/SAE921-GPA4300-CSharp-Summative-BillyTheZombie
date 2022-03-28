@@ -60,12 +60,14 @@ public class Arm : MonoBehaviour
             case ARMTYPE.BASIC:
                 _rb.drag = 3.0f;
                 _rb.sharedMaterial.bounciness = 0.25f;
-                _speed = 1.0f;
+                _speed = 2.0f;
+                _pickUpTimer = 1.0f;
                 break;
             case ARMTYPE.EXPLOSIVE:
                 _rb.drag = 10.0f;
                 _rb.sharedMaterial.bounciness = 0.0f;
-                _speed = 1.0f;
+                _speed = 1.5f;
+                _pickUpTimer = 2.0f;
                 GetComponent<CircleCollider2D>().radius = _explosiveArmRadius;
                 GetComponent<CircleCollider2D>().enabled = false;
                 Physics2D.IgnoreCollision(
@@ -80,13 +82,15 @@ public class Arm : MonoBehaviour
             case ARMTYPE.LAWNMOWER:
                 _rb.drag = 0.1f;
                 _rb.sharedMaterial.bounciness = 0.0f;
-                _speed = 1.0f;
+                _speed = 1.5f;
                 _rb.mass = 10.0f;
+                _pickUpTimer = 2.0f;
                 break;
             case ARMTYPE.BOOMERANG:
                 _rb.drag = 0.0f;
                 _rb.sharedMaterial.bounciness = 1.0f;
                 _speed = 2.0f;
+                _pickUpTimer = 0.25f;
                 break;
         }
 
@@ -97,7 +101,8 @@ public class Arm : MonoBehaviour
     private void Update()
     {
         Move();
-        _pickUpTimer -= Time.deltaTime;    
+        _pickUpTimer -= Time.deltaTime;
+        _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -111,6 +116,7 @@ public class Arm : MonoBehaviour
                     _rb.velocity = Vector2.zero;
                     //stops applying force to the object
                     _canMove = false;
+                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                 }
                 else
                 {
@@ -122,13 +128,13 @@ public class Arm : MonoBehaviour
                 }
                 if (!_canBePickedUp)
                 {
-                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                     _canBePickedUp = true;
                 }
                 break;
                 
             case ARMTYPE.LAWNMOWER:
                 _canMove = true;
+                collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                 break;
 
             case ARMTYPE.EXPLOSIVE:
@@ -156,8 +162,8 @@ public class Arm : MonoBehaviour
                         //Send enemy in opposite direction from player
                         Vector2 forceDirection = collision.gameObject.transform.position -
                             gameObject.transform.position;
-                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * PushPower, ForceMode2D.Force);
-                        collision.gameObject.GetComponent<EnemyStats>().TakeDamage(_damage);
+                        collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
+                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
 
                         if (!_particlewasPlayed)
                         {
@@ -167,11 +173,6 @@ public class Arm : MonoBehaviour
                         _canBePickedUp = true;
                     }
                     
-                }
-                //collision with player
-                else
-                {
-                    _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
                 }
                 break;
 
@@ -185,38 +186,16 @@ public class Arm : MonoBehaviour
                     //collision with enemy
                     if (collision.gameObject.GetComponent<EnemyStats>())
                     {
+                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                        
                         if (!_canBePickedUp)
                         {
-                            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                             _canBePickedUp = true;
                         }
 
                     }
                         _canBePickedUp = true;
                 }
-                else
-                {
-                    _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
-                }
-                break;
-        }
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        switch (armType)
-        {
-            case ARMTYPE.BOOMERANG:
-                if (collision.gameObject.GetComponent<PlayerController>())
-                {
-                    _canBePickedUp = true;
-                }
-                break;
-
-            case ARMTYPE.LAWNMOWER:
-                collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                _canBePickedUp = true;
-                break;
-            default:
                 break;
         }
     }

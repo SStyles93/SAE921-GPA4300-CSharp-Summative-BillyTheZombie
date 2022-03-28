@@ -166,7 +166,7 @@ MonoBehaviour:
   armSide: 1
   armType: 1
   _speed: 1
-  _damage: 0
+  _damage: 2.5
   _explosiveArmRadius: 0.5
   _pushPower: 250
 --- !u!198 &2959739820961951083

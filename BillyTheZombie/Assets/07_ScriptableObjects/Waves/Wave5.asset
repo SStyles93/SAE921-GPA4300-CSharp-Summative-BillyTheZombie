@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad14376d5782123459253f3681c27ad7, type: 3}
   m_Name: Wave5
   m_EditorClassIdentifier: 
-  NumberOfEnemies: 50
+  NumberOfEnemies: 4
   EnemyIndex: 1
   PositionIndex: 3
   rangeAroundPosition: 4
