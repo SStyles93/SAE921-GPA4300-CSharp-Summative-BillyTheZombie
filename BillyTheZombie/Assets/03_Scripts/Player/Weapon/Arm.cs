@@ -42,10 +42,10 @@ public class Arm : MonoBehaviour
     private bool _particlewasPlayed = false;
 
     //Properties
-    public Vector3 ArmDirection { get => _armDirection; set => _armDirection = value; }
     public float Damage { get => _damage; set => _damage = value; }
-    public Vector3 ThrowPosition { get => throwPosition; set => throwPosition = value; }
     public float PushPower { get => _pushPower; set => _pushPower = value; }
+    public Vector3 ArmDirection { get => _armDirection; set => _armDirection = value; }
+    public Vector3 ThrowPosition { get => throwPosition; set => throwPosition = value; }
     public GameObject Player { get => _player; set => _player = value; }
 
     private void Awake()

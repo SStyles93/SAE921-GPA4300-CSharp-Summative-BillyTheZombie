@@ -690,8 +690,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdcd682cadd83b4f85e2ca7b97e49ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyStats: {fileID: 8495529115230520512}
+  _enemyRayCaster: {fileID: 8495529116605207758}
   _ribPrefab: {fileID: 3760512471503786121, guid: 25fef5221a5128c4092a669eebccd8b1, type: 3}
-  _damage: 0
+  _damage: 10
+  _ribSpeed: 1
 --- !u!1 &8495529115717531195
 GameObject:
   m_ObjectHideFlags: 0

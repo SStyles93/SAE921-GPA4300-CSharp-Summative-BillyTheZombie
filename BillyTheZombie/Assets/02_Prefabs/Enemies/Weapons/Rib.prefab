@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7392672148716999910}
   - component: {fileID: 186471936019014948}
-  - component: {fileID: 1040988372501129443}
-  - component: {fileID: 8603608961607081367}
+  - component: {fileID: 1822193850963530440}
+  - component: {fileID: 3424797684911554693}
+  - component: {fileID: 647353096187321523}
   m_Layer: 2
   m_Name: Rib
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3760512471503786121}
   m_LocalRotation: {x: -0, y: -0, z: 0.39872202, w: 0.9170719}
   m_LocalPosition: {x: 0.3325221, y: -0.24611187, z: 0}
-  m_LocalScale: {x: 0.008891667, y: 0.07892001, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,19 +85,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1040988372501129443
-MonoBehaviour:
+--- !u!50 &1822193850963530440
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3760512471503786121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e27215aeb6005429ac8ce02689cdf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!58 &8603608961607081367
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &3424797684911554693
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,3 +122,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.50000036
+--- !u!114 &647353096187321523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3760512471503786121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e27215aeb6005429ac8ce02689cdf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0.25
+  _damage: 1
