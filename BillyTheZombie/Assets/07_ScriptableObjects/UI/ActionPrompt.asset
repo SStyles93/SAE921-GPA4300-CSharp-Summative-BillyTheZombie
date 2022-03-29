@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ActionPrompt
   m_EditorClassIdentifier: 
   actionSprites:
-  - {fileID: 21300000, guid: 5ebf1140cb35d8348bf7ed997dd67477, type: 3}
+  - {fileID: 21300000, guid: 640a98b10188f704d810bdd83cc22d5f, type: 3}
   - {fileID: 21300000, guid: a08eec60829c20e4e86d7e82dab482e7, type: 3}
   - {fileID: 21300000, guid: 572b083d86a6e1d4cb70fbc862f7a080, type: 3}
   - {fileID: 21300000, guid: 63c22855331979847b396f96228c3391, type: 3}
