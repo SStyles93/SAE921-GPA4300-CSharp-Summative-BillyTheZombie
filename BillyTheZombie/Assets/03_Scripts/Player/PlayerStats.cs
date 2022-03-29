@@ -23,6 +23,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _health = 100.0f;
     private float _maxHealth = 100.0f;
     [SerializeField] private float _speed = 2.0f;
+
+    [SerializeField] private bool _isInvicible = false;
     
     //Properties
     public float Health { get => _health; set => _health = value; }
@@ -30,6 +32,7 @@ public class PlayerStats : MonoBehaviour
     public float Speed { get => _speed; set => _speed = value; }
     public float PushPower { get => _pushPower; set => _pushPower = value; }
     public float ArmDamage { get => _armDamage; set => _armDamage = value; }
+    public bool IsInvicible { get => _isInvicible; set => _isInvicible = value; }
 
     private void Awake()
     {
@@ -61,6 +64,7 @@ public class PlayerStats : MonoBehaviour
     /// <param name="damage">The damage to substract to health</param>
     public void TakeDamage(float damage)
     {
+        if(!_isInvicible)
         _health -= damage;
     }
 }

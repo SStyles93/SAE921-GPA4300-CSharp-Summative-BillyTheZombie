@@ -12,6 +12,7 @@ public class LoadTrigger : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>())
         {
+            _sceneManagement.PlayerStats = collision.GetComponent<PlayerStats>();
             _sceneManagement.SceneIndex = _sceneIndex;
             _sceneManagement.FadeOut = true;
         } 

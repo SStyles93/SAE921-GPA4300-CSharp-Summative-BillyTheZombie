@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class SceneManagement : MonoBehaviour
 {
+    private PlayerStats _playerStats;
+
     [SerializeField] private Image _transitionImage;
     private Color _currentColor;
     [SerializeField] private float _transitionDuration = 1;
@@ -16,6 +18,7 @@ public class SceneManagement : MonoBehaviour
     public bool FadeIn { get => _fadeIn; set => _fadeIn = value; }
     public bool FadeOut { get => _fadeOut; set => _fadeOut = value; }
     public int SceneIndex { get => _sceneIndex; set => _sceneIndex = value; }
+    public PlayerStats PlayerStats { get => _playerStats; set => _playerStats = value; }
 
     private void Start()
     {
@@ -52,6 +55,7 @@ public class SceneManagement : MonoBehaviour
         if(_currentColor != Color.black)
         {
             _currentColor = Color.Lerp(_currentColor, Color.black, Time.deltaTime / _transitionDuration);
+            _playerStats.IsInvicible = true;
         }
         else
         {
