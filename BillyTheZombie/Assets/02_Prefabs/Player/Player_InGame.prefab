@@ -6238,7 +6238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7bb1d05ee27fc4e804c3e1300c7477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerController: {fileID: 0}
+  _playerController: {fileID: 2619042568326500035}
   _playerActions: {fileID: 1709225247}
   _playerStats: {fileID: 6725792000420809198}
   _healthSlider: {fileID: 7390221274594824306}
@@ -6278,6 +6278,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f9df0358469e5f14bb3bb811266e113c, type: 3}
   _waveNumberText: {fileID: 1401338404}
   _mutagenPointsText: {fileID: 51943110}
+  _particleSystem: {fileID: 1994899628}
   _blockedColor: {r: 1, g: 1, b: 1, a: 0.15686275}
   _bodyImages:
   - {fileID: 981636652689864342}
@@ -6291,8 +6292,6 @@ MonoBehaviour:
   _uIActionsSO: {fileID: 11400000, guid: 06e7d0b37132db447ab9cd79aa4459da, type: 2}
   _playerStatsSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
   _gameStatsSO: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
-  _currentColor: {r: 0, g: 0, b: 0, a: 0}
-  _particleSystem: {fileID: 1994899628}
 --- !u!1001 &1194274340884940449
 PrefabInstance:
   m_ObjectHideFlags: 0

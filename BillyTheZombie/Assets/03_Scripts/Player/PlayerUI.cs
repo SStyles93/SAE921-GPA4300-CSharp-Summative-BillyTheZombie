@@ -20,9 +20,13 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image _healthFill;
     [SerializeField] private Image _headImage;
     [SerializeField] private List<Sprite> _headSprites;
+
+    [Tooltip("Game Stats UI")]
     [SerializeField] private Text _waveNumberText;
     [SerializeField] private Text _mutagenPointsText;
-
+    private Color _currentColor;
+    private float _colorCooldown;
+    [SerializeField] private ParticleSystem _particleSystem;
 
 
     [Header("Player Actions UI")]
@@ -39,10 +43,6 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private PlayerStatsSO _playerStatsSO;
     [SerializeField] private GameStatsSO _gameStatsSO;
 
-    //GameStatsUI
-    [SerializeField] private Color _currentColor;
-    private float _colorCooldown;
-    [SerializeField] private ParticleSystem _particleSystem;
 
     private void Awake()
     {

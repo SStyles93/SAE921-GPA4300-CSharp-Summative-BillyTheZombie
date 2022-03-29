@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadTrigger : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class LoadTrigger : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>())
         {
-            _sceneManagement.ActivateScene(_sceneIndex);
+            _sceneManagement.SceneIndex = _sceneIndex;
+            _sceneManagement.FadeOut = true;
         } 
     }
 }

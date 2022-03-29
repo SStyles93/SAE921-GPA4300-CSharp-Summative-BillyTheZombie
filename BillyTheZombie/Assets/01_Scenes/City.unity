@@ -259,6 +259,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 334458726}
     - target: {fileID: 2619042568326500032, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -333,6 +337,17 @@ PrefabInstance:
       objectReference: {fileID: 667126630}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+--- !u!114 &334458726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2619042568326500035, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+  m_PrefabInstance: {fileID: 334458725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdf9f0d45b7cc042bf717a774ea6b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &548733625
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,6 +730,10 @@ PrefabInstance:
       propertyPath: _playerUI
       value: 
       objectReference: {fileID: 265030724}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _spawnPositions.Array.data[0]
       value: 
