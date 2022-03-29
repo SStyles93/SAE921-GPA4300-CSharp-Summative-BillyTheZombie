@@ -22,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float rangeAroundPos;
 
+    public List<GameObject> EnemyTracked { get => _enemyTracked; set => _enemyTracked = value; }
+
     public void Update()
     {
         //Start
