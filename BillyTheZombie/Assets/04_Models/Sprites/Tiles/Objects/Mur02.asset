@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Object_Tile_Colliders_25
+  m_Name: Mur02
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 4009929410138916685, guid: 12a9fe80fb4dbb944a50cec6a9e07fd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80d2b26c25769be47b6d2bb0668f310f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 1

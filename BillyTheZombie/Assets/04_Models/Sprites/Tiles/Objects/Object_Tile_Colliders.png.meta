@@ -961,7 +961,7 @@ TextureImporter:
       name: Object_Tile_Colliders_35
       rect:
         serializedVersion: 2
-        x: 192
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -982,7 +982,7 @@ TextureImporter:
       name: Object_Tile_Colliders_36
       rect:
         serializedVersion: 2
-        x: 256
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -1003,8 +1003,8 @@ TextureImporter:
       name: Object_Tile_Colliders_37
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -1024,8 +1024,8 @@ TextureImporter:
       name: Object_Tile_Colliders_38
       rect:
         serializedVersion: 2
-        x: 256
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -1045,7 +1045,7 @@ TextureImporter:
       name: Object_Tile_Colliders_39
       rect:
         serializedVersion: 2
-        x: 0
+        x: 256
         y: 128
         width: 64
         height: 64
@@ -1066,8 +1066,8 @@ TextureImporter:
       name: Object_Tile_Colliders_40
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 0
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -1087,8 +1087,8 @@ TextureImporter:
       name: Object_Tile_Colliders_41
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -1108,7 +1108,7 @@ TextureImporter:
       name: Object_Tile_Colliders_42
       rect:
         serializedVersion: 2
-        x: 0
+        x: 192
         y: 64
         width: 64
         height: 64
@@ -1129,7 +1129,7 @@ TextureImporter:
       name: Object_Tile_Colliders_43
       rect:
         serializedVersion: 2
-        x: 64
+        x: 256
         y: 64
         width: 64
         height: 64
