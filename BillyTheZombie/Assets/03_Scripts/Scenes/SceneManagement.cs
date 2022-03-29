@@ -49,12 +49,18 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Fades out and loads the indicated scene
+    /// </summary>
+    /// <param name="SceneIndex">The scene to load</param>
     private void FadeOutTransition(int SceneIndex)
     {
         _transitionImage.color = _currentColor;
         if(_currentColor != Color.black)
         {
             _currentColor = Color.Lerp(_currentColor, Color.black, Time.deltaTime / _transitionDuration);
+            if (_player == null) return;
             _player.GetComponent<PlayerStats>().IsInvicible = true;
         }
         else
@@ -63,6 +69,9 @@ public class SceneManagement : MonoBehaviour
             ActivateScene(SceneIndex);
         }
     }
+    /// <summary>
+    /// Fades in to a new scene
+    /// </summary>
     private void FadeInTransition()
     {
         _transitionImage.color = _currentColor;
@@ -87,7 +96,11 @@ public class SceneManagement : MonoBehaviour
     }
     public void QuitGame()
     {
-        Application.Quit();
+        if (!_fadeOut)
+        {
+            Application.Quit();
+        }
+        
     }
 }
  
