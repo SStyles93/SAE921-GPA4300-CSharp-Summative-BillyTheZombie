@@ -19,12 +19,22 @@ public class SceneManagement : MonoBehaviour
 
     private void Start()
     {
+        if (_transitionImage == null)
+        {
+            return;
+        }
         _currentColor = _transitionImage.color = Color.black;
         _fadeIn = true;
+
     }
 
     private void Update()
     {
+        if(_transitionImage == null)
+        {
+            return;
+        }
+
         if(_fadeIn)
         {
             FadeInTransition();
