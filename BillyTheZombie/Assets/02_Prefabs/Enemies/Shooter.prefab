@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUGMODE: 0
-  tickTimer: 0.25
+  tickTimer: 0.5
   _numberOfRays: 20
   _angleOfDetection: 210
   _detectionDistance: 10

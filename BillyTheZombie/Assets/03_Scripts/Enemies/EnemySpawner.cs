@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
             if(_enemyTracked[i] == null)
             {
                 _enemyTracked.RemoveAt(i);
-                _playerUI.GainPointsColorText();
+                _playerUI.GainPoints();
             }
         }
         //End

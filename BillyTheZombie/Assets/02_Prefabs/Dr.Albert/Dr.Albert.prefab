@@ -429,7 +429,7 @@ MonoBehaviour:
   _eventSystem: {fileID: 0}
   _gameStatsSO: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _playerStatsSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
-  _pointsCoef: 1
+  _pointsCoef: 4
   _firstArmLimit: 33
   _secondArmLimit: 66
   _thirdArmLimit: 99

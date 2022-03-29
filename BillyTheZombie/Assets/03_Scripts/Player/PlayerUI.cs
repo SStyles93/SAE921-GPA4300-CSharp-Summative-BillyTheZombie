@@ -42,6 +42,7 @@ public class PlayerUI : MonoBehaviour
     //GameStatsUI
     [SerializeField] private Color _currentColor;
     private float _colorCooldown;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     private void Awake()
     {
@@ -162,17 +163,21 @@ public class PlayerUI : MonoBehaviour
         {
             _colorCooldown += Time.deltaTime/50.0f;
             _currentColor = Color.Lerp(_currentColor, Color.green, _colorCooldown);
+            
         }
         else
         {
             _colorCooldown = 0.0f;
+            
         }
         _mutagenPointsText.color = _currentColor;
     }
 
-    public void GainPointsColorText()
+    public void GainPoints()
     {
         _mutagenPointsText.color = Color.red;
+        _particleSystem.Play();
+
     }
 
 }
