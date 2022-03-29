@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SineWaveImage : MonoBehaviour
+public class SineWaveText : MonoBehaviour
 {
 	[SerializeField] private float period;
 	private float alphaFactor;
 	[SerializeField] private Color color;
 
-	[SerializeField] private Image _image;
-	[SerializeField] private float _delay = 1.0f;
+	[SerializeField] private Text _text;
 
 	public void Update()
 	{
 		SineWaveEffect();
-		
 	}
 
 	public void SineWaveEffect()
@@ -23,14 +21,12 @@ public class SineWaveImage : MonoBehaviour
 		if (period <= Mathf.Epsilon) return;
 
 		float cycle = Time.time / period;
-		cycle -= _delay;
 		const float tau = Mathf.PI * 2.0f;
 		float sineWave = Mathf.Sin(cycle * tau);
 		alphaFactor = (sineWave + 1.0f) / 2.0f; //SineWave = -1 to 1 // +1 to go from 0 to 2 // divided by 2 for 0 to 1
 
 		color.a = alphaFactor;
 		//GetComponent</*ComponentToGet*/>().color = color;
-		_image.color = color;
+		_text.color = color;
 	}
-
 }

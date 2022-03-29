@@ -55,7 +55,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        _sceneManagement.ActivateScene(1);
+        _sceneManagement.Player = gameObject;
+        _sceneManagement.SceneIndex = 1;
+        _sceneManagement.FadeOut = true;
     }
 
     /// <summary>

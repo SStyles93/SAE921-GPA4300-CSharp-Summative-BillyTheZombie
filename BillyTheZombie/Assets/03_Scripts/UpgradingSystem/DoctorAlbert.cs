@@ -217,6 +217,8 @@ public class DoctorAlbert : Interactable
             _gameStatsSO.mutagenPoints += _sliders[i].GetComponent<Slider>().value * (100.0f * _pointsCoef);
             _sliders[i].GetComponent<PlayerStatUpdate>().Stat = 0.0f;
             _sliders[i].GetComponent<Slider>().value = 0.0f;
+            _playerStatsSO._leftArmType = 0;
+            _playerStatsSO._rightArmType = 0;
         }
     }
 
