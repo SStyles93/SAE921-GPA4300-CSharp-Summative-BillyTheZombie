@@ -119,6 +119,21 @@ TextureImporter:
   - first:
       213: 1160097190734717478
     second: Object_Tile_Colliders_38
+  - first:
+      213: 3070952339203761863
+    second: Object_Tile_Colliders_39
+  - first:
+      213: 4521249327163319989
+    second: Object_Tile_Colliders_40
+  - first:
+      213: 8327800301285131420
+    second: Object_Tile_Colliders_41
+  - first:
+      213: 9129767264428567168
+    second: Object_Tile_Colliders_42
+  - first:
+      213: 8640078148620649161
+    second: Object_Tile_Colliders_43
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1022,6 +1037,111 @@ TextureImporter:
       bones: []
       spriteID: 622ebae9f3e791010800000000000000
       internalID: 1160097190734717478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Tile_Colliders_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c62564c1e63e9a20800000000000000
+      internalID: 3070952339203761863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Tile_Colliders_40
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b62b86fe44bebe30800000000000000
+      internalID: 4521249327163319989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Tile_Colliders_41
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94cd7e504a429370800000000000000
+      internalID: 8327800301285131420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Tile_Colliders_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a214694f273be70800000000000000
+      internalID: 9129767264428567168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Object_Tile_Colliders_43
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c206209c49b7e770800000000000000
+      internalID: 8640078148620649161
       vertices: []
       indices: 
       edges: []

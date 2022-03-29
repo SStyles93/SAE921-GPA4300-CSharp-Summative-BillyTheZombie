@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneManagement: {fileID: 0}
-  _sceneIndex: 3
+  _sceneIndex: 0
 --- !u!1 &2034431379541893652
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,8 +168,8 @@ SpriteRenderer:
   m_SortingLayerID: -1027808603
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.37471873, g: 0.7169812, b: 0.3084372, a: 1}
+  m_Sprite: {fileID: 4521249327163319989, guid: 12a9fe80fb4dbb944a50cec6a9e07fd9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -495,8 +495,8 @@ SpriteRenderer:
   m_SortingLayerID: -1027808603
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.6509434, g: 0.24318264, b: 0.24318264, a: 1}
+  m_Sprite: {fileID: 3070952339203761863, guid: 12a9fe80fb4dbb944a50cec6a9e07fd9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
