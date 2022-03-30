@@ -146,7 +146,7 @@ public class DoctorAlbert : Interactable
             slider.GetComponentInChildren<Text>().text =
                 $"{Mathf.Round(slider.GetComponent<Slider>().value * 100.0f)} %\n {slider.name}";
 
-            slider.GetComponent<PlayerStatUpdate>().UpdateSlider();
+            slider.GetComponent<PlayerStatUpdate>()?.UpdateSlider();
         }
     }
     /// <summary>
@@ -234,7 +234,7 @@ public class DoctorAlbert : Interactable
     {
         for (int i = 0; i < _sliders.Length; i++)
         {
-            _sliders[i].GetComponent<PlayerStatUpdate>().UpdateStat();
+            _sliders[i].GetComponent<PlayerStatUpdate>()?.UpdateStat();
         }
     }
 

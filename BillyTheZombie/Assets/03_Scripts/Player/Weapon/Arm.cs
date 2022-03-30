@@ -110,7 +110,7 @@ public class Arm : MonoBehaviour
         switch (armType)
         {
             case ARMTYPE.BOOMERANG:
-                if (!collision.gameObject.GetComponent<PlayerActions>())
+                if (!collision.gameObject.CompareTag("Player"))
                 {
                     //on collision stops the rb from moving
                     _rb.velocity = Vector2.zero;
@@ -140,7 +140,7 @@ public class Arm : MonoBehaviour
             case ARMTYPE.EXPLOSIVE:
                 
                 //collision with non-player
-                if (!collision.gameObject.GetComponent<PlayerActions>())
+                if (!collision.gameObject.CompareTag("Player"))
                 {
                     //enables the outer collider
                     GetComponent<CircleCollider2D>().enabled = true;
@@ -157,13 +157,13 @@ public class Arm : MonoBehaviour
                     }
 
                     //collision with Enemy
-                    if (collision.gameObject.GetComponent<EnemyStats>())
+                    if (collision.gameObject.CompareTag("Enemy"))
                     {
                         //Send enemy in opposite direction from player
                         Vector2 forceDirection = collision.gameObject.transform.position -
                             gameObject.transform.position;
-                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * PushPower, ForceMode2D.Force);
-                        collision.gameObject.GetComponent<EnemyStats>().TakeDamage(_damage);
+                        collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
+                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
 
                         if (!_particlewasPlayed)
                         {
@@ -177,7 +177,7 @@ public class Arm : MonoBehaviour
                 break;
 
             default:
-                if (!collision.gameObject.GetComponent<PlayerActions>())
+                if (!collision.gameObject.CompareTag("Player"))
                 {
                     //stops applying force to the object
                     _canMove = false;
@@ -189,7 +189,7 @@ public class Arm : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
+        if (collision.gameObject.CompareTag("Player") && _canBePickedUp)
         {
             collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
             Destroy(gameObject);
@@ -197,7 +197,7 @@ public class Arm : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>() && _canBePickedUp)
+        if (collision.gameObject.CompareTag("Player") && _canBePickedUp)
         {
             collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
             Destroy(gameObject);

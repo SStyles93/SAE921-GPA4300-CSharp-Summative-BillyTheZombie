@@ -57,7 +57,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>())
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (_rayCaster.PlayerInSight)
             {
@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerStats>()) 
+        if (collision.gameObject.CompareTag("Player")) 
         {
             if (_rayCaster.PlayerInSight)
             {
@@ -90,7 +90,11 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _aIPath.canMove = true;
-        _enemyVisuals.Attack = false;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _aIPath.canMove = true;
+            _enemyVisuals.Attack = false;
+        }
+        
     }
 }
