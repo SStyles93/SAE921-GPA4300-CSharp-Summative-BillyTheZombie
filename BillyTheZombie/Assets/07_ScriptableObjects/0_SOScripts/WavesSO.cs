@@ -9,6 +9,5 @@ public class WavesSO : ScriptableObject
     public int NumberOfEnemies = 0; 
     public int EnemyIndex = 0;
     public int PositionIndex = 0;
-    public float rangeAroundPosition = 0f;
 
 }

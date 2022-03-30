@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de5338b6424c1942a193f9c6cd724fb, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  _pushPowerPercentage: 0
-  _armDamagePercentage: 0
-  _healthPercentage: 0
-  _speedPercentage: 0
+  _pushPowerPercentage: 100
+  _armDamagePercentage: 100
+  _healthPercentage: 100
+  _speedPercentage: 100
   _rightArmType: 0
-  _leftArmType: 0
+  _leftArmType: 1

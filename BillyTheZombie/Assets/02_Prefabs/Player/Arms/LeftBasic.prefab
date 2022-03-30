@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armSide: 1
   armType: 0
-  _speed: 1
+  _speed: 10
   _damage: 2.5
   _explosiveArmRadius: 1
   _pushPower: 1

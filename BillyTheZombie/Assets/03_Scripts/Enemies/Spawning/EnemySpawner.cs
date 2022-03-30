@@ -11,11 +11,12 @@ public class EnemySpawner : MonoBehaviour
 
 
     [SerializeField] GameObject[] _enemyPrefabs;
-    [SerializeField] private List<GameObject> _enemyTracked;
-
     [SerializeField] GameObject[] _spawnPositions;
 
     [SerializeField] private WavesSO[] _waves;
+
+    [SerializeField] private List<GameObject> _enemyTracked;
+
 
     [SerializeField] private bool _waveStarted = false;
     [SerializeField] private bool _waveEnded = false;
@@ -87,11 +88,12 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < _waves[WaveIndex].NumberOfEnemies; i++)
         {
+            float spawnRange = _spawnPositions[_waves[WaveIndex].PositionIndex].GetComponent<SpawnPosition>().SpawnRange;
+
             _enemyTracked.Add(Instantiate(
                 _enemyPrefabs[_waves[WaveIndex].EnemyIndex],
                 _spawnPositions[_waves[WaveIndex].PositionIndex].transform.position +
-                new Vector3(Random.Range(_waves[WaveIndex].rangeAroundPosition * -1.0f, _waves[WaveIndex].rangeAroundPosition),
-                Random.Range(_waves[WaveIndex].rangeAroundPosition * -1.0f, _waves[WaveIndex].rangeAroundPosition), 0.0f),
+                new Vector3(Random.Range(spawnRange * -1.0f, spawnRange), Random.Range(spawnRange * -1.0f, spawnRange), 0.0f),
                 Quaternion.identity));
         }
     }
@@ -114,11 +116,5 @@ public class EnemySpawner : MonoBehaviour
         }
         _waveEnded = true;
         _waveStarted = false;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, rangeAroundPos);
     }
 }

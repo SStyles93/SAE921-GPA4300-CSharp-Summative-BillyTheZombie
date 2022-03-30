@@ -60,13 +60,11 @@ public class Arm : MonoBehaviour
             case ARMTYPE.BASIC:
                 _rb.drag = 3.0f;
                 _rb.sharedMaterial.bounciness = 0.25f;
-                _speed = 2.0f;
                 _pickUpTimer = 1.0f;
                 break;
             case ARMTYPE.EXPLOSIVE:
                 _rb.drag = 10.0f;
                 _rb.sharedMaterial.bounciness = 0.0f;
-                _speed = 1.5f;
                 _pickUpTimer = 2.0f;
                 GetComponent<CircleCollider2D>().radius = _explosiveArmRadius;
                 GetComponent<CircleCollider2D>().enabled = false;
@@ -82,14 +80,12 @@ public class Arm : MonoBehaviour
             case ARMTYPE.LAWNMOWER:
                 _rb.drag = 0.1f;
                 _rb.sharedMaterial.bounciness = 0.0f;
-                _speed = 1.5f;
                 _rb.mass = 10.0f;
                 _pickUpTimer = 2.0f;
                 break;
             case ARMTYPE.BOOMERANG:
                 _rb.drag = 0.0f;
                 _rb.sharedMaterial.bounciness = 1.0f;
-                _speed = 2.0f;
                 _pickUpTimer = 0.25f;
                 break;
         }
@@ -110,22 +106,20 @@ public class Arm : MonoBehaviour
         switch (armType)
         {
             case ARMTYPE.BOOMERANG:
-                if (!collision.gameObject.CompareTag("Player"))
-                {
-                    //on collision stops the rb from moving
-                    _rb.velocity = Vector2.zero;
-                    //stops applying force to the object
-                    _canMove = false;
-                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                }
-                else
+                if (collision.gameObject.CompareTag("Player"))
                 {
                     _canBePickedUp = false;
                     //If the collision is with the player Ignore
                     Physics2D.IgnoreCollision(
                         transform.GetComponent<BoxCollider2D>(),
                         collision.gameObject.GetComponent<CapsuleCollider2D>());
+                    return;
                 }
+                //on collision stops the rb from moving
+                _rb.velocity = Vector2.zero;
+                //stops applying force to the object
+                _canMove = false;
+                collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                 if (!_canBePickedUp)
                 {
                     _canBePickedUp = true;
@@ -134,30 +128,19 @@ public class Arm : MonoBehaviour
                 
             case ARMTYPE.LAWNMOWER:
                 _canMove = true;
-                collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                if (collision.gameObject.CompareTag("Enemy"))
+                {
+                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                    collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
+                }
                 break;
 
             case ARMTYPE.EXPLOSIVE:
                 
-                //collision with non-player
-                if (!collision.gameObject.CompareTag("Player"))
+                //collision with Enemy
+                if (collision.gameObject.CompareTag("Enemy"))
                 {
-                    //enables the outer collider
-                    GetComponent<CircleCollider2D>().enabled = true;
-                    GetComponent<BoxCollider2D>().isTrigger = true;
-                    //on collision stops the rb from moving
-                    _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                    //stops applying force to the object
-                    _canMove = false;
-
-                    if (!_canBePickedUp && _pickUpTimer <= 0.0f)
-                    {
-                        _canBePickedUp = true;
-                        GetComponent<CircleCollider2D>().enabled = false;
-                    }
-
-                    //collision with Enemy
-                    if (collision.gameObject.CompareTag("Enemy"))
+                    if (!_canBePickedUp)
                     {
                         //Send enemy in opposite direction from player
                         Vector2 forceDirection = collision.gameObject.transform.position -
@@ -165,14 +148,25 @@ public class Arm : MonoBehaviour
                         collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
 
+                        GetComponent<CircleCollider2D>().enabled = true;
+
                         if (!_particlewasPlayed)
                         {
                             _particleSystem.Play();
                             _particlewasPlayed = true;
                         }
-                        _canBePickedUp = true;
                     }
                     
+                }
+                if (!collision.gameObject.CompareTag("Player"))
+                {
+                    //enables the outer collider
+                    GetComponent<CircleCollider2D>().enabled = false;
+                    GetComponent<BoxCollider2D>().isTrigger = true;
+                    //on collision stops the rb from moving
+                    _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                    //stops applying force to the object
+                    _canMove = false;
                 }
                 break;
 
@@ -181,6 +175,7 @@ public class Arm : MonoBehaviour
                 {
                     //stops applying force to the object
                     _canMove = false;
+                    if(!_canBePickedUp)
                     collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                     _canBePickedUp = true;
                 }
@@ -215,7 +210,7 @@ public class Arm : MonoBehaviour
         {
             _rb.constraints = RigidbodyConstraints2D.None;
             //Physic movement
-            _rb.AddForce(_armDirection * _speed / 10.0f, ForceMode2D.Impulse);
+            _rb.velocity = _armDirection * _speed;
             transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
         }
         else
@@ -225,7 +220,7 @@ public class Arm : MonoBehaviour
         //Boomerang return
         if (armType == ARMTYPE.BOOMERANG && !_canMove)
         {
-            transform.position = Vector3.Lerp(transform.position, throwPosition, _speed * 2.0f * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, throwPosition, _speed/10.0f * Time.deltaTime);
         }
         //Lawnmower rotation
         if(armType == ARMTYPE.LAWNMOWER)
