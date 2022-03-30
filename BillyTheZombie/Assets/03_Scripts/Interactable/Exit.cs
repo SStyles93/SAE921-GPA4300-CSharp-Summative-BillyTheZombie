@@ -13,6 +13,10 @@ public class Exit : Interactable
 
     [SerializeField] private SpriteRenderer _doorSpriteRender;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _doorSound;
+
     public void Start()
     {
         _canvas.gameObject.SetActive(false);
@@ -32,6 +36,9 @@ public class Exit : Interactable
         _infoBubble.SetActive(false);
         
         _eventSystem.SetSelectedGameObject(_returnButton);
+        _audioSource.clip = _doorSound;
+        if(!_audioSource.isPlaying)
+        _audioSource.Play();
         
     }
 

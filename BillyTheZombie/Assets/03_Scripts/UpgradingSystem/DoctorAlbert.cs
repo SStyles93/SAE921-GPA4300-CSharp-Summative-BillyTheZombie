@@ -18,6 +18,10 @@ public class DoctorAlbert : Interactable
     //Reference Components
     [Header("Components")]
     [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private AudioSource _audioSource;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip _albertSound;
 
     //Reference ScriptableObjects
     [Header("Scriptable Objects")]
@@ -112,6 +116,10 @@ public class DoctorAlbert : Interactable
 
         //TODO : UI Nav
         _eventSystem.SetSelectedGameObject(_sliders[0]);
+
+        _audioSource.clip = _albertSound;
+        if(!_audioSource.isPlaying)
+        _audioSource.Play();
 
     }
 

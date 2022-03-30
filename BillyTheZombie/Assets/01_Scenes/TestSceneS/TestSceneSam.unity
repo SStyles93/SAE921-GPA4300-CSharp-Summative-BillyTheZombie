@@ -550,6 +550,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 381935114, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: _enemySpawner
+      value: 
+      objectReference: {fileID: 1033425734}
     - target: {fileID: 2619042568326500032, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -597,6 +601,18 @@ PrefabInstance:
     - target: {fileID: 2619042568326500037, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_Name
       value: Player_InGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161737476156737, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161738147447644, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161738147447644, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633051691886695518, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2097,6 +2113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4ef09377ed886489ad1cd5e1219bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transitionImage: {fileID: 0}
+  _transitionDuration: 1
+  _fadeIn: 0
+  _fadeOut: 0
 --- !u!4 &1033425733
 Transform:
   m_ObjectHideFlags: 0
@@ -2123,6 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac534ff6694e5240be329405fbdf1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerUI: {fileID: 0}
   _gameStats: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _enemyPrefabs:
   - {fileID: 769978088285160711, guid: c05b1a1daf33e5742a51c474a72de992, type: 3}
