@@ -110,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7812547682469548871}
   - component: {fileID: 7812547682469548870}
+  - component: {fileID: 8450857220732175641}
   - component: {fileID: 7812547682469548869}
   m_Layer: 5
   m_Name: SceneManager
@@ -145,10 +146,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4ef09377ed886489ad1cd5e1219bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transitionImage: {fileID: 5987716120416509842}
   _transitionDuration: 0.25
-  _fadeIn: 0
-  _fadeOut: 0
+  _transitionImage: {fileID: 5987716120416509842}
+--- !u!114 &8450857220732175641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7812547682469548868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1854c095d708d284f80bc52475aca9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 2619042568326500037, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+  _playerStatsSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
+  _spawnIndexSO: {fileID: 11400000, guid: 82bc7a854db9d1e44a4a40bc13f40ea9, type: 2}
+  _playerSpawns:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &7812547682469548869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,13 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac534ff6694e5240be329405fbdf1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _gameStats: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _enemyPrefabs:
   - {fileID: 769978088285160711, guid: c05b1a1daf33e5742a51c474a72de992, type: 3}
   - {fileID: 8495529115230520538, guid: 07ac3be2cf2ea95448de6d4db1b267eb, type: 3}
   _spawnPositions:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -180,13 +195,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5d577c1dc054224fa58b79ec4710af2, type: 2}
   - {fileID: 11400000, guid: 4e030a532325cd1498e6ea6b5042340b, type: 2}
   - {fileID: 11400000, guid: e5ba2685267b4ba4fae3612b4baa9bb3, type: 2}
-  - {fileID: 11400000, guid: 9c945441905ad6b4581446f93b25f0c4, type: 2}
-  - {fileID: 11400000, guid: 5e75917839239d443bae2b529438c50d, type: 2}
-  - {fileID: 11400000, guid: 9c7ce668c19d2df4bbc9fda7039ea07d, type: 2}
+  - {fileID: 11400000, guid: 82470b755b17c6c41881b9f8d5c08728, type: 2}
+  - {fileID: 11400000, guid: 7eff7029ae54ed74cb841423d115068a, type: 2}
+  - {fileID: 11400000, guid: a5d33e4b96279954a93c25f0b57a1945, type: 2}
+  - {fileID: 11400000, guid: dca9ec2193cd464489e40e7bf692506b, type: 2}
   _enemyTracked: []
-  _waveStarted: 0
-  _waveEnded: 0
-  rangeAroundPos: 0
 --- !u!1 &8767532469977886746
 GameObject:
   m_ObjectHideFlags: 0

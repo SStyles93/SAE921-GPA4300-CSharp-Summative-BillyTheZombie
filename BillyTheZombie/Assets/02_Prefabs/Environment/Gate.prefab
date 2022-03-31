@@ -55,7 +55,7 @@ MonoBehaviour:
   _leftGate: {fileID: 2034431379652404724}
   _rightGate: {fileID: 2034431380402074958}
   _openGate: 0
-  _indexToOpen: 3
+  _indexToOpen: 6
 --- !u!61 &1647808934
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.13}
+  m_Offset: {x: 0, y: -1.38}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -95,7 +95,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneManagement: {fileID: 0}
-  _sceneIndex: 3
+  _sceneIndex: 0
+  _spawnIndexSO: {fileID: 11400000, guid: 82bc7a854db9d1e44a4a40bc13f40ea9, type: 2}
+  _spawnIndex: 0
 --- !u!1 &2034431379541893652
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +607,7 @@ SpriteRenderer:
   m_SortingLayerID: -1027808603
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 0029170d14ce6c04c9f45c22cdae5559, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69899ed144c8eea4baea48b858b37746, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -688,7 +690,7 @@ SpriteRenderer:
   m_SortingLayerID: -1027808603
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: affeade9874cf2347abb155e8d0db4d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69899ed144c8eea4baea48b858b37746, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

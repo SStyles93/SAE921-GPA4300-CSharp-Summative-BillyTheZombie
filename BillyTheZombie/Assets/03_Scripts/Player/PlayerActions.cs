@@ -59,8 +59,8 @@ public class PlayerActions : MonoBehaviour
     private void Start()
     {
         _aim.transform.localPosition = new Vector3(0.0f, -0.5f, 0.0f);
-        _chosenAbilityIdxR = _playerStatSO._rightArmType;
-        _chosenAbilityIdxL = _playerStatSO._leftArmType;
+        _chosenAbilityIdxR = _playerStatSO.rightArmType;
+        _chosenAbilityIdxL = _playerStatSO.leftArmType;
     }
 
     void Update()

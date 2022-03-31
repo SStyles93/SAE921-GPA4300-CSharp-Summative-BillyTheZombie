@@ -2843,16 +2843,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 90
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 172
+    m_MaxSize: 90
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: DO YOU WANT TO EXIT ?
+  m_Text: <b>Return</b> to <b>MAIN MENU</b> ?
 --- !u!222 &1350478646
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3095,6 +3095,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneManagement: {fileID: 8155444452967597150}
   _sceneIndex: 2
+  _spawnIndexSO: {fileID: 11400000, guid: 82bc7a854db9d1e44a4a40bc13f40ea9, type: 2}
+  _spawnIndex: 0
 --- !u!61 &1520107327
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5789,6 +5791,7 @@ MonoBehaviour:
   _playerController: {fileID: 0}
   _playerActions: {fileID: 1697183799771298908}
   _playerStats: {fileID: 5393988114512724141}
+  _playerSpawnIndicator: {fileID: 0}
   _healthSlider: {fileID: 8143296149735381297}
   _healthGradient:
     serializedVersion: 2
@@ -7047,10 +7050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4ef09377ed886489ad1cd5e1219bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transitionImage: {fileID: 5647213948277622922}
   _transitionDuration: 0.25
-  _fadeIn: 0
-  _fadeOut: 0
+  _transitionImage: {fileID: 5647213948277622922}
 --- !u!4 &8155444452967597151
 Transform:
   m_ObjectHideFlags: 0

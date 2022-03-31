@@ -13,17 +13,17 @@ public class EnemyAI : MonoBehaviour
     private EnemyVisuals _enemyVisuals;
 
     //Variables
-    [SerializeField] private float recoveryTimer = 1.0f;
+    private float recoveryTimer = 0.5f;
     private float recoveryTime;
-    [SerializeField] private float attackTimer = 2.0f;
-    [SerializeField] private float attackTime;
-    [SerializeField] private bool _stopMoving = false;
+    private float attackTimer = 0.0f;
+    private float attackTime;
+    private bool _stopMoving = false;
 
-    [SerializeField] private float _detectionRadius = 0.0f;
+    private float _detectionRadius = 0.0f;
 
     //Reference Component
-    [SerializeField] private CircleCollider2D _colliderTrigger;
-    [SerializeField] private BoxCollider2D _boxCollider;
+    private CircleCollider2D _colliderTrigger;
+    private BoxCollider2D _boxCollider;
 
     private void Awake()
     {

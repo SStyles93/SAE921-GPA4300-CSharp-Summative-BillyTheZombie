@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnIndicatorScript : MonoBehaviour
+public class SpawnIndicator : MonoBehaviour
 {
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Image _arrow;
 
+    public EnemySpawner EnemySpawner { get => _enemySpawner; set => _enemySpawner = value; }
 
     // Update is called once per frame
     void Update()

@@ -6,27 +6,21 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private SceneManagement _sceneManagement;
 
-    //statSO is used to increse the players stats (in %)
+    //statSO contains all the player stats
     [Header("Player Stats ScriptableObject")]
     [SerializeField] private PlayerStatsSO _statSO;
 
-    //players basic stats
-    private float _basicHealth = 100.0f;
-    private float _basicArmDamage = 10.0f;
-    private float _basicSpeed = 4.0f;
-    private float _basicPushPower = 10.0f;
-
-    //player final stats
     [Header("Player's Stats")]
     [SerializeField] private float _pushPower = 10.0f;
     [SerializeField] private float _armDamage = 10.0f;
     [SerializeField] private float _health = 100.0f;
-    private float _maxHealth = 100.0f;
+    [SerializeField] private float _maxHealth = 100.0f;
     [SerializeField] private float _speed = 2.0f;
 
     [SerializeField] private bool _isInvicible = false;
     
     //Properties
+    public SceneManagement SceneManagement { get => _sceneManagement; set => _sceneManagement = value; }
     public float Health { get => _health; set => _health = value; }
     public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public float Speed { get => _speed; set => _speed = value; }
@@ -36,18 +30,18 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        _pushPower = _basicPushPower + (_basicPushPower * _statSO._pushPowerPercentage / 100.0f);
-        _armDamage = _armDamage + (_basicArmDamage * _statSO._armDamagePercentage / 100.0f);
-        _maxHealth = _basicHealth + (_basicHealth * _statSO._healthPercentage / 100.0f);
-        _speed = _basicSpeed + (_basicSpeed * _statSO._speedPercentage / 100.0f);
+        _pushPower = _statSO.basicPushPower + (_statSO.basicPushPower * _statSO.pushPowerPercentage / 100.0f);
+        _armDamage = _armDamage + (_statSO.basicArmDamage * _statSO.armDamagePercentage / 100.0f);
+        _maxHealth = _statSO.basicHealth + (_statSO.basicHealth * _statSO.healthPercentage / 20.0f);
+        _speed = _statSO.basicSpeed + (_statSO.basicSpeed * _statSO.speedPercentage / 100.0f);
+
     }
-    private void Start()
-    {
-        _health = _maxHealth;
-    }
+
     private void Update()
     {
-        if(_health <= 0.0f)
+        _health = _statSO.currentHealth;
+
+        if (_statSO.currentHealth <= 0.0f)
         {
             Die();
         }
@@ -55,6 +49,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
+        IsInvicible = true;
+        _statSO.currentHealth = _statSO.maxHealth;
         _sceneManagement.Player = gameObject;
         _sceneManagement.SceneIndex = 1;
         _sceneManagement.FadeOut = true;
@@ -67,6 +63,6 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if(!_isInvicible)
-        _health -= damage;
+            _statSO.currentHealth -= damage;
     }
 }

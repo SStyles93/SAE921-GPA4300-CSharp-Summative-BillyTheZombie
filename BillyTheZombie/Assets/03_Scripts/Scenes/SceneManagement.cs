@@ -5,19 +5,22 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class SceneManagement : MonoBehaviour
 {
-    private GameObject _player;
-
+    [Header("UI Transition")]
+    [Tooltip("The duratrion of a transition")]
+    [SerializeField] private float _transitionDuration = 1.0f;
+    [Tooltip("The image to set a Color Fade In/Out on")]
     [SerializeField] private Image _transitionImage;
-    private Color _currentColor;
-    [SerializeField] private float _transitionDuration = 1;
 
+    private GameObject _player;
+    private Color _currentColor;
     private int _sceneIndex;
-    [SerializeField] private bool _fadeIn;
-    [SerializeField] private bool _fadeOut;
+    private bool _fadeIn;
+    private bool _fadeOut;
 
     public bool FadeIn { get => _fadeIn; set => _fadeIn = value; }
     public bool FadeOut { get => _fadeOut; set => _fadeOut = value; }
     public int SceneIndex { get => _sceneIndex; set => _sceneIndex = value; }
+
     public GameObject Player { get => _player; set => _player = value; }
 
     private void Start()
@@ -28,7 +31,6 @@ public class SceneManagement : MonoBehaviour
         }
         _currentColor = _transitionImage.color = Color.black;
         _fadeIn = true;
-
     }
 
     private void Update()
@@ -49,7 +51,6 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Fades out and loads the indicated scene
     /// </summary>
@@ -60,10 +61,12 @@ public class SceneManagement : MonoBehaviour
         if(_currentColor != Color.black)
         {
             _currentColor = Color.Lerp(_currentColor, Color.black, Time.deltaTime / _transitionDuration);
+            _transitionDuration -= Time.deltaTime;
+            //If no player in the scene
             if (_player == null) return;
             _player.GetComponent<PlayerStats>().IsInvicible = true;
         }
-        else
+        else if(_transitionDuration <= 0.0f)
         {
             _fadeOut = false;
             ActivateScene(SceneIndex);

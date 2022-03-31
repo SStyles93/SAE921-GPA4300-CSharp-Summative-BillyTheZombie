@@ -203,7 +203,7 @@ public class DoctorAlbert : Interactable
             button.GetComponent<Image>().color = Color.gray;
         }
         _rightArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
-        _playerStatsSO._rightArmType = armIndex;
+        _playerStatsSO.rightArmType = armIndex;
     }
     public void SetLeftArmPower(int armIndex)
     {
@@ -212,7 +212,7 @@ public class DoctorAlbert : Interactable
             button.GetComponent<Image>().color = Color.gray;
         }
         _leftArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
-        _playerStatsSO._leftArmType = armIndex;
+        _playerStatsSO.leftArmType = armIndex;
     }
 
     /// <summary>
@@ -225,8 +225,8 @@ public class DoctorAlbert : Interactable
             _gameStatsSO.mutagenPoints += _sliders[i].GetComponent<Slider>().value * (100.0f * _pointsCoef);
             _sliders[i].GetComponent<PlayerStatUpdate>().Stat = 0.0f;
             _sliders[i].GetComponent<Slider>().value = 0.0f;
-            _playerStatsSO._leftArmType = 0;
-            _playerStatsSO._rightArmType = 0;
+            _playerStatsSO.leftArmType = 0;
+            _playerStatsSO.rightArmType = 0;
         }
     }
 
@@ -236,6 +236,8 @@ public class DoctorAlbert : Interactable
         {
             _sliders[i].GetComponent<PlayerStatUpdate>()?.UpdateStat();
         }
+        _playerStatsSO.maxHealth = _playerStatsSO.basicHealth + (_playerStatsSO.basicHealth * _playerStatsSO.healthPercentage / 20.0f);
+        _playerStatsSO.currentHealth = _playerStatsSO.maxHealth;
     }
 
 }

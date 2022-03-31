@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mutagenValue: 10
   _health: 200
-  _speed: 0.5
+  _speed: 1
   _damage: 25

@@ -6,12 +6,26 @@ using UnityEngine;
     menuName = "ScriptableObject/Stats/PlayerStats", order = 2)]
 public class PlayerStatsSO : ScriptableObject
 {
-    public float _pushPowerPercentage = 0.0f;
-    public float _armDamagePercentage = 0.0f;
-    public float _healthPercentage = 0.0f;
-    public float _speedPercentage = 0.0f;
-
-    public int _rightArmType = 0;
-    public int _leftArmType = 0;
-
+    [Header("Final values")]
+    public float currentHealth = 100.0f;
+    public float maxHealth = 100.0f;
+    
+    //Upgrade values
+    [Header("Modifications")]
+    [Space(20)]
+    public float pushPowerPercentage = 0.0f;
+    public float armDamagePercentage = 0.0f;
+    public float healthPercentage = 0.0f;
+    public float speedPercentage = 0.0f;
+    //ARMTYPE
+    [Header("ArmTypes")]
+    public int rightArmType = 0;
+    public int leftArmType = 0;
+    
+    [Header("Basic values")]
+    [Space(50)]
+    public float basicHealth = 100.0f;
+    public float basicArmDamage = 10.0f;
+    public float basicSpeed = 4.0f;
+    public float basicPushPower = 10.0f;
 }

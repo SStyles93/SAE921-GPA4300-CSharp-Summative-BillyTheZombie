@@ -33,16 +33,16 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
         switch (statType)
         {
             case STATTYPE.PUSHPOWER:
-                stat = _playerStats._pushPowerPercentage;
+                stat = _playerStats.pushPowerPercentage;
                 break;
             case STATTYPE.ARMDAMAGE:
-                stat = _playerStats._armDamagePercentage;
+                stat = _playerStats.armDamagePercentage;
                 break;
             case STATTYPE.HEALTH:
-                stat = _playerStats._healthPercentage;
+                stat = _playerStats.healthPercentage;
                 break;
             case STATTYPE.SPEED:
-                stat = _playerStats._speedPercentage;
+                stat = _playerStats.speedPercentage;
                 break;
         }
     }
@@ -52,16 +52,16 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
         switch (statType)
         {
             case STATTYPE.PUSHPOWER:
-                _playerStats._pushPowerPercentage = stat;
+                _playerStats.pushPowerPercentage = stat;
                 break;
             case STATTYPE.ARMDAMAGE:
-                _playerStats._armDamagePercentage = stat;
+                _playerStats.armDamagePercentage = stat;
                 break;
             case STATTYPE.HEALTH:
-                _playerStats._healthPercentage = stat;
+                _playerStats.healthPercentage = stat;
                 break;
             case STATTYPE.SPEED:
-                _playerStats._speedPercentage = stat;
+                _playerStats.speedPercentage = stat;
                 break;
         }
     }

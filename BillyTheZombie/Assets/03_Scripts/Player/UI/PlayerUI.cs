@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private PlayerActions _playerActions;
     [SerializeField] private PlayerStats _playerStats;
+    [SerializeField] private SpawnIndicator _playerSpawnIndicator;
 
     //Reference Components
     [Header("Player Health UI")]
@@ -43,13 +44,14 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private PlayerStatsSO _playerStatsSO;
     [SerializeField] private GameStatsSO _gameStatsSO;
 
+    public SpawnIndicator PlayerSpawnIndicator { get => _playerSpawnIndicator; private set => _playerSpawnIndicator = value; }
 
     private void Awake()
     {
         _playerStats = GetComponentInParent<PlayerStats>();
         _playerActions = GetComponentInParent<PlayerActions>();
         _playerController = GetComponentInParent<PlayerController>();
-        //_playerInput = GetComponentInParent<PlayerInput>();
+        _playerSpawnIndicator = GetComponentInChildren<SpawnIndicator>();
 
         _healthSlider = GetComponentInChildren<Slider>();
     }
@@ -58,8 +60,8 @@ public class PlayerUI : MonoBehaviour
         _healthSlider.maxValue = _playerStats.MaxHealth;
         _healthSlider.value = _playerStats.Health;
         //Set Arm UIActions sprites 0-Right || 1- Left
-        _bodyImages[0].sprite = _uIActionsSO.actionSprites[_playerStatsSO._rightArmType];
-        _bodyImages[1].sprite = _uIActionsSO.actionSprites[_playerStatsSO._leftArmType];
+        _bodyImages[0].sprite = _uIActionsSO.actionSprites[_playerStatsSO.rightArmType];
+        _bodyImages[1].sprite = _uIActionsSO.actionSprites[_playerStatsSO.leftArmType];
     }
 
     // Update is called once per frame
