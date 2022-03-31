@@ -5,17 +5,25 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
+    //Reference Scripts
     private AIPath _aIPath;
     private EnemyRayCaster _rayCaster;
     private AIDestinationSetter _destinationSetter;
     private EnemyStats _enemyStats;
     private EnemyVisuals _enemyVisuals;
 
+    //Variables
     [SerializeField] private float recoveryTimer = 1.0f;
     private float recoveryTime;
     [SerializeField] private float attackTimer = 2.0f;
     [SerializeField] private float attackTime;
     [SerializeField] private bool _stopMoving = false;
+
+    [SerializeField] private float _detectionRadius = 0.0f;
+
+    //Reference Component
+    [SerializeField] private CircleCollider2D _colliderTrigger;
+    [SerializeField] private BoxCollider2D _boxCollider;
 
     private void Awake()
     {
@@ -24,6 +32,9 @@ public class EnemyAI : MonoBehaviour
         _destinationSetter = GetComponent<AIDestinationSetter>();
         _enemyStats = GetComponent<EnemyStats>();
         _enemyVisuals = GetComponentInChildren<EnemyVisuals>();
+
+        _colliderTrigger = GetComponent<CircleCollider2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
     private void Start()
     {
@@ -31,6 +42,9 @@ public class EnemyAI : MonoBehaviour
         attackTime = attackTimer;
         _aIPath.maxSpeed = _enemyStats.Speed;
         _destinationSetter.target = _rayCaster.Target;
+
+        _detectionRadius = GetComponent<CircleCollider2D>().radius * 3f;
+        _colliderTrigger.enabled = false;
     }
 
     private void Update()
@@ -45,6 +59,17 @@ public class EnemyAI : MonoBehaviour
             recoveryTime = recoveryTimer;
             _aIPath.canMove = true;
             _stopMoving = false;
+        }
+
+        float targetDistance = (_destinationSetter.target.position - transform.position).magnitude;
+        if (_rayCaster.PlayerInSight)
+        {
+            _colliderTrigger.enabled = targetDistance < _detectionRadius ? true : false;
+            
+        }
+        else
+        {
+            _colliderTrigger.enabled = false;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -80,7 +105,6 @@ public class EnemyAI : MonoBehaviour
             }
             if(attackTime < 0.0f)
             {
-                //collision.GetComponent<PlayerStats>().Health -= _enemyStats.Damage;
                 attackTime = attackTimer;
                 //Launches the Attack of the enemy
                 _enemyVisuals.Attack = true;

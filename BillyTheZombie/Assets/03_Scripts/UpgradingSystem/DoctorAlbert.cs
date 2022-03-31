@@ -65,7 +65,7 @@ public class DoctorAlbert : Interactable
             UpdateUIButton();
 
             //Interact
-            if (player.GetComponent<PlayerController>().ArmL && !hasInteracted)
+            if (player.GetComponent<PlayerController>().Head && !hasInteracted)
             {
                 Act();
                 hasInteracted = true;
@@ -78,11 +78,11 @@ public class DoctorAlbert : Interactable
                 if (_eventSystem.currentSelectedGameObject == _sliders[i])
                 {
                     HighlightSlider(_hightLights[i], true);
-                    if (player.GetComponent<PlayerController>().ArmR)
+                    if (player.GetComponent<PlayerController>().ArmR || player.GetComponent<PlayerController>().Movement.x > 0.1f)
                     {
                         AddPoints(_sliders[i]);
                     }
-                    else if(player.GetComponent<PlayerController>().ArmL)
+                    else if(player.GetComponent<PlayerController>().ArmL || player.GetComponent<PlayerController>().Movement.x < -0.1f)
                     {
                         SubstractPoints(_sliders[i]);
                     }

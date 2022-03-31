@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NumberOfEnemies: 25
   EnemyIndex: 0
-  PositionIndex: 0
+  PositionIndex: 3

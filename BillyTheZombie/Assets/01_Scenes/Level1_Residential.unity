@@ -331,17 +331,11 @@ PrefabInstance:
       objectReference: {fileID: 1769856468}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
---- !u!114 &869669189 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1906562759, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
+--- !u!1 &869669189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2619042568326500037, guid: cd5baccafdea2974793c30694ff5392c, type: 3}
   m_PrefabInstance: {fileID: 869669188}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c7bb1d05ee27fc4e804c3e1300c7477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &984858607
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 984858608}
+  - component: {fileID: 984858609}
   m_Layer: 0
   m_Name: ThePool
   m_TagString: Untagged
@@ -372,6 +367,19 @@ Transform:
   m_Father: {fileID: 324341201}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &984858609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984858607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88a2bed8c454364c80346fff61106e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRange: 9.84
 --- !u!1 &1330603421
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1330603422}
+  - component: {fileID: 1330603423}
   m_Layer: 0
   m_Name: Middle
   m_TagString: Untagged
@@ -402,6 +411,19 @@ Transform:
   m_Father: {fileID: 324341201}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1330603423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330603421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88a2bed8c454364c80346fff61106e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRange: 5.72
 --- !u!1001 &1360282484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7550,33 +7572,9 @@ PrefabInstance:
       value: SceneManager
       objectReference: {fileID: 0}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _playerUI
+      propertyPath: _player
       value: 
       objectReference: {fileID: 869669189}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: rangeAroundPos
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _waves.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _waves.Array.data[7]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c945441905ad6b4581446f93b25f0c4, type: 2}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _waves.Array.data[8]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5e75917839239d443bae2b529438c50d, type: 2}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _waves.Array.data[9]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c7ce668c19d2df4bbc9fda7039ea07d, type: 2}
-    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
-      propertyPath: _spawnPositions.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _spawnPositions.Array.data[0]
       value: 
@@ -7652,6 +7650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1568427895}
+  - component: {fileID: 1568427896}
   m_Layer: 0
   m_Name: NorthGate
   m_TagString: Untagged
@@ -7673,6 +7672,19 @@ Transform:
   m_Father: {fileID: 324341201}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568427896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568427894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88a2bed8c454364c80346fff61106e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRange: 1.81
 --- !u!1 &1668383055
 GameObject:
   m_ObjectHideFlags: 0
@@ -7682,6 +7694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1668383056}
+  - component: {fileID: 1668383057}
   m_Layer: 0
   m_Name: SoccerField
   m_TagString: Untagged
@@ -7703,6 +7716,19 @@ Transform:
   m_Father: {fileID: 324341201}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1668383057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668383055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88a2bed8c454364c80346fff61106e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRange: 8.5
 --- !u!114 &1769856468 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7812547682469548870, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
@@ -7784,6 +7810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2017426764}
+  - component: {fileID: 2017426765}
   m_Layer: 0
   m_Name: CrossRoad
   m_TagString: Untagged
@@ -7805,6 +7832,19 @@ Transform:
   m_Father: {fileID: 324341201}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2017426765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017426763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88a2bed8c454364c80346fff61106e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRange: 6.33
 --- !u!156049354 &989064122281453672
 Grid:
   m_ObjectHideFlags: 0

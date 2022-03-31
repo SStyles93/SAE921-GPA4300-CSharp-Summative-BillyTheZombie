@@ -65,10 +65,10 @@ public class EnemyRayCaster : MonoBehaviour
     /// <summary>
     /// Initializes the rays
     /// </summary>
-    /// <param name="NumberOfRays">Number of rays we want to Initialize</param>
-    protected void CastRays(int NumberOfRays, float angle)
+    /// <param name="numberOfRays">Number of rays we want to Initialize</param>
+    protected void CastRays(int numberOfRays, float angle)
     {
-        float[] newAngles = new float[NumberOfRays+1];        
+        float[] newAngles = new float[numberOfRays+1];        
         //Set size of rayPosition array
         _rayDirections = new Vector3[_numberOfRays + 1];
         for (int i = 0; i < _rayDirections.Length; i++)
@@ -82,7 +82,7 @@ public class EnemyRayCaster : MonoBehaviour
             }
             else
             {
-                newAngles[i] = newAngles[i-1] + angle / NumberOfRays;
+                newAngles[i] = newAngles[i-1] + angle / numberOfRays;
                 Quaternion spreadAngle = Quaternion.AngleAxis(newAngles[i], Vector3.forward);
                 Vector3 newVector = spreadAngle * transform.forward;
                 _rayDirections[i] = newVector;

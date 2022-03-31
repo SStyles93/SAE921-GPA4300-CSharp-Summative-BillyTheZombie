@@ -71,9 +71,6 @@ public class Arm : MonoBehaviour
                 Physics2D.IgnoreCollision(
                         transform.GetComponent<CircleCollider2D>(),
                         _player.gameObject.GetComponent<CapsuleCollider2D>());
-                Physics2D.IgnoreCollision(
-                       transform.GetComponent<CircleCollider2D>(),
-                       _player.gameObject.GetComponent<BoxCollider2D>());
                 _particleSystem = GetComponent<ParticleSystem>();
                 _particleSystem.Stop();
                 break;
@@ -136,37 +133,42 @@ public class Arm : MonoBehaviour
                 break;
 
             case ARMTYPE.EXPLOSIVE:
-                
-                //collision with Enemy
-                if (collision.gameObject.CompareTag("Enemy"))
+
+                if (collision.gameObject.CompareTag("Player"))
                 {
-                    if (!_canBePickedUp)
+                    if (_canBePickedUp)
+                        GetComponent<BoxCollider2D>().isTrigger = true;
+                }
+                if (!collision.gameObject.CompareTag("Player"))
+                {
+                    //on collision stops the rb from moving
+                    _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                    //stops applying force to the object
+                    _canMove = false;
+
+                    //collision with Enemy
+                    if (collision.gameObject.CompareTag("Enemy"))
                     {
+                        if (_canBePickedUp)
+                        {
+                            GetComponent<CircleCollider2D>().enabled = false;
+                            return;
+                        }
+
+                        GetComponent<CircleCollider2D>().enabled = true;
                         //Send enemy in opposite direction from player
                         Vector2 forceDirection = collision.gameObject.transform.position -
                             gameObject.transform.position;
                         collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
+                        //Damages enemy
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-
-                        GetComponent<CircleCollider2D>().enabled = true;
 
                         if (!_particlewasPlayed)
                         {
                             _particleSystem.Play();
                             _particlewasPlayed = true;
-                        }
+                        } 
                     }
-                    
-                }
-                if (!collision.gameObject.CompareTag("Player"))
-                {
-                    //enables the outer collider
-                    GetComponent<CircleCollider2D>().enabled = false;
-                    GetComponent<BoxCollider2D>().isTrigger = true;
-                    //on collision stops the rb from moving
-                    _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                    //stops applying force to the object
-                    _canMove = false;
                 }
                 break;
 
@@ -182,6 +184,16 @@ public class Arm : MonoBehaviour
                 break;
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(armType == ARMTYPE.LAWNMOWER)
+        {
+            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && _canBePickedUp)

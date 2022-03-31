@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private PlayerUI _playerUI;
+
+    [SerializeField] private GameObject _player;
 
     //reference ScriptableObjects
     [SerializeField] private GameStatsSO _gameStats;
@@ -35,10 +36,22 @@ public class EnemySpawner : MonoBehaviour
         //Check for enemy death
         for (int i = 0; i < _enemyTracked.Count; i++)
         {
+            
             if(_enemyTracked[i] == null)
             {
                 _enemyTracked.RemoveAt(i);
-                _playerUI.GainPoints();
+                _player.GetComponentInChildren<PlayerUI>().GainPoints();
+            }
+            else
+            {
+                if ((_enemyTracked[i].transform.position - _player.transform.position).magnitude <= 12f)
+                {
+                    _enemyTracked[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    _enemyTracked[i].gameObject.SetActive(false);
+                }
             }
         }
         //End
@@ -56,13 +69,13 @@ public class EnemySpawner : MonoBehaviour
     {
         switch (WaveCount)
         {
-            case 3:
-                InstantiateWave(2);
-                InstantiateWave(3);
-                InstantiateWave(4);
-                break;
-            case 4:
-                break;
+            //case 3:
+            //    InstantiateWave(2);
+            //    InstantiateWave(3);
+            //    InstantiateWave(4);
+            //    break;
+            //case 4:
+            //    break;
             default:
                 if(_gameStats.currentWaveIndex < _waves.Length)
                 {

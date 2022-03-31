@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7051114896888605954}
   - component: {fileID: -6728522441090210309}
   - component: {fileID: 7051114896888605955}
+  - component: {fileID: 7586545510509171309}
   m_Layer: 8
   m_Name: RightBasic
   m_TagString: Untagged
@@ -150,3 +151,19 @@ MonoBehaviour:
   _damage: 2.5
   _explosiveArmRadius: 1
   _pushPower: 1
+--- !u!58 &7586545510509171309
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051114896888605980}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.12
