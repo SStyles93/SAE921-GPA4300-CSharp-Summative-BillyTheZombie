@@ -6568,11 +6568,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3e6f35be942d54ca487205510aca20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneManagement: {fileID: 0}
+  _sceneManagement: {fileID: 8155444452967597150}
   _statSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
   _pushPower: 10
   _armDamage: 10
   _health: 100
+  _maxHealth: 100
   _speed: 2
   _isInvicible: 0
 --- !u!222 &5508832325586007964

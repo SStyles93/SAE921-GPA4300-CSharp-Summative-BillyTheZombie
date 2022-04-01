@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de5338b6424c1942a193f9c6cd724fb, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  basicHealth: 100
-  basicArmDamage: 10
-  basicSpeed: 4
-  basicPushPower: 10
+  currentHealth: 90
+  maxHealth: 100
   pushPowerPercentage: 0
   armDamagePercentage: 0
   healthPercentage: 0
   speedPercentage: 0
-  rightArmType: 0
-  leftArmType: 0
-  currentHealth: 0
-  maxHealth: 0
+  rightArmType: 2
+  leftArmType: 3
+  basicHealth: 100
+  basicArmDamage: 10
+  basicSpeed: 4
+  basicPushPower: 10

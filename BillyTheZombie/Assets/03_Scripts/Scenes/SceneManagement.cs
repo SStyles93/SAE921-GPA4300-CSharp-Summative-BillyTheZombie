@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class SceneManagement : MonoBehaviour
 {
     [Header("UI Transition")]
-    [Tooltip("The duratrion of a transition")]
-    [SerializeField] private float _transitionDuration = 1.0f;
+    [Tooltip("The duratrion of a FadeIn transition")]
+    [SerializeField] private float _fadeInDuration = 1.0f;
+    [Tooltip("The duratrion of a FadeOut transition")]
+    [SerializeField] private float _fadeOutDuration = 1.0f;
     [Tooltip("The image to set a Color Fade In/Out on")]
     [SerializeField] private Image _transitionImage;
 
@@ -60,13 +62,13 @@ public class SceneManagement : MonoBehaviour
         _transitionImage.color = _currentColor;
         if(_currentColor != Color.black)
         {
-            _currentColor = Color.Lerp(_currentColor, Color.black, Time.deltaTime / _transitionDuration);
-            _transitionDuration -= Time.deltaTime;
+            _currentColor = Color.Lerp(_currentColor, Color.black, Time.deltaTime / _fadeOutDuration);
+            _fadeOutDuration -= Time.deltaTime;
             //If no player in the scene
             if (_player == null) return;
             _player.GetComponent<PlayerStats>().IsInvicible = true;
         }
-        else if(_transitionDuration <= 0.0f)
+        else if(_fadeOutDuration <= 0.2f)
         {
             _fadeOut = false;
             ActivateScene(SceneIndex);
@@ -80,7 +82,7 @@ public class SceneManagement : MonoBehaviour
         _transitionImage.color = _currentColor;
         if(_currentColor != Color.clear)
         {
-            _currentColor = Color.Lerp(_currentColor, Color.clear, Time.deltaTime / _transitionDuration);
+            _currentColor = Color.Lerp(_currentColor, Color.clear, Time.deltaTime / _fadeInDuration);
         }
         else
         {

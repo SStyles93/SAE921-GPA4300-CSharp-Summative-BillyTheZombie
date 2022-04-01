@@ -7511,6 +7511,10 @@ PrefabInstance:
       value: SceneManager
       objectReference: {fileID: 0}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cce665186c840648aea19998bb5fcb4, type: 2}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _spawnPositions.Array.data[0]
       value: 
       objectReference: {fileID: 1568427894}
