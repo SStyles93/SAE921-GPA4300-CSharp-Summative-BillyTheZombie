@@ -5123,6 +5123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2175987064575213133, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556867033229618450, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5171,6 +5175,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3620462480053659795, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3620462480053659795, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5145507316377417609, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5179,10 +5191,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6274039215778553017, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6518314374846458425, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: _sceneManagement
       value: 
       objectReference: {fileID: 8155444452967597150}
+    - target: {fileID: 8373941273949272624, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
 --- !u!224 &1624431820288874190

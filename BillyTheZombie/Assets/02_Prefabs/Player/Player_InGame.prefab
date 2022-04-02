@@ -5254,7 +5254,6 @@ MonoBehaviour:
   - {fileID: 1593645521}
   - {fileID: 1806450218983300506}
   - {fileID: 3827236296880737092}
-  _currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2354536630781338062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,8 +5496,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.23, y: 0.47}
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 0.23, y: 0.7}
   m_Direction: 0
 --- !u!114 &7769927165255852279
 MonoBehaviour:
@@ -5542,7 +5541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bdf9f0d45b7cc042bf717a774ea6b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRepeateActions: 0
 --- !u!114 &2619042568326500036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5603,6 +5601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneManagement: {fileID: 0}
+  _playerMovement: {fileID: 0}
+  _playerActions: {fileID: 0}
   _playerVisuals: {fileID: 0}
   _statSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
   _gameStatsSO: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}

@@ -20,7 +20,7 @@ public class PlayerVisuals : MonoBehaviour
 
     //Color Change
     [SerializeField] private SpriteRenderer[] _spriteRenders;
-    [SerializeField] private Color _currentColor;
+    private Color _currentColor;
     private float _damageCooldown = 2f;
 
     public Animator Animator { get => _animator; private set => _animator = value; }

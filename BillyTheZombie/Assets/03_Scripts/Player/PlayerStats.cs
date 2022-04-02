@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private SceneManagement _sceneManagement;
+    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private PlayerActions _playerActions;
     [SerializeField] private PlayerVisuals _playerVisuals;
 
     //statSO contains all the player stats
@@ -37,6 +39,10 @@ public class PlayerStats : MonoBehaviour
         _maxHealth = _statSO.basicHealth + (_statSO.basicHealth * _statSO.healthPercentage / 20.0f);
         _speed = _statSO.basicSpeed + (_statSO.basicSpeed * _statSO.speedPercentage / 100.0f);
 
+        //Get player components
+        _playerMovement = GetComponent<PlayerMovement>();
+        _playerActions = GetComponent<PlayerActions>();
+        //Get player's body components
         _playerVisuals = GetComponentInChildren<PlayerVisuals>();
 
     }
@@ -51,14 +57,19 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies death to the player
+    /// </summary>
     private void Die()
     {
-        IsInvicible = true;
+        DisablePlayersActions();
+        ResetWaves();
+        //Reset player's health
         _statSO.currentHealth = _statSO.maxHealth;
+        //Set and play SceneManager's FadeOut
         _sceneManagement.Player = gameObject;
         _sceneManagement.SceneIndex = 1;
         _sceneManagement.FadeOut = true;
-        _gameStatsSO.currentWaveCount = 0;
     }
 
     /// <summary>
@@ -70,5 +81,25 @@ public class PlayerStats : MonoBehaviour
         if(!_isInvicible)
             _statSO.currentHealth -= damage;
         _playerVisuals.HitEffect();
+    }
+
+    /// <summary>
+    /// Disables all actions from player and makes him invulerable
+    /// </summary>
+    public void DisablePlayersActions()
+    {
+        IsInvicible = true;
+        _playerActions.CanHit = false;
+        _playerMovement.CanMove = false;
+        _playerVisuals.Animator.speed = 0;
+    }
+
+    /// <summary>
+    /// Resets the Waves to zero
+    /// </summary>
+    private void ResetWaves()
+    {
+        _gameStatsSO.currentWaveCount = 0;
+        _gameStatsSO.indexOfWaveToSpawn = 0;
     }
 }

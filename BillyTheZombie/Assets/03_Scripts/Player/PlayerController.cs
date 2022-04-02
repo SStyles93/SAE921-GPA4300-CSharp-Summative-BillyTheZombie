@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool _armL;
 
 
-    [SerializeField] private bool _canRepeateActions = false;
+    private bool _canRepeateActions = false;
     private float _repeatingTimer = 0.1f;
     float _repeatTimerHead;
     float _repeatTimerArmR;
@@ -38,10 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
     }
-    private void Start()
-    {
-        
-    }
+
     private void Update()
     {
         _controlScheme = _playerInput.currentControlScheme;

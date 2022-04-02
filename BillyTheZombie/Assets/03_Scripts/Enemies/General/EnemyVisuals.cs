@@ -19,7 +19,7 @@ public class EnemyVisuals : MonoBehaviour
     private int _attackHash;
 
     //Variables
-    [SerializeField] private Color _currentColor;
+    private Color _currentColor;
     private float _damageCooldown = 2f;
 
     private bool _attack = false;
