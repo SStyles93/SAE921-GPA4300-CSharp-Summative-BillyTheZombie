@@ -12,7 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private PlayerActions _playerActions;
     [SerializeField] private PlayerStats _playerStats;
-    [SerializeField] private SpawnIndicator _playerSpawnIndicator;
+    [SerializeField] private EnemyIndicator _playerSpawnIndicator;
 
     //Reference Components
     [Header("Player Health UI")]
@@ -44,14 +44,14 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private PlayerStatsSO _playerStatsSO;
     [SerializeField] private GameStatsSO _gameStatsSO;
 
-    public SpawnIndicator PlayerSpawnIndicator { get => _playerSpawnIndicator; private set => _playerSpawnIndicator = value; }
+    public EnemyIndicator PlayerSpawnIndicator { get => _playerSpawnIndicator; private set => _playerSpawnIndicator = value; }
 
     private void Awake()
     {
         _playerStats = GetComponentInParent<PlayerStats>();
         _playerActions = GetComponentInParent<PlayerActions>();
         _playerController = GetComponentInParent<PlayerController>();
-        _playerSpawnIndicator = GetComponentInChildren<SpawnIndicator>();
+        _playerSpawnIndicator = GetComponentInChildren<EnemyIndicator>();
 
         _healthSlider = GetComponentInChildren<Slider>();
     }

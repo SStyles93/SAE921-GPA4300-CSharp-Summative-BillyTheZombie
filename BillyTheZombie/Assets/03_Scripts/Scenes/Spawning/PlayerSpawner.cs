@@ -57,6 +57,6 @@ public class PlayerSpawner : MonoBehaviour
         PlayerStats playerStats = _player.GetComponent<PlayerStats>();
         playerStats.SceneManagement = _sceneManagement;
         playerStats.Health = _playerStatsSO.currentHealth;
-        _player.GetComponentInChildren<SpawnIndicator>().EnemySpawner = _enemySpawner;
+        _player.GetComponentInChildren<EnemyIndicator>().EnemySpawner = _enemySpawner;
     }
 }

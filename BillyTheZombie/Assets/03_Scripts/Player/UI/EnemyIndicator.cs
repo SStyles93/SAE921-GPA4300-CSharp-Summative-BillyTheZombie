@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class SpawnIndicator : MonoBehaviour
+public class EnemyIndicator : MonoBehaviour
 {
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private PlayerController _playerController;
-    [SerializeField] private Image _arrow;
+    [SerializeField] private SpriteRenderer _arrow;
 
     public EnemySpawner EnemySpawner { get => _enemySpawner; set => _enemySpawner = value; }
 
@@ -28,7 +27,7 @@ public class SpawnIndicator : MonoBehaviour
                 Quaternion rotation = Quaternion.LookRotation(direction, Vector3.forward);
                 rotation.x = 0f;
                 rotation.y = 0f;
-                _arrow.transform.rotation = rotation;
+                transform.rotation = rotation;
             }
         }
     }
