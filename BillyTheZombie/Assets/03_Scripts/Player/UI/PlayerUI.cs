@@ -158,7 +158,7 @@ public class PlayerUI : MonoBehaviour
 
     private void UpdateTextUi()
     {
-        _waveNumberText.text = $"Current Wave: {_gameStatsSO.currentWaveIndex} \n Max Wave: {_gameStatsSO.maxReachedWaveIndex}";
+        _waveNumberText.text = $"Current Wave: {_gameStatsSO.currentWaveCount} \n Max Wave: {_gameStatsSO.maxReachedWaveCount}";
         _mutagenPointsText.text = "Mutagen Points";
         _currentColor = _mutagenPointsText.color;
         if (_currentColor != Color.green)

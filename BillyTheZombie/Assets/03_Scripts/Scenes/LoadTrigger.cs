@@ -7,7 +7,7 @@ public class LoadTrigger : MonoBehaviour
 {
     [SerializeField] private SceneManagement _sceneManagement;
     [SerializeField] private int _sceneIndex = 1;
-    [SerializeField] private SpawnPositionIndexSO _spawnIndexSO;
+    [SerializeField] private PlayerSpawnPositionIndexSO _spawnIndexSO;
     [SerializeField] private int _spawnIndex = 0;
 
     private void OnTriggerEnter2D(Collider2D collision)

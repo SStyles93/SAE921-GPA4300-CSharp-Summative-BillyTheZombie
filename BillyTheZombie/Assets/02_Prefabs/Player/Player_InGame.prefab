@@ -5249,6 +5249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c5761c1c546e5429fbb4c34d1d8376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenders:
+  - {fileID: 6752433910420508882}
+  - {fileID: 1593645521}
+  - {fileID: 1806450218983300506}
+  - {fileID: 3827236296880737092}
+  _currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2354536630781338062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5492,7 +5498,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.385, y: 0.725}
+  m_Size: {x: 0.23, y: 0.47}
   m_Direction: 0
 --- !u!114 &7769927165255852279
 MonoBehaviour:
@@ -5597,10 +5603,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneManagement: {fileID: 0}
+  _playerVisuals: {fileID: 0}
   _statSO: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
+  _gameStatsSO: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
   _pushPower: 100
   _armDamage: 10
   _health: 100
+  _maxHealth: 100
   _speed: 4
   _isInvicible: 0
 --- !u!82 &5137548844362848553

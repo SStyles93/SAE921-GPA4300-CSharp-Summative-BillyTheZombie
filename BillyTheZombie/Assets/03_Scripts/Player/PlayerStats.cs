@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private SceneManagement _sceneManagement;
+    [SerializeField] private PlayerVisuals _playerVisuals;
 
     //statSO contains all the player stats
     [Header("Player Stats ScriptableObject")]
     [SerializeField] private PlayerStatsSO _statSO;
+    [SerializeField] private GameStatsSO _gameStatsSO;
 
     [Header("Player's Stats")]
     [SerializeField] private float _pushPower = 10.0f;
@@ -35,6 +37,8 @@ public class PlayerStats : MonoBehaviour
         _maxHealth = _statSO.basicHealth + (_statSO.basicHealth * _statSO.healthPercentage / 20.0f);
         _speed = _statSO.basicSpeed + (_statSO.basicSpeed * _statSO.speedPercentage / 100.0f);
 
+        _playerVisuals = GetComponentInChildren<PlayerVisuals>();
+
     }
 
     private void Update()
@@ -54,6 +58,7 @@ public class PlayerStats : MonoBehaviour
         _sceneManagement.Player = gameObject;
         _sceneManagement.SceneIndex = 1;
         _sceneManagement.FadeOut = true;
+        _gameStatsSO.currentWaveCount = 0;
     }
 
     /// <summary>
@@ -64,5 +69,6 @@ public class PlayerStats : MonoBehaviour
     {
         if(!_isInvicible)
             _statSO.currentHealth -= damage;
+        _playerVisuals.HitEffect();
     }
 }

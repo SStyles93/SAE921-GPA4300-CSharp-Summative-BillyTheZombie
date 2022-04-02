@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
         //Start
         if (!_waveStarted)
         {
-            StartWave(_gameStats.currentWaveIndex);
+            StartWave(_gameStats.indexOfWaveToSpawn);
         }
         //Check for enemy death
         for (int i = 0; i < _enemyTracked.Count; i++)
@@ -76,15 +76,14 @@ public class EnemySpawner : MonoBehaviour
     private void StartWave(int waveIndex)
     {
         //Check if there are still waves to Instantiate
-        if(_gameStats.currentWaveIndex < _waves.Length)
+        if(_gameStats.indexOfWaveToSpawn < _waves.Length)
         {
             InstantiateWave(waveIndex);
-            //If a wave is a subwave call next one too
-            if (_waves[waveIndex].isSubWaves)
+            //If the Wave is a SubWave recursively instantiate the next one
+            if (_waves[_gameStats.indexOfWaveToSpawn].isSubWaves)
             {
-                _gameStats.currentWaveIndex++;
-                StartWave(waveIndex + 1);
-
+                _gameStats.indexOfWaveToSpawn++;
+                StartWave(_gameStats.indexOfWaveToSpawn);
             }
         }
         else
@@ -121,16 +120,16 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     private void EndWave()
     {
-        
-        //Update waveIndex
+        //Update indexOfWave and WaveCount
         if (!_waveEnded)
         {
-            _gameStats.currentWaveIndex++;
+            _gameStats.indexOfWaveToSpawn++;
+            _gameStats.currentWaveCount++;
         }
         //Update maxWaveReached if currentWave is higher
-        if (_gameStats.maxReachedWaveIndex < _gameStats.currentWaveIndex)
+        if (_gameStats.maxReachedWaveCount < _gameStats.currentWaveCount)
         {
-            _gameStats.maxReachedWaveIndex = _gameStats.currentWaveIndex;
+            _gameStats.maxReachedWaveCount = _gameStats.currentWaveCount;
         }
         _waveEnded = true;
         _waveStarted = false;

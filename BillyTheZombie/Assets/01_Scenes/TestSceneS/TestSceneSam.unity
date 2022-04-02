@@ -681,7 +681,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0.18
+  m_EdgeRadius: 0
 --- !u!208 &122424463
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2661,7 +2661,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0.18
+  m_EdgeRadius: 0
 --- !u!1 &795846451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,7 +3758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4ef09377ed886489ad1cd5e1219bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transitionDuration: 1
+  _fadeInDuration: 1
+  _fadeOutDuration: 1
   _transitionImage: {fileID: 0}
 --- !u!4 &1033425733
 Transform:
@@ -6829,7 +6830,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0.18
+  m_EdgeRadius: 0
 --- !u!1 &1630016780
 GameObject:
   m_ObjectHideFlags: 0
@@ -7565,7 +7566,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0.18
+  m_EdgeRadius: 0
 --- !u!208 &1805868168
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -8291,7 +8292,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 18.01}
-  m_EdgeRadius: 0.18
+  m_EdgeRadius: 0
 --- !u!1 &2039820057
 GameObject:
   m_ObjectHideFlags: 0

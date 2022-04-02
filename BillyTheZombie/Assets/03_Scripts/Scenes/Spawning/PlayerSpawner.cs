@@ -10,7 +10,7 @@ public class PlayerSpawner : MonoBehaviour
     [Tooltip("The player Stats")]
     [SerializeField]private PlayerStatsSO _playerStatsSO;
     [Tooltip("The index of the spawn position at which the player will spawn")]
-    [SerializeField] private SpawnPositionIndexSO _spawnIndexSO;
+    [SerializeField] private PlayerSpawnPositionIndexSO _spawnIndexSO;
     [Tooltip("The transform on which to spawn the player")]
     [SerializeField] private Transform[] _playerSpawns;
 

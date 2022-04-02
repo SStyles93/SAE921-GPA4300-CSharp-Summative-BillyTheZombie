@@ -18,6 +18,11 @@ public class PlayerVisuals : MonoBehaviour
     private int _movementHash;
     private int _headbuttHash;
 
+    //Color Change
+    [SerializeField] private SpriteRenderer[] _spriteRenders;
+    [SerializeField] private Color _currentColor;
+    private float _damageCooldown = 2f;
+
     public Animator Animator { get => _animator; private set => _animator = value; }
 
     private void Awake()
@@ -43,6 +48,8 @@ public class PlayerVisuals : MonoBehaviour
     {
         Look();
         Move();
+
+        RetriveNormalColor();
     }
 
     /// <summary>
@@ -75,7 +82,28 @@ public class PlayerVisuals : MonoBehaviour
             _animator.SetFloat(_movementHash, 0.0f);
         }
     }
-    
+
+    /// <summary>
+    /// Slowly sets the color of SpriteRenderers back to white (normal) color
+    /// </summary>
+    private void RetriveNormalColor()
+    {
+        if (_currentColor != Color.white)
+        {
+            _damageCooldown += Time.deltaTime;
+            _currentColor = Color.Lerp(_currentColor, Color.white, _damageCooldown);
+        }
+        else
+        {
+            _damageCooldown = 0.0f;
+        }
+        foreach (SpriteRenderer renderer in _spriteRenders)
+        {
+            renderer.color = _currentColor;
+        }
+
+    }
+
     /// <summary>
     /// Launch headbutt
     /// </summary>
@@ -94,45 +122,14 @@ public class PlayerVisuals : MonoBehaviour
         _playerMovement.CanMove = true;
     }
 
-    #region SpritePosition NOT USED
 
-    //
-    //    [Header("Sprite Bank")]
-    //    [Tooltip("The players body sprites")]
-    //    [SerializeField] private List<Sprite> _bodySprites;
-    //    [Tooltip("The players rigth arm sprites")]
-    //    [SerializeField] private List<Sprite> _rightArmSprites;
-    //    [Tooltip("The players left arm sprites")]
-    //    [SerializeField] private List<Sprite> _leftArmSprites;
 
-    //    [Header("Player Renderers")]
-    //    [Tooltip("The body renderer of the player")]
-    //    [SerializeField] private SpriteRenderer _bodyRender;
-    //    [Tooltip("The right arm renderer of the player")]
-    //    [SerializeField] private SpriteRenderer _rightArmRender;
-    //    [Tooltip("The left arm renderer of the player")]
-    //    [SerializeField] private SpriteRenderer _leftArmRender;
-
-    //    public enum PLAYERORIENTATION
-    //    {
-    //        NORTH,
-    //        EAST,
-    //        SOUTH,
-    //        WEST
-    //    }
-    //    public int orientation;
-
-    //    public void OrientPlayer(PLAYERORIENTATION orientationIdx)
-    //    {
-    //        orientation = (int)orientationIdx;
-    //    }
-
-    //    private void UpdatePlayerVisuals()
-    //    {
-    //        _bodyRender.sprite = _bodySprites[orientation];
-    //        _rightArmRender.sprite = _rightArmSprites[orientation];
-    //        _leftArmRender.sprite = _leftArmSprites[orientation];
-    //    }
-
-    #endregion
+    /// <summary>
+    /// Visual feedack hits taken
+    /// </summary>
+    public void HitEffect()
+    {
+        _currentColor = Color.red;
+        _damageCooldown = 0.0f;
+    }
 }

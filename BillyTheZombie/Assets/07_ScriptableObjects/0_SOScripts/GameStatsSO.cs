@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameStatsSO : ScriptableObject
 {
     public float mutagenPoints;
-    public int currentWaveIndex;
-    public int maxReachedWaveIndex;
+    public int currentWaveCount;
+    public int maxReachedWaveCount;
+
+    public int indexOfWaveToSpawn;
 }

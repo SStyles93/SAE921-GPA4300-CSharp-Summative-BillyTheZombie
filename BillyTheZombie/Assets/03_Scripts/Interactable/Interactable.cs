@@ -50,13 +50,13 @@ public abstract class Interactable : MonoBehaviour
                 hasInteracted = true;
             }
         }
-
     }
 
     /// <summary>
     /// Acts with the Interactable
     /// </summary>
     public abstract void Act();
+
     /// <summary>
     /// Stops acting with the Interacable
     /// </summary>

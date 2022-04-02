@@ -65,7 +65,6 @@ public class EnemyAI : MonoBehaviour
         if (_rayCaster.PlayerInSight)
         {
             _colliderTrigger.enabled = targetDistance < _detectionRadius ? true : false;
-            
         }
         else
         {
@@ -74,7 +73,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Arm") || collision.gameObject.CompareTag("Player"))
         {
             _stopMoving = true;
         }
