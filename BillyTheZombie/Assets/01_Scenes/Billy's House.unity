@@ -4964,6 +4964,10 @@ PrefabInstance:
       value: Dr.Albert
       objectReference: {fileID: 0}
     - target: {fileID: 700835791344796408, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
+      propertyPath: _pointsCoef
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 700835791344796408, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: _audioSource
       value: 
       objectReference: {fileID: 1910217625}
@@ -4971,6 +4975,10 @@ PrefabInstance:
       propertyPath: _eventSystem
       value: 
       objectReference: {fileID: 110219824}
+    - target: {fileID: 700835791344796408, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
+      propertyPath: _firstArmLimit
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 700835791344796409, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_RootOrder
       value: 5

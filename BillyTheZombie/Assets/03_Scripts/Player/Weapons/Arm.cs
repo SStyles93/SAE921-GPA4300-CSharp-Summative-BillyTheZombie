@@ -62,6 +62,24 @@ public class Arm : MonoBehaviour
                 _rb.sharedMaterial.bounciness = 0.25f;
                 _pickUpTimer = 1.0f;
                 break;
+
+            case ARMTYPE.BOOMERANG:
+                _rb.drag = 0.0f;
+                _rb.sharedMaterial.bounciness = 1.0f;
+                _pickUpTimer = 0.25f;
+                //If the collision is with the player Ignore
+                Physics2D.IgnoreCollision(
+                    transform.GetComponent<BoxCollider2D>(),
+                    _player.gameObject.GetComponent<CapsuleCollider2D>());
+                break;
+
+            case ARMTYPE.LAWNMOWER:
+                _rb.drag = 0.1f;
+                _rb.sharedMaterial.bounciness = 0.0f;
+                _rb.mass = 10.0f;
+                _pickUpTimer = 2.0f;
+                break;
+
             case ARMTYPE.EXPLOSIVE:
                 _rb.drag = 10.0f;
                 _rb.sharedMaterial.bounciness = 0.0f;
@@ -73,17 +91,6 @@ public class Arm : MonoBehaviour
                         _player.gameObject.GetComponent<CapsuleCollider2D>());
                 _particleSystem = GetComponent<ParticleSystem>();
                 _particleSystem.Stop();
-                break;
-            case ARMTYPE.LAWNMOWER:
-                _rb.drag = 0.1f;
-                _rb.sharedMaterial.bounciness = 0.0f;
-                _rb.mass = 10.0f;
-                _pickUpTimer = 2.0f;
-                break;
-            case ARMTYPE.BOOMERANG:
-                _rb.drag = 0.0f;
-                _rb.sharedMaterial.bounciness = 1.0f;
-                _pickUpTimer = 0.25f;
                 break;
         }
 
@@ -105,20 +112,16 @@ public class Arm : MonoBehaviour
             case ARMTYPE.BOOMERANG:
                 if (collision.gameObject.CompareTag("Player"))
                 {
-                    _canBePickedUp = false;
-                    //If the collision is with the player Ignore
-                    Physics2D.IgnoreCollision(
-                        transform.GetComponent<BoxCollider2D>(),
-                        collision.gameObject.GetComponent<CapsuleCollider2D>());
+                    _canBePickedUp = true;
                     return;
                 }
                 //on collision stops the rb from moving
                 _rb.velocity = Vector2.zero;
                 //stops applying force to the object
                 _canMove = false;
-                collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                 if (!_canBePickedUp)
                 {
+                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                     _canBePickedUp = true;
                 }
                 break;
