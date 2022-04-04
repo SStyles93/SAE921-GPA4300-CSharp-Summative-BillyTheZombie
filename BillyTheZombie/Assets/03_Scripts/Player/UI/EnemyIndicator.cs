@@ -13,7 +13,7 @@ public class EnemyIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_enemySpawner.EnemyTracked.Count == 0)
+        if(_enemySpawner == null || _enemySpawner.EnemyTracked.Count == 0)
         {
             _arrow.enabled = false;
             return;

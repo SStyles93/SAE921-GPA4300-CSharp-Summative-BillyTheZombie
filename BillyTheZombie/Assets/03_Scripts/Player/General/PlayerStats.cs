@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        _pushPower = _statSO.basicPushPower + (_statSO.basicPushPower * _statSO.pushPowerPercentage / 100.0f);
+        _pushPower = _statSO.basicPushPower + (_statSO.basicPushPower * _statSO.pushPowerPercentage / 50.0f);
         _armDamage = _armDamage + (_statSO.basicArmDamage * _statSO.armDamagePercentage / 50.0f);
         _maxHealth = _statSO.basicHealth + (_statSO.basicHealth * _statSO.healthPercentage / 20.0f);
         _speed = _statSO.basicSpeed + (_statSO.basicSpeed * _statSO.speedPercentage / 100.0f);

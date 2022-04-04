@@ -102,7 +102,6 @@ public class Arm : MonoBehaviour
     {
         Move();
         _pickUpTimer -= Time.deltaTime;
-        _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -132,10 +131,13 @@ public class Arm : MonoBehaviour
                 {
                     collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                     collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
+                    _canBePickedUp = true;
                 }
                 break;
 
             case ARMTYPE.EXPLOSIVE:
+
+                _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
 
                 if (collision.gameObject.CompareTag("Player"))
                 {

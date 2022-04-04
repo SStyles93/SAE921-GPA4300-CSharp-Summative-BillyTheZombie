@@ -168,7 +168,7 @@ MonoBehaviour:
   _speed: 7.5
   _damage: 2.5
   _explosiveArmRadius: 1
-  _pushPower: 250
+  _pushPower: 25
 --- !u!198 &4029197193879477208
 ParticleSystem:
   m_ObjectHideFlags: 0
