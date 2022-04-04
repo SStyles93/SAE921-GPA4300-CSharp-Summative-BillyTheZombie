@@ -8,10 +8,13 @@ public class SceneManagement : MonoBehaviour
     [Header("UI Transition")]
     [Tooltip("The duratrion of a FadeIn transition")]
     [SerializeField] private float _fadeInDuration = 1.0f;
+    private float _maxFadeInDuration;
     [Tooltip("The duratrion of a FadeOut transition")]
     [SerializeField] private float _fadeOutDuration = 1.0f;
+    private float _maxFadeOutDuration;
     [Tooltip("The image to set a Color Fade In/Out on")]
     [SerializeField] private Image _transitionImage;
+    [SerializeField] private AudioSource _musicAudioSource;
 
     private GameObject _player;
     private Color _currentColor;
@@ -27,6 +30,9 @@ public class SceneManagement : MonoBehaviour
 
     private void Start()
     {
+        _maxFadeInDuration = _fadeInDuration;
+        _maxFadeOutDuration = _fadeOutDuration;
+
         if (_transitionImage == null)
         {
             return;
@@ -59,16 +65,25 @@ public class SceneManagement : MonoBehaviour
     /// <param name="SceneIndex">The scene to load</param>
     private void FadeOutTransition(int SceneIndex)
     {
+        //Gets the current color of the transition Image
         _transitionImage.color = _currentColor;
-        if(_currentColor != Color.black)
+        //Time value
+        _fadeOutDuration -= Time.deltaTime;
+        float currentValue = _fadeOutDuration / _maxFadeOutDuration;
+
+        if (currentValue > 0.0f)
         {
-            _currentColor = Color.Lerp(_currentColor, Color.black, Time.deltaTime / _fadeOutDuration);
-            _fadeOutDuration -= Time.deltaTime;
+            //Transition image Lerp to final color
+            _currentColor.a = 1 - currentValue;
+            _transitionImage.color = _currentColor;
+            //Music "Lerp" 
+            _musicAudioSource.volume = currentValue;
+
             //If no player in the scene
             if (_player == null) return;
             _player.GetComponent<PlayerStats>().IsInvicible = true;
         }
-        else if(_fadeOutDuration <= 0.2f)
+        else
         {
             _fadeOut = false;
             ActivateScene(SceneIndex);
@@ -80,9 +95,18 @@ public class SceneManagement : MonoBehaviour
     private void FadeInTransition()
     {
         _transitionImage.color = _currentColor;
-        if(_currentColor != Color.clear)
+
+        _fadeInDuration -= Time.deltaTime;
+        float currentValue = _fadeInDuration/_maxFadeInDuration;
+        
+        if (currentValue > 0.0f)
         {
-            _currentColor = Color.Lerp(_currentColor, Color.clear, Time.deltaTime / _fadeInDuration);
+
+            //Transition image Color Lerp
+            _currentColor.a = currentValue;
+            _transitionImage.color = _currentColor;
+            //Music transition lerp
+            _musicAudioSource.volume = 1 - currentValue;
         }
         else
         {

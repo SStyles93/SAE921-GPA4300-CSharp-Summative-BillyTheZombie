@@ -1068,6 +1068,7 @@ MonoBehaviour:
   _fadeInDuration: 1
   _fadeOutDuration: 2
   _transitionImage: {fileID: 1251771443}
+  _musicAudioSource: {fileID: 564057758}
 --- !u!4 &293400846
 Transform:
   m_ObjectHideFlags: 0
