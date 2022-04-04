@@ -133,9 +133,14 @@ public class Arm : MonoBehaviour
                     collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
                     _canBePickedUp = true;
                 }
+                else
+                {
+                    _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
+                }
                 break;
 
             case ARMTYPE.EXPLOSIVE:
+
 
                 _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
 
@@ -154,12 +159,6 @@ public class Arm : MonoBehaviour
                     //collision with Enemy
                     if (collision.gameObject.CompareTag("Enemy"))
                     {
-                        if (_canBePickedUp)
-                        {
-                            GetComponent<CircleCollider2D>().enabled = false;
-                            return;
-                        }
-
                         GetComponent<CircleCollider2D>().enabled = true;
                         //Send enemy in opposite direction from player
                         Vector2 forceDirection = collision.gameObject.transform.position -
@@ -167,6 +166,12 @@ public class Arm : MonoBehaviour
                         collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
                         //Damages enemy
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+
+                        if (_canBePickedUp)
+                        {
+                            GetComponent<CircleCollider2D>().enabled = false;
+                            return;
+                        }
 
                         if (!_particlewasPlayed)
                         {
