@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2034431379535571050}
-  - component: {fileID: 2034431379535571051}
   - component: {fileID: 1647808934}
+  - component: {fileID: 2034431379535571051}
   - component: {fileID: 1647808933}
   m_Layer: 0
   m_Name: Gate
@@ -37,25 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2034431379535571051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034431379535571048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d08f18473930724393831adfca16ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameStatsSO: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
-  _leftDoor: {fileID: 2034431380473149030}
-  _rightDoor: {fileID: 2034431379541893652}
-  _leftGate: {fileID: 2034431379652404724}
-  _rightGate: {fileID: 2034431380402074958}
-  _openGate: 0
-  _indexToOpen: 3
 --- !u!61 &1647808934
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82,6 +63,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.03, y: 0.91}
   m_EdgeRadius: 0
+--- !u!114 &2034431379535571051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034431379535571048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d08f18473930724393831adfca16ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameStatsSO: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
+  _leftDoor: {fileID: 2034431380473149030}
+  _rightDoor: {fileID: 2034431379541893652}
+  _leftGate: {fileID: 2034431379652404724}
+  _rightGate: {fileID: 2034431380402074958}
+  _openGate: 0
+  _indexToOpen: 3
 --- !u!114 &1647808933
 MonoBehaviour:
   m_ObjectHideFlags: 0

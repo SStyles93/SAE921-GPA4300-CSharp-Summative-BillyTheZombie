@@ -204,6 +204,7 @@ public class DoctorAlbert : Interactable
         {
             button.GetComponent<Image>().color = Color.gray;
         }
+        if (armIndex <= 0) return;
         _rightArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
         _playerStatsSO.rightArmType = armIndex;
     }
@@ -213,6 +214,7 @@ public class DoctorAlbert : Interactable
         {
             button.GetComponent<Image>().color = Color.gray;
         }
+        if (armIndex <= 0) return;
         _leftArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
         _playerStatsSO.leftArmType = armIndex;
     }
