@@ -43,6 +43,9 @@ public class DoctorAlbert : Interactable
     {
         _canvas.gameObject.SetActive(false);
 
+        SetLeftArmPower(_playerStatsSO.leftArmType);
+        SetRightArmPower(_playerStatsSO.rightArmType);
+
         foreach (GameObject slider in _sliders)
         {
             slider.GetComponentInChildren<Text>().text =
@@ -56,7 +59,6 @@ public class DoctorAlbert : Interactable
         {
             button.SetActive(false);
         }
-
     }
     private void Update()
     {
