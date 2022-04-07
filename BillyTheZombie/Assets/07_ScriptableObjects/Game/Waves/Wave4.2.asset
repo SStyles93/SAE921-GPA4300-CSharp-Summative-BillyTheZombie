@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSubWaves: 1
   NumberOfEnemies: 2
-  EnemyIndex: 1
+  EnemyIndex: 0
   PositionIndex: 1

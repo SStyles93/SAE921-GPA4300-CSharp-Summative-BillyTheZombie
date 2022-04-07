@@ -17,7 +17,6 @@ namespace Enemy
         //Variables
         private float recoveryTimer = 0.5f;
         private float recoveryTime;
-        private float attackTimer = 0.0f;
         private float attackTime;
         private bool _stopMoving = false;
 
@@ -41,7 +40,8 @@ namespace Enemy
         private void Start()
         {
             recoveryTime = recoveryTimer;
-            attackTime = attackTimer;
+            attackTime = _enemyStats.AttackFrequency;
+
             _aIPath.maxSpeed = _enemyStats.Speed;
             _destinationSetter.target = _rayCaster.Target;
 
@@ -106,7 +106,7 @@ namespace Enemy
                 }
                 if (attackTime < 0.0f)
                 {
-                    attackTime = attackTimer;
+                    attackTime = _enemyStats.AttackFrequency;
                     //Launches the Attack of the enemy
                     _enemyVisuals.Attack = true;
                 }

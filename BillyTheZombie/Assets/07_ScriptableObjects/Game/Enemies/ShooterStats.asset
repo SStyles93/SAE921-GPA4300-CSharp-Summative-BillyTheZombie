@@ -16,3 +16,4 @@ MonoBehaviour:
   _health: 200
   _speed: 1
   _damage: 25
+  _attackFrequency: 0.2

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ChaserStatsProfile
   m_EditorClassIdentifier: 
   _mutagenValue: 10
-  _health: 100
+  _health: 50
   _speed: 2
   _damage: 10
+  _attackFrequency: 1

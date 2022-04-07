@@ -81,11 +81,11 @@ public class DoctorAlbert : Interactable
                 if (_eventSystem.currentSelectedGameObject == _sliders[i])
                 {
                     HighlightSlider(_hightLights[i], true);
-                    if (player.GetComponent<PlayerController>().ArmR || player.GetComponent<PlayerController>().Movement.x > 0.1f)
+                    if (player.GetComponent<PlayerController>().ArmR || player.GetComponent<PlayerController>().Movement.x > 0.25f)
                     {
                         AddPoints(_sliders[i]);
                     }
-                    else if(player.GetComponent<PlayerController>().ArmL || player.GetComponent<PlayerController>().Movement.x < -0.1f)
+                    else if(player.GetComponent<PlayerController>().ArmL || player.GetComponent<PlayerController>().Movement.x < -0.25f)
                     {
                         SubstractPoints(_sliders[i]);
                     }

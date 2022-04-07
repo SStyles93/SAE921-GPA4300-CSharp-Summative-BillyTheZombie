@@ -18,11 +18,14 @@ namespace Enemy
         [SerializeField] private float _health;
         [SerializeField] private float _speed;
         [SerializeField] private float _damage;
+        [SerializeField] private float _attackFrequency;
 
         private float destructionTimer = 0.5f;
 
         public float Speed { get => _speed; private set => _speed = value; }
         public float Damage { get => _damage; set => _damage = value; }
+        public float AttackFrequency { get => _attackFrequency; set => _attackFrequency = value; }
+
         public void Awake()
         {
             _enemyVisuals = GetComponentInChildren<EnemyVisuals>();
@@ -32,6 +35,7 @@ namespace Enemy
             _health = _enemyStatsSO._health;
             _speed = _enemyStatsSO._speed;
             _damage = _enemyStatsSO._damage;
+            _attackFrequency = _enemyStatsSO._attackFrequency;
         }
 
         void Update()
