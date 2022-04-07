@@ -5,133 +5,135 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Player;
 
-public class SceneManagement : MonoBehaviour
+namespace Managers
 {
-    [Header("UI Transition")]
-    [Tooltip("The duratrion of a FadeIn transition")]
-    [SerializeField] private float _fadeInDuration = 1.0f;
-    private float _maxFadeInDuration;
-    [Tooltip("The duratrion of a FadeOut transition")]
-    [SerializeField] private float _fadeOutDuration = 1.0f;
-    private float _maxFadeOutDuration;
-    [Tooltip("The image to set a Color Fade In/Out on")]
-    [SerializeField] private Image _transitionImage;
-    [SerializeField] private AudioSource _musicAudioSource;
-
-    private GameObject _player;
-    private Color _currentColor;
-    private int _sceneIndex;
-    private bool _fadeIn;
-    private bool _fadeOut;
-
-    public bool FadeIn { get => _fadeIn; set => _fadeIn = value; }
-    public bool FadeOut { get => _fadeOut; set => _fadeOut = value; }
-    public int SceneIndex { get => _sceneIndex; set => _sceneIndex = value; }
-
-    public GameObject Player { get => _player; set => _player = value; }
-
-    private void Start()
+    public class SceneManagement : MonoBehaviour
     {
-        _maxFadeInDuration = _fadeInDuration;
-        _maxFadeOutDuration = _fadeOutDuration;
+        [Header("UI Transition")]
+        [Tooltip("The duratrion of a FadeIn transition")]
+        [SerializeField] private float _fadeInDuration = 1.0f;
+        private float _maxFadeInDuration;
+        [Tooltip("The duratrion of a FadeOut transition")]
+        [SerializeField] private float _fadeOutDuration = 1.0f;
+        private float _maxFadeOutDuration;
+        [Tooltip("The image to set a Color Fade In/Out on")]
+        [SerializeField] private Image _transitionImage;
+        [SerializeField] private AudioSource _musicAudioSource;
 
-        if (_transitionImage == null)
+        private GameObject _player;
+        private Color _currentColor;
+        private int _sceneIndex;
+        private bool _fadeIn;
+        private bool _fadeOut;
+
+        public bool FadeIn { get => _fadeIn; set => _fadeIn = value; }
+        public bool FadeOut { get => _fadeOut; set => _fadeOut = value; }
+        public int SceneIndex { get => _sceneIndex; set => _sceneIndex = value; }
+
+        public GameObject Player { get => _player; set => _player = value; }
+
+        private void Start()
         {
-            return;
+            _maxFadeInDuration = _fadeInDuration;
+            _maxFadeOutDuration = _fadeOutDuration;
+
+            if (_transitionImage == null)
+            {
+                return;
+            }
+            _currentColor = _transitionImage.color = Color.black;
+            _fadeIn = true;
         }
-        _currentColor = _transitionImage.color = Color.black;
-        _fadeIn = true;
-    }
 
-    private void Update()
-    {
-        if(_transitionImage == null)
+        private void Update()
         {
-            return;
+            if (_transitionImage == null)
+            {
+                return;
+            }
+
+            if (_fadeIn)
+            {
+                FadeInTransition();
+            }
+            if (_fadeOut)
+            {
+                _fadeIn = false;
+                FadeOutTransition(_sceneIndex);
+            }
         }
 
-        if(_fadeIn)
+        /// <summary>
+        /// Fades out and loads the indicated scene
+        /// </summary>
+        /// <param name="SceneIndex">The scene to load</param>
+        private void FadeOutTransition(int SceneIndex)
         {
-            FadeInTransition();
-        }
-        if (_fadeOut)
-        {
-            _fadeIn = false;
-            FadeOutTransition(_sceneIndex);
-        }
-    }
-
-    /// <summary>
-    /// Fades out and loads the indicated scene
-    /// </summary>
-    /// <param name="SceneIndex">The scene to load</param>
-    private void FadeOutTransition(int SceneIndex)
-    {
-        //Gets the current color of the transition Image
-        _transitionImage.color = _currentColor;
-        //Time value
-        _fadeOutDuration -= Time.deltaTime;
-        float currentValue = _fadeOutDuration / _maxFadeOutDuration;
-
-        if (currentValue > 0.0f)
-        {
-            //Transition image Lerp to final color
-            _currentColor.a = 1 - currentValue;
+            //Gets the current color of the transition Image
             _transitionImage.color = _currentColor;
-            //Music "Lerp" 
-            _musicAudioSource.volume = currentValue;
+            //Time value
+            _fadeOutDuration -= Time.deltaTime;
+            float currentValue = _fadeOutDuration / _maxFadeOutDuration;
 
-            //If no player in the scene
-            if (_player == null) return;
-            _player.GetComponent<PlayerStats>().IsInvicible = true;
+            if (currentValue > 0.0f)
+            {
+                //Transition image Lerp to final color
+                _currentColor.a = 1 - currentValue;
+                _transitionImage.color = _currentColor;
+                //Music "Lerp" 
+                _musicAudioSource.volume = currentValue;
+
+                //If no player in the scene
+                if (_player == null) return;
+                _player.GetComponent<PlayerStats>().IsInvicible = true;
+            }
+            else
+            {
+                _fadeOut = false;
+                ActivateScene(SceneIndex);
+            }
         }
-        else
+        /// <summary>
+        /// Fades in to a new scene
+        /// </summary>
+        private void FadeInTransition()
         {
-            _fadeOut = false;
-            ActivateScene(SceneIndex);
-        }
-    }
-    /// <summary>
-    /// Fades in to a new scene
-    /// </summary>
-    private void FadeInTransition()
-    {
-        _transitionImage.color = _currentColor;
-
-        _fadeInDuration -= Time.deltaTime;
-        float currentValue = _fadeInDuration/_maxFadeInDuration;
-        
-        if (currentValue > 0.0f)
-        {
-
-            //Transition image Color Lerp
-            _currentColor.a = currentValue;
             _transitionImage.color = _currentColor;
-            //Music transition lerp
-            _musicAudioSource.volume = 1 - currentValue;
-        }
-        else
-        {
-            _fadeIn = false;
-        }
-    }
 
-    /// <summary>
-    /// Activates the wanted scene according to its index
-    /// </summary>
-    /// <param name="Index">Index of the wanted scene</param>
-    public void ActivateScene(int Index)
-    {
-        _sceneIndex = Index;
-        SceneManager.LoadScene(_sceneIndex);
-    }
-    public void QuitGame()
-    {
-        if (!_fadeOut)
-        {
-            Application.Quit();
+            _fadeInDuration -= Time.deltaTime;
+            float currentValue = _fadeInDuration / _maxFadeInDuration;
+
+            if (currentValue > 0.0f)
+            {
+
+                //Transition image Color Lerp
+                _currentColor.a = currentValue;
+                _transitionImage.color = _currentColor;
+                //Music transition lerp
+                _musicAudioSource.volume = 1 - currentValue;
+            }
+            else
+            {
+                _fadeIn = false;
+            }
         }
-        
+
+        /// <summary>
+        /// Activates the wanted scene according to its index
+        /// </summary>
+        /// <param name="Index">Index of the wanted scene</param>
+        public void ActivateScene(int Index)
+        {
+            _sceneIndex = Index;
+            SceneManager.LoadScene(_sceneIndex);
+        }
+        public void QuitGame()
+        {
+            if (!_fadeOut)
+            {
+                Application.Quit();
+            }
+
+        }
     }
 }
- 

@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Player;
-public class LoadTrigger : MonoBehaviour
-{
-    [SerializeField] private SceneManagement _sceneManagement;
-    [SerializeField] private int _sceneIndex = 1;
-    [SerializeField] private PlayerSpawnPositionIndexSO _spawnIndexSO;
-    [SerializeField] private int _spawnIndex = 0;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+namespace Managers
+{
+    public class LoadTrigger : MonoBehaviour
     {
-        if (collision.CompareTag("Player"))
+        [SerializeField] private SceneManagement _sceneManagement;
+        [SerializeField] private int _sceneIndex = 1;
+        [SerializeField] private PlayerSpawnPositionIndexSO _spawnIndexSO;
+        [SerializeField] private int _spawnIndex = 0;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            collision.GetComponent<PlayerStats>().DisablePlayersActions();
-            _spawnIndexSO.positionIndex = _spawnIndex;
-            _sceneManagement.Player = collision.gameObject;
-            _sceneManagement.SceneIndex = _sceneIndex;
-            _sceneManagement.FadeOut = true;
-        } 
+            if (collision.CompareTag("Player"))
+            {
+                collision.GetComponent<PlayerStats>().DisablePlayersActions();
+                _spawnIndexSO.positionIndex = _spawnIndex;
+                _sceneManagement.Player = collision.gameObject;
+                _sceneManagement.SceneIndex = _sceneIndex;
+                _sceneManagement.FadeOut = true;
+            }
+        }
     }
 }
