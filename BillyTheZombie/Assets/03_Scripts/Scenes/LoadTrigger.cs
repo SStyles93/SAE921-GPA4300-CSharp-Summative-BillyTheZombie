@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Player;
 public class LoadTrigger : MonoBehaviour
 {
     [SerializeField] private SceneManagement _sceneManagement;

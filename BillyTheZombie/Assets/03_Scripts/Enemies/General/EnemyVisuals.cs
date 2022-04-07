@@ -3,105 +3,108 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyVisuals : MonoBehaviour
+namespace Enemy
 {
-    //Reference Scripts
-    private AIPath _aIPath;
-
-    //Reference Components
-    [SerializeField] private SpriteRenderer[] _spriteRenders;
-    [SerializeField] private GameObject _rayCaster;
-    private Animator _animator;
-    //Animator Hashes
-    private int _xPositionHash;
-    private int _yPositionHash;
-    private int _movementHash;
-    private int _attackHash;
-
-    //Variables
-    private Color _currentColor;
-    private float _damageCooldown = 2f;
-
-    private bool _attack = false;
-
-    public bool Attack { get => _attack; set => _attack = value; }
-
-    private void Awake()
+    public class EnemyVisuals : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-        _aIPath = GetComponentInParent<AIPath>();
+        //Reference Scripts
+        private AIPath _aIPath;
 
-        _xPositionHash = Animator.StringToHash("xPosition");
-        _yPositionHash = Animator.StringToHash("yPosition");
-        _movementHash = Animator.StringToHash("Movement");
-        _attackHash = Animator.StringToHash("Attack");
-    }
+        //Reference Components
+        [SerializeField] private SpriteRenderer[] _spriteRenders;
+        [SerializeField] private GameObject _rayCaster;
+        private Animator _animator;
+        //Animator Hashes
+        private int _xPositionHash;
+        private int _yPositionHash;
+        private int _movementHash;
+        private int _attackHash;
 
-    void Update()
-    {
-        _animator.SetFloat(_xPositionHash, _rayCaster.transform.rotation.y);
-        if(_aIPath.canMove)
+        //Variables
+        private Color _currentColor;
+        private float _damageCooldown = 2f;
+
+        private bool _attack = false;
+
+        public bool Attack { get => _attack; set => _attack = value; }
+
+        private void Awake()
         {
-            if (_aIPath.reachedEndOfPath)
+            _animator = GetComponent<Animator>();
+            _aIPath = GetComponentInParent<AIPath>();
+
+            _xPositionHash = Animator.StringToHash("xPosition");
+            _yPositionHash = Animator.StringToHash("yPosition");
+            _movementHash = Animator.StringToHash("Movement");
+            _attackHash = Animator.StringToHash("Attack");
+        }
+
+        void Update()
+        {
+            _animator.SetFloat(_xPositionHash, _rayCaster.transform.rotation.y);
+            if (_aIPath.canMove)
+            {
+                if (_aIPath.reachedEndOfPath)
+                {
+                    _animator.SetFloat(_movementHash, 0.0f);
+                    return;
+                }
+                _animator.SetFloat(_movementHash, 1.0f);
+            }
+            else
             {
                 _animator.SetFloat(_movementHash, 0.0f);
-                return;
             }
-            _animator.SetFloat(_movementHash, 1.0f);
-        }
-        else
-        {
-            _animator.SetFloat(_movementHash, 0.0f);
+
+            if (_attack)
+            {
+                _animator.SetBool(_attackHash, true);
+            }
+            else
+            {
+                _animator.SetBool(_attackHash, false);
+            }
+
+            RetriveNormalColor();
+
         }
 
-        if (_attack)
+        /// <summary>
+        /// Slowly sets the color of SpriteRenderers back to white (normal) color
+        /// </summary>
+        private void RetriveNormalColor()
         {
-            _animator.SetBool(_attackHash, true);
-        }
-        else
-        {
-            _animator.SetBool(_attackHash, false);
+            if (_currentColor != Color.white)
+            {
+                _damageCooldown += Time.deltaTime;
+                _currentColor = Color.Lerp(_currentColor, Color.white, _damageCooldown);
+            }
+            else
+            {
+                _damageCooldown = 0.0f;
+            }
+            foreach (SpriteRenderer renderer in _spriteRenders)
+            {
+                renderer.color = _currentColor;
+            }
+
         }
 
-        RetriveNormalColor();
-       
-    }
-
-    /// <summary>
-    /// Slowly sets the color of SpriteRenderers back to white (normal) color
-    /// </summary>
-    private void RetriveNormalColor()
-    {
-        if (_currentColor != Color.white)
+        /// <summary>
+        /// Visual feedack for when an enemy gets hit
+        /// </summary>
+        public void HitEffect()
         {
-            _damageCooldown += Time.deltaTime;
-            _currentColor = Color.Lerp(_currentColor, Color.white, _damageCooldown);
-        }
-        else
-        {
+            _currentColor = Color.red;
             _damageCooldown = 0.0f;
         }
-        foreach(SpriteRenderer renderer in _spriteRenders)
+
+        /// <summary>
+        /// HasAttacked is used by the animator to signal the end of attack
+        /// </summary>
+        public void HasAttacked()
         {
-            renderer.color = _currentColor;
+            _attack = false;
         }
-        
-    }
-
-    /// <summary>
-    /// Visual feedack for when an enemy gets hit
-    /// </summary>
-    public void HitEffect()
-    {
-        _currentColor = Color.red;
-        _damageCooldown = 0.0f;
-    }
-
-    /// <summary>
-    /// HasAttacked is used by the animator to signal the end of attack
-    /// </summary>
-    public void HasAttacked()
-    {
-        _attack = false;
     }
 }

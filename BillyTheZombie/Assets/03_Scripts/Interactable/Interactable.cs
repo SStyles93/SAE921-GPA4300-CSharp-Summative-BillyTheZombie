@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Player;
 public abstract class Interactable : MonoBehaviour
 {
     protected GameObject player;

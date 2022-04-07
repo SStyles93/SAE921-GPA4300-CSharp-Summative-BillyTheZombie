@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Player;
+
 public class SceneManagement : MonoBehaviour
 {
     [Header("UI Transition")]

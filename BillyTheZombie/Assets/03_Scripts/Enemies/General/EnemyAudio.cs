@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAudio : MonoBehaviour
+namespace Enemy
 {
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip[] _enemyHit;
-
-    private void Awake()
+    public class EnemyAudio : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-    }
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip[] _enemyHit;
 
-    public void HitEffect()
-    {
-        if (_enemyHit.Length == 0) return;
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
 
-        int randomIndex = Random.Range(0, _enemyHit.Length);
-        _audioSource.clip = _enemyHit[randomIndex];
-        if(!_audioSource.isPlaying)
-        _audioSource.Play();
+        public void HitEffect()
+        {
+            if (_enemyHit.Length == 0) return;
+
+            int randomIndex = Random.Range(0, _enemyHit.Length);
+            _audioSource.clip = _enemyHit[randomIndex];
+            if (!_audioSource.isPlaying)
+                _audioSource.Play();
+        }
     }
 }

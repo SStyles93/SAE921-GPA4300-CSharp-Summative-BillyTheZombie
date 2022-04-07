@@ -1,61 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Player;
 
-[RequireComponent(typeof(Rigidbody2D),typeof(CircleCollider2D))]
-public class Rib : MonoBehaviour
+namespace Enemy
 {
-    //Reference Components
-    private Rigidbody2D _rb;
-
-    //RibThrow direction
-    private Vector3 _ribDirection;
-
-    //Rib Stats
-    [SerializeField] private float _speed = 1.0f;
-    [SerializeField] private float _damage = 1.0f;
-    private bool _canMove = true;
-
-    public float Speed { get => _speed; set => _speed = value; }
-    public float Damage { get => _damage; set => _damage = value; }
-    public bool CanMove { get => _canMove; set => _canMove = value; }
-    public Vector3 RibDirection { get => _ribDirection; set => _ribDirection = value; }
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody2D),typeof(CircleCollider2D))]
+    public class Rib : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _rb.gravityScale = 0.0f;
+        //Reference Components
+        private Rigidbody2D _rb;
 
-    }
+        //RibThrow direction
+        private Vector3 _ribDirection;
 
-    void Update()
-    {
-        Move();
-    }
+        //Rib Stats
+        [SerializeField] private float _speed = 1.0f;
+        [SerializeField] private float _damage = 1.0f;
+        private bool _canMove = true;
 
-    private void Move()
-    {
-        if (_canMove)
+        public float Speed { get => _speed; set => _speed = value; }
+        public float Damage { get => _damage; set => _damage = value; }
+        public bool CanMove { get => _canMove; set => _canMove = value; }
+        public Vector3 RibDirection { get => _ribDirection; set => _ribDirection = value; }
+
+        private void Awake()
         {
-            _rb.constraints = RigidbodyConstraints2D.None;
-            //Physic movement
-            _rb.AddForce(_ribDirection * _speed / 10.0f, ForceMode2D.Impulse);
-            transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
-        }
-        else
-        {
-            Destroy(gameObject);
+            _rb = GetComponent<Rigidbody2D>();
+            _rb.gravityScale = 0.0f;
+
         }
 
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Uses the Trigger to hit
-        if (!collision.GetComponent<EnemyStats>())
+        void Update()
         {
-            _canMove = false;
-            collision.GetComponent<PlayerStats>()?.TakeDamage(_damage);
+            Move();
+        }
+
+        private void Move()
+        {
+            if (_canMove)
+            {
+                _rb.constraints = RigidbodyConstraints2D.None;
+                //Physic movement
+                _rb.AddForce(_ribDirection * _speed / 10.0f, ForceMode2D.Impulse);
+                transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            //Uses the Trigger to hit
+            if (!collision.GetComponent<EnemyStats>())
+            {
+                _canMove = false;
+                collision.GetComponent<PlayerStats>()?.TakeDamage(_damage);
+            }
         }
     }
 }

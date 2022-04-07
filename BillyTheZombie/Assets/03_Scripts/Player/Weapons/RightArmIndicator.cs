@@ -2,33 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RightArmIndicator : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private PlayerActions _playerActions;
-    [SerializeField] private SpriteRenderer _arrow;
-
-    private void Awake()
+    public class RightArmIndicator : MonoBehaviour
     {
-        _playerActions = GetComponentInParent<PlayerActions>();
-        _arrow = GetComponentInChildren<SpriteRenderer>();
-    }
+        [SerializeField] private PlayerActions _playerActions;
+        [SerializeField] private SpriteRenderer _arrow;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_playerActions.CurrentRightArm == null)
+        private void Awake()
         {
-            _arrow.enabled = false;
-            return;
+            _playerActions = GetComponentInParent<PlayerActions>();
+            _arrow = GetComponentInChildren<SpriteRenderer>();
         }
-        else
+
+        // Update is called once per frame
+        void Update()
         {
-            _arrow.enabled = true;
-            Vector3 direction = _playerActions.transform.position - _playerActions.CurrentRightArm.transform.position;
-            Quaternion rotation = Quaternion.LookRotation(direction, Vector3.forward);
-            rotation.x = 0f;
-            rotation.y = 0f;
-            transform.rotation = rotation;
+            if (_playerActions.CurrentRightArm == null)
+            {
+                _arrow.enabled = false;
+                return;
+            }
+            else
+            {
+                _arrow.enabled = true;
+                Vector3 direction = _playerActions.transform.position - _playerActions.CurrentRightArm.transform.position;
+                Quaternion rotation = Quaternion.LookRotation(direction, Vector3.forward);
+                rotation.x = 0f;
+                rotation.y = 0f;
+                transform.rotation = rotation;
+            }
         }
     }
 }
