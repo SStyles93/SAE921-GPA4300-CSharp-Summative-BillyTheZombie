@@ -17,6 +17,10 @@ public class Gate : MonoBehaviour
     protected Vector3 _leftDoorOpenPosition;
     protected Vector3 _rightDoorOpenPosition;
 
+    //Audio
+    [SerializeField] private AudioSource _audioSource;
+    private bool _gateSoundPlayed;
+
 
     protected void Start()
     {
@@ -30,8 +34,8 @@ public class Gate : MonoBehaviour
         {
             _leftDoor.transform.position = _leftDoorOpenPosition;
             _rightDoor.transform.position = _rightDoorOpenPosition;
+            _gateSoundPlayed = true;
         }
-
     }
 
     protected void Update()
@@ -51,5 +55,12 @@ public class Gate : MonoBehaviour
         _leftDoor.GetComponent<BoxCollider2D>().enabled = false;
         _rightDoor.transform.position = Vector3.Lerp(_rightDoor.transform.position, _rightGate.transform.position, Time.deltaTime);
         _rightDoor.GetComponent<BoxCollider2D>().enabled = false;
+
+        if (!_gateSoundPlayed)
+        {
+            //Plays the "OpenGateSound" only ONCE
+            _audioSource.Play();
+            _gateSoundPlayed = true;
+        }
     }
 }

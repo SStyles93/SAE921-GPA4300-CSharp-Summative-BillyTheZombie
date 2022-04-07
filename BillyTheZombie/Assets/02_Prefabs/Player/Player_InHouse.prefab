@@ -900,7 +900,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2556867033229618450}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3db6a50990e078541af82c22082fb70a, type: 3}
   m_Name: 
@@ -914,18 +914,18 @@ MonoBehaviour:
   _arms:
   - {fileID: 2850667258528219673}
   - {fileID: 7501302033210118161}
-  _rightArms:
-  - {fileID: 7051114896888605980, guid: ff8d74fcce7537c42b1a6762631e234c, type: 3}
-  - {fileID: 7051114896888605980, guid: fb630c68dbde78046bba52a08314e322, type: 3}
-  - {fileID: 7051114896888605980, guid: 6c4dcb5ee393bf44da81576ca909fd0b, type: 3}
-  - {fileID: 7051114896888605980, guid: ea9d3787c74e0554b8a7276eaeea0a49, type: 3}
   _chosenAbilityIdxR: 0
-  _leftArms:
-  - {fileID: 6693062172291444175, guid: 6ef8a6d2612a9004792f403a67b9cf61, type: 3}
-  - {fileID: 6693062172291444175, guid: 3037068cbf94f074a9672634a5141f1a, type: 3}
-  - {fileID: 6693062172291444175, guid: 438e7f11e56a7ea419d48b37f6a871ea, type: 3}
-  - {fileID: 6693062172291444175, guid: b566505cb12a7764e9d48b3819d85aea, type: 3}
+  _rightArms:
+  - {fileID: 2383761151874036469, guid: 4ec2ca513299d7a468df471a02ab81fc, type: 3}
+  - {fileID: 2383761151874036469, guid: f55fd5397caf2c944aa7bbb454b578e5, type: 3}
+  - {fileID: 2383761151874036469, guid: d4fed44275ab7e9438816ec1f5a84401, type: 3}
+  - {fileID: 2383761151874036469, guid: 2e817a9c6d2ddbc4ab185c0d1e802e5d, type: 3}
   _chosenAbilityIdxL: 0
+  _leftArms:
+  - {fileID: 2383761151874036469, guid: 78138d385db2d6349bb7213e5d3cbc5d, type: 3}
+  - {fileID: 2383761151874036469, guid: 7bcc8de478d2317479cc0ef72bc0a20a, type: 3}
+  - {fileID: 2383761151874036469, guid: 86397656c6558b542b12b1fb339eda16, type: 3}
+  - {fileID: 2383761151874036469, guid: 02dd9881f11101e4b8a0eb4678242d94, type: 3}
   _aimCorrection: 0
   _headbuttCoolDownTime: 1
 --- !u!114 &6518314374846458425

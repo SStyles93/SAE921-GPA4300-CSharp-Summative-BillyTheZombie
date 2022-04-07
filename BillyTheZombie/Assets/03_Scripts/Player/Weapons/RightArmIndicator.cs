@@ -8,7 +8,8 @@ namespace Player
     {
         [SerializeField] private PlayerActions _playerActions;
         [SerializeField] private SpriteRenderer _arrow;
-
+        [SerializeField] private SpriteRenderer[] _arrows;
+        
         private void Awake()
         {
             _playerActions = GetComponentInParent<PlayerActions>();
@@ -18,14 +19,14 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
+            //Disable arrow if arm is not instantiated
             if (_playerActions.CurrentRightArm == null)
             {
-                _arrow.enabled = false;
-                return;
+                _arrow.gameObject.SetActive(false);
             }
             else
             {
-                _arrow.enabled = true;
+                _arrow.gameObject.SetActive(true);
                 Vector3 direction = _playerActions.transform.position - _playerActions.CurrentRightArm.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(direction, Vector3.forward);
                 rotation.x = 0f;

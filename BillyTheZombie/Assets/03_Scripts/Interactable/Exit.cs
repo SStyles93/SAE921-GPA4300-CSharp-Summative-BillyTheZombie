@@ -15,7 +15,8 @@ public class Exit : Interactable
 
     [Header("Audio")]
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _doorSound;
+    [SerializeField] private AudioClip _doorSoundOpen;
+    [SerializeField] private AudioClip _doorSoundClosed;
 
     public void Start()
     {
@@ -36,10 +37,6 @@ public class Exit : Interactable
         _infoBubble.SetActive(false);
         
         _eventSystem.SetSelectedGameObject(_returnButton);
-        _audioSource.clip = _doorSound;
-        if(!_audioSource.isPlaying)
-        _audioSource.Play();
-        
     }
 
     public override void StopActing()
@@ -58,9 +55,15 @@ public class Exit : Interactable
     {
         if (collision.GetComponent<PlayerController>())
         {
+            //Gives the player as reference to the door
             player = collision.gameObject;
 
+            //Enables the "OpenDoor" Sprite renderer
             _doorSpriteRender.enabled = true;
+            //Plays the "OpenDoor" SFX
+            _audioSource.clip = _doorSoundOpen;
+            if (!_audioSource.isPlaying)
+                _audioSource.Play();
 
             //Enables the "InfoBubble"
             _infoBubble.SetActive(true);
@@ -76,7 +79,14 @@ public class Exit : Interactable
             //Disables the "InfoBubble"
             _infoBubble.SetActive(false);
 
+            //Disables the "OpenDoor" Sprite renderer
             _doorSpriteRender.enabled = false;
+
+            //Plays the "ClosedDoor" SFX
+            _audioSource.clip = _doorSoundClosed;
+            if (!_audioSource.isPlaying)
+                _audioSource.Play();
+
         }
 
     }

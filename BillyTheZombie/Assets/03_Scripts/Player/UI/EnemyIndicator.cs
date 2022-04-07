@@ -18,14 +18,14 @@ namespace Player
         {
             if (_enemySpawner == null || _enemySpawner.EnemyTracked.Count == 0)
             {
-                _arrow.enabled = false;
+                _arrow.gameObject.SetActive(false);
                 return;
             }
             else
             {
                 if (_enemySpawner.EnemyTracked[0] != null)
                 {
-                    _arrow.enabled = true;
+                    _arrow.gameObject.SetActive(true);
                     Vector3 direction = _playerController.transform.position - _enemySpawner.EnemyTracked[0].transform.position;
                     Quaternion rotation = Quaternion.LookRotation(direction, Vector3.forward);
                     rotation.x = 0f;

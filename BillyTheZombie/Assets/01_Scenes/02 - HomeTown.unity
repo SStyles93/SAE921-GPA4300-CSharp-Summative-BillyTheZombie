@@ -7038,14 +7038,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2034431379535571051, guid: 4b320748de73c4541a7c8bda97e949dd, type: 3}
-      propertyPath: _indexToOpen
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040615437459877964, guid: 4b320748de73c4541a7c8bda97e949dd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e360d156af4a8dc4abbf638cefbfa58b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b320748de73c4541a7c8bda97e949dd, type: 3}
 --- !u!1001 &7812547681920063520
@@ -7058,6 +7050,14 @@ PrefabInstance:
     - target: {fileID: 7812547682469548868, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: m_Name
       value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812547682469548868, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _waves.Array.size

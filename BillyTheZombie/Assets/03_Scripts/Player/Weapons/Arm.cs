@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy;
+
 namespace Player
 {
     public class Arm : MonoBehaviour
@@ -18,9 +19,9 @@ namespace Player
         private enum ARMTYPE
         {
             BASIC,
-            EXPLOSIVE,
+            BOOMERANG,
             LAWNMOWER,
-            BOOMERANG
+            EXPLOSIVE
         }
         [SerializeField] private ARMTYPE armType;
 
