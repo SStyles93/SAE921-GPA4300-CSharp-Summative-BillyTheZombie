@@ -15,7 +15,10 @@ namespace Managers
         }
         private void OverrideStats()
         {
-            _player.GetComponent<PlayerStats>().Speed = 4.0f;
+            PlayerStats playerStats = _player.GetComponent<PlayerStats>();
+            playerStats.Speed = 4.0f;
+            playerStats.ResetLife();
+
             PlayerActions playerActions = _player.GetComponent<PlayerActions>();
             playerActions.CanHit = false;
             playerActions.IsInCombat = false;

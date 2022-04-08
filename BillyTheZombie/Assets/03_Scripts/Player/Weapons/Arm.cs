@@ -31,6 +31,7 @@ namespace Player
         [SerializeField] private float _explosiveArmRadius = 0.5f;
         [SerializeField] private float _pushPower = 250.0f;
         private float _pickUpTimer = 0.5f;
+        private bool _startPickUpCountDown = false;
 
         //ArmThrow
         private Vector3 _armDirection;
@@ -105,6 +106,8 @@ namespace Player
         {
             Move();
             _pickUpTimer -= Time.deltaTime;
+            if(_startPickUpCountDown)
+            _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -144,12 +147,10 @@ namespace Player
 
                 case ARMTYPE.EXPLOSIVE:
 
-
-                    _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
-
                     if (collision.gameObject.CompareTag("Player"))
                     {
-                        if (_canBePickedUp)
+                        _startPickUpCountDown = true;
+                        if(_canBePickedUp)
                             GetComponent<BoxCollider2D>().isTrigger = true;
                     }
                     if (!collision.gameObject.CompareTag("Player"))
@@ -158,29 +159,32 @@ namespace Player
                         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                         //stops applying force to the object
                         _canMove = false;
+                        _startPickUpCountDown = true;
 
                         //collision with Enemy
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
-                            GetComponent<CircleCollider2D>().enabled = true;
-                            //Send enemy in opposite direction from player
-                            Vector2 forceDirection = collision.gameObject.transform.position -
-                                gameObject.transform.position;
-                            collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
-                            //Damages enemy
-                            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-
                             if (_canBePickedUp)
                             {
                                 GetComponent<CircleCollider2D>().enabled = false;
-                                return;
                             }
-
-                            if (!_particlewasPlayed)
+                            else
                             {
-                                _particleSystem.Play();
-                                _particlewasPlayed = true;
-                            }
+                                GetComponent<CircleCollider2D>().enabled = true;
+                                GetComponent<CircleCollider2D>().isTrigger = false;
+                                //Send enemy in opposite direction from player
+                                Vector2 forceDirection = collision.gameObject.transform.position -
+                                    gameObject.transform.position;
+                                collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
+                                //Damages enemy
+                                collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                                //Plays the particle system
+                                if (!_particlewasPlayed)
+                                {
+                                    _particleSystem.Play();
+                                    _particlewasPlayed = true;
+                                }
+                            } 
                         }
                     }
                     break;

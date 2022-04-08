@@ -53,15 +53,31 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
         {
             case STATTYPE.PUSHPOWER:
                 _playerStats.pushPowerPercentage = stat;
+                if (_playerStats.pushPowerPercentage < 0.0f)
+                {
+                    _playerStats.pushPowerPercentage = 0.0f;
+                }
                 break;
             case STATTYPE.ARMDAMAGE:
                 _playerStats.armDamagePercentage = stat;
+                if (_playerStats.armDamagePercentage < 0.0f)
+                {
+                    _playerStats.armDamagePercentage = 0.0f;
+                }
                 break;
             case STATTYPE.HEALTH:
                 _playerStats.healthPercentage = stat;
+                if (_playerStats.healthPercentage < 0.0f)
+                {
+                    _playerStats.healthPercentage = 0.0f;
+                }
                 break;
             case STATTYPE.SPEED:
                 _playerStats.speedPercentage = stat;
+                if (_playerStats.speedPercentage < 0.0f)
+                {
+                    _playerStats.speedPercentage = 0.0f;
+                }
                 break;
         }
     }

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 2619042568206500185}
+  m_LookAt: {fileID: 2619042568326500032}
   m_Follow: {fileID: 2619042568206500185}
   m_Lens:
     FieldOfView: 50
@@ -139,8 +139,8 @@ MonoBehaviour:
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.3
-  m_SoftZoneHeight: 0.3
+  m_SoftZoneWidth: 0.1
+  m_SoftZoneHeight: 0.15
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -5508,7 +5508,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 100
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

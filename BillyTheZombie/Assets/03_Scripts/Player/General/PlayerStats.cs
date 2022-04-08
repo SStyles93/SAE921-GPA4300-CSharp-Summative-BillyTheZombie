@@ -67,12 +67,19 @@ namespace Player
         {
             DisablePlayersActions();
             ResetWaves();
-            //Reset player's health
-            _statSO.currentHealth = _statSO.maxHealth;
             //Set and play SceneManager's FadeOut
             _sceneManagement.Player = gameObject;
             _sceneManagement.SceneIndex = 1;
             _sceneManagement.FadeOut = true;
+        }
+
+        /// <summary>
+        /// Resets the Waves to zero
+        /// </summary>
+        private void ResetWaves()
+        {
+            _gameStatsSO.currentWaveCount = 0;
+            _gameStatsSO.indexOfWaveToSpawn = 0;
         }
 
         /// <summary>
@@ -97,13 +104,10 @@ namespace Player
             _playerVisuals.Animator.speed = 0;
         }
 
-        /// <summary>
-        /// Resets the Waves to zero
-        /// </summary>
-        private void ResetWaves()
+        public void ResetLife()
         {
-            _gameStatsSO.currentWaveCount = 0;
-            _gameStatsSO.indexOfWaveToSpawn = 0;
+            //Reset player's health
+            _statSO.currentHealth = _statSO.maxHealth;
         }
     }
 }

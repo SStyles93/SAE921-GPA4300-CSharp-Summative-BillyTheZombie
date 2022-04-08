@@ -205,9 +205,9 @@ public class DoctorAlbert : Interactable
         {
             button.GetComponent<Image>().color = Color.gray;
         }
-        if (armIndex <= 0) return;
-        _rightArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
         _playerStatsSO.rightArmType = armIndex;
+        if (armIndex <= 0) return;
+        _rightArmButtons[armIndex-1].GetComponent<Image>().color = Color.green;
     }
     public void SetLeftArmPower(int armIndex)
     {
@@ -215,9 +215,9 @@ public class DoctorAlbert : Interactable
         {
             button.GetComponent<Image>().color = Color.gray;
         }
-        if (armIndex <= 0) return;
-        _leftArmButtons[armIndex - 1].GetComponent<Image>().color = Color.green;
         _playerStatsSO.leftArmType = armIndex;
+        if (armIndex <= 0) return;
+        _leftArmButtons[armIndex-1].GetComponent<Image>().color = Color.green;
     }
 
     /// <summary>
@@ -243,6 +243,11 @@ public class DoctorAlbert : Interactable
         }
         _playerStatsSO.maxHealth = _playerStatsSO.basicHealth + (_playerStatsSO.basicHealth * _playerStatsSO.healthPercentage / 20.0f);
         _playerStatsSO.currentHealth = _playerStatsSO.maxHealth;
+        if(_playerStatsSO.armDamagePercentage <= 0.0f)
+        {
+            SetLeftArmPower(0);
+            SetRightArmPower(0);
+        }
     }
 
 }
