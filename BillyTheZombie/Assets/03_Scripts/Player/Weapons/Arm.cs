@@ -142,6 +142,10 @@ namespace Player
                     else
                     {
                         _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
+                        if (!collision.gameObject.CompareTag("Player"))
+                        {
+                            _canMove = false;
+                        }
                     }
                     break;
 
