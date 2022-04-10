@@ -124,8 +124,11 @@ namespace Player
                     _rb.velocity = Vector2.zero;
                     //stops applying force to the object
                     _canMove = false;
-                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                    _canBePickedUp = true;
+                    if (!_canBePickedUp)
+                    {
+                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                        _startPickUpCountDown = true;
+                    }
                     break;
 
                 case ARMTYPE.LAWNMOWER:
