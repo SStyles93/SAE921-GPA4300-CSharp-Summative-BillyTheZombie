@@ -36,12 +36,6 @@ namespace Managers
         public GameObject Player { get => _player; set => _player = value; }
         public List<GameObject> EnemyTracked { get => _enemyTracked; set => _enemyTracked = value; }
 
-        private void Awake()
-        {
-            
-        }
-
-
         public void Update()
         {
             //Start
@@ -142,6 +136,14 @@ namespace Managers
             }
             _waveEnded = true;
             _waveStarted = false;
+        }
+
+        public void PauseEnemies(bool isRunning)
+        {
+            foreach(GameObject enemy in _enemyTracked)
+            {
+                enemy.GetComponent<Enemy.EnemyAI>().PauseEnemy(isRunning);
+            }
         }
     }
 }

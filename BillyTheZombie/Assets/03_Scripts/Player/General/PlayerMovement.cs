@@ -43,7 +43,7 @@ namespace Player
         /// <summary>
         /// Stops the movement of the player when the game is not running
         /// </summary>
-        /// <param name="isRunning"></param>
+        /// <param name="isRunning">The state in which we want the player to be (paused/!paused)</param>
         private void PauseMovement(bool isRunning)
         {
             _canMove = isRunning;

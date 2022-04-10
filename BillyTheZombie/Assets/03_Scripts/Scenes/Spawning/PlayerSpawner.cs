@@ -30,7 +30,6 @@ namespace Managers
                 _enemySpawner = GetComponent<EnemySpawner>();
                 _sceneManagement = GetComponent<SceneManagement>();
             }
-
         }
 
         void Start()
@@ -41,6 +40,8 @@ namespace Managers
                 InitPlayer(_playerSpawns[_spawnIndexSO.positionIndex]);
                 //Send the player ref to the EnemySpawner
                 _enemySpawner.Player = _player;
+
+                _player.GetComponent<PlayerController>().PauseGame += _enemySpawner.PauseEnemies;
             }
         }
 

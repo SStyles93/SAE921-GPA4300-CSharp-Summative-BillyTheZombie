@@ -18,8 +18,8 @@ MonoBehaviour:
   armDamagePercentage: 0
   healthPercentage: 0
   speedPercentage: 0
-  rightArmType: 1
-  leftArmType: 1
+  rightArmType: 0
+  leftArmType: 0
   basicHealth: 100
   basicArmDamage: 10
   basicSpeed: 4

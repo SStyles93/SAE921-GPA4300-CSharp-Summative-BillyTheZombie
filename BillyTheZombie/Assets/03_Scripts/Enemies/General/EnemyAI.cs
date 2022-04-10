@@ -122,5 +122,15 @@ namespace Enemy
             }
 
         }
+
+        public void PauseEnemy(bool isRunning)
+        {
+            GetComponentInChildren<Animator>().enabled = isRunning;
+            _aIPath.enabled = isRunning;
+            _rayCaster.enabled = isRunning;
+            _destinationSetter.enabled = isRunning;
+            _enemyStats.enabled = isRunning;
+            _enemyVisuals.enabled = isRunning;
+        }
     }
 }
