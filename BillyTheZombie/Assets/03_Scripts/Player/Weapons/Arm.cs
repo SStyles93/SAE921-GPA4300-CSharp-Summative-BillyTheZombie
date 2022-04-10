@@ -32,6 +32,8 @@ namespace Player
         [SerializeField] private float _pushPower = 250.0f;
         private float _pickUpTimer = 0.5f;
         private bool _startPickUpCountDown = false;
+        private bool _canDamage = true;
+        private float _damageTimer = 0.5f;
 
         //ArmThrow
         private Vector3 _armDirection;
@@ -71,6 +73,7 @@ namespace Player
                     _rb.drag = 0.0f;
                     _rb.sharedMaterial.bounciness = 1.0f;
                     _pickUpTimer = 0.25f;
+                    _damageTimer = 1.0f;
                     //If the collision is with the player Ignore
                     Physics2D.IgnoreCollision(
                         transform.GetComponent<BoxCollider2D>(),
@@ -88,6 +91,7 @@ namespace Player
                     _rb.drag = 10.0f;
                     _rb.sharedMaterial.bounciness = 0.0f;
                     _pickUpTimer = 1.0f;
+                    _damageTimer = 0.5f;
                     GetComponent<CircleCollider2D>().radius = _explosiveArmRadius;
                     GetComponent<CircleCollider2D>().enabled = false;
                     Physics2D.IgnoreCollision(
@@ -106,8 +110,13 @@ namespace Player
         {
             Move();
             _pickUpTimer -= Time.deltaTime;
-            if(_startPickUpCountDown)
-            _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
+            if (_startPickUpCountDown)
+            {
+                _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
+            }
+            
+            _damageTimer -= Time.deltaTime;
+            _canDamage = _damageTimer <= 0.0f ? false : true;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -124,11 +133,11 @@ namespace Player
                     _rb.velocity = Vector2.zero;
                     //stops applying force to the object
                     _canMove = false;
-                    if (!_canBePickedUp)
+                    if (_canDamage)
                     {
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                        _startPickUpCountDown = true;
                     }
+                    _canBePickedUp = true;
                     break;
 
                 case ARMTYPE.LAWNMOWER:
@@ -168,7 +177,7 @@ namespace Player
                         //collision with Enemy
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
-                            if (_canBePickedUp)
+                            if (!_canDamage)
                             {
                                 GetComponent<CircleCollider2D>().enabled = false;
                             }
