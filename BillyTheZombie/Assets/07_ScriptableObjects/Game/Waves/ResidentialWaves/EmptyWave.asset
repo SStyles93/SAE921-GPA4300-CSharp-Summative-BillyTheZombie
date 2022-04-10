@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EmptyWave
   m_EditorClassIdentifier: 
   isSubWaves: 0
-  NumberOfEnemies: 4
+  NumberOfEnemies: 0
   EnemyIndex: 0
   PositionIndex: 0
