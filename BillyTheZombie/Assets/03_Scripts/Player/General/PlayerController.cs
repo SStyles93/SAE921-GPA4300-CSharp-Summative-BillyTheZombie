@@ -17,7 +17,7 @@ namespace Player
         private bool _armR;
         private bool _armL;
 
-        public bool isRunning = false;
+        public bool isRunning = true;
         public delegate void Pause(bool isActive);
         public Pause PauseGame;
 

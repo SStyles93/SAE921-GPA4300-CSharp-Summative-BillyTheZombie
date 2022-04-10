@@ -80,10 +80,11 @@ namespace Player
         /// <summary>
         /// Pauses the player Stats when the game is not running
         /// </summary>
-        /// <param name="isRunning"></param>
+        /// <param name="isRunning">State of game (isRunning = !Paused)</param>
         private void PauseStats(bool isRunning)
         {
             _isInvicible = !isRunning;
+            _playerActions.enabled = isRunning;
         }
 
         /// <summary>
