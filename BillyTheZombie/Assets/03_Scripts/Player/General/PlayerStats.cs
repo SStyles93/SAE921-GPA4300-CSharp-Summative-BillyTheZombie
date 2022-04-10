@@ -8,6 +8,7 @@ namespace Player
     public class PlayerStats : MonoBehaviour
     {
         [SerializeField] private SceneManagement _sceneManagement;
+        [SerializeField] private PlayerController _playerController;
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerActions _playerActions;
         [SerializeField] private PlayerVisuals _playerVisuals;
@@ -45,8 +46,11 @@ namespace Player
             //Get player components
             _playerMovement = GetComponent<PlayerMovement>();
             _playerActions = GetComponent<PlayerActions>();
+            _playerController = GetComponent<PlayerController>();
             //Get player's body components
             _playerVisuals = GetComponentInChildren<PlayerVisuals>();
+
+            _playerController.PauseGame += PauseStats;
 
         }
 
@@ -71,6 +75,15 @@ namespace Player
             _sceneManagement.Player = gameObject;
             _sceneManagement.SceneIndex = 1;
             _sceneManagement.FadeOut = true;
+        }
+
+        /// <summary>
+        /// Pauses the player Stats when the game is not running
+        /// </summary>
+        /// <param name="isRunning"></param>
+        private void PauseStats(bool isRunning)
+        {
+            _isInvicible = !isRunning;
         }
 
         /// <summary>

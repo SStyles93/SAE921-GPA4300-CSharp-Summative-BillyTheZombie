@@ -20,8 +20,9 @@ namespace Player
         {
             _playerController = GetComponent<PlayerController>();
             _playerStats = GetComponent<PlayerStats>();
-
             _rb = GetComponent<Rigidbody2D>();
+
+            _playerController.PauseGame += PauseMovement;
         }
         private void Update()
         {
@@ -37,6 +38,15 @@ namespace Player
             {
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
+        }
+
+        /// <summary>
+        /// Stops the movement of the player when the game is not running
+        /// </summary>
+        /// <param name="isRunning"></param>
+        private void PauseMovement(bool isRunning)
+        {
+            _canMove = isRunning;
         }
     }
 }

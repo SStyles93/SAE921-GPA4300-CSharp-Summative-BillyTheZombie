@@ -20,6 +20,8 @@ namespace Player
         private int _movementHash;
         private int _headbuttHash;
 
+        private bool _updateVisuals = true;
+
         //Color Change
         [SerializeField] private SpriteRenderer[] _spriteRenders;
         private Color _currentColor;
@@ -40,6 +42,8 @@ namespace Player
             _movementHash = Animator.StringToHash("Movement");
             _headbuttHash = Animator.StringToHash("Headbutt");
 
+            _playerController.PauseGame += PauseVisuals;
+
         }
         private void Start()
         {
@@ -48,6 +52,7 @@ namespace Player
 
         private void Update()
         {
+            if (!_updateVisuals) return;
             Look();
             Move();
 
@@ -99,11 +104,20 @@ namespace Player
             {
                 _damageCooldown = 0.0f;
             }
+            //Color Update
             foreach (SpriteRenderer renderer in _spriteRenders)
             {
                 renderer.color = _currentColor;
             }
+        }
 
+        /// <summary>
+        /// Pauses the player visuals when the game is not running
+        /// </summary>
+        /// <param name="isRunning">State in which to place the player visuals</param>
+        private void PauseVisuals(bool isRunning)
+        {
+            _updateVisuals = isRunning;
         }
 
         /// <summary>
@@ -123,8 +137,6 @@ namespace Player
             _animator.SetBool(_headbuttHash, false);
             _playerMovement.CanMove = true;
         }
-
-
 
         /// <summary>
         /// Visual feedack hits taken

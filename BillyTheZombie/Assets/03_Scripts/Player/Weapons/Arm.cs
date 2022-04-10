@@ -87,7 +87,7 @@ namespace Player
                 case ARMTYPE.EXPLOSIVE:
                     _rb.drag = 10.0f;
                     _rb.sharedMaterial.bounciness = 0.0f;
-                    _pickUpTimer = 2.0f;
+                    _pickUpTimer = 1.0f;
                     GetComponent<CircleCollider2D>().radius = _explosiveArmRadius;
                     GetComponent<CircleCollider2D>().enabled = false;
                     Physics2D.IgnoreCollision(
@@ -124,11 +124,8 @@ namespace Player
                     _rb.velocity = Vector2.zero;
                     //stops applying force to the object
                     _canMove = false;
-                    if (!_canBePickedUp)
-                    {
-                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                        _canBePickedUp = true;
-                    }
+                    collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                    _canBePickedUp = true;
                     break;
 
                 case ARMTYPE.LAWNMOWER:

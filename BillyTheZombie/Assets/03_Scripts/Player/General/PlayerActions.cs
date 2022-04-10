@@ -60,6 +60,8 @@ namespace Player
             _playerController = GetComponent<PlayerController>();
             _playerStats = GetComponent<PlayerStats>();
             _playerVisuals = GetComponentInChildren<PlayerVisuals>();
+            _playerController.PauseGame += PauseActions;
+
         }
         private void Start()
         {
@@ -274,6 +276,17 @@ namespace Player
         {
             _playerVisuals.StartHeadbutt();
             _head.GetComponent<Headbutt>().PushPower = _playerStats.PushPower;
+        }
+
+        /// <summary>
+        /// Stops the players actions when the game is not running
+        /// </summary>
+        /// <param name="isRunning"></param>
+        private void PauseActions(bool isRunning)
+        {
+            _canHit = isRunning;
+            _canThrow = new bool[] { isRunning, isRunning };
+            _canHeadbutt = isRunning;
         }
     }
 

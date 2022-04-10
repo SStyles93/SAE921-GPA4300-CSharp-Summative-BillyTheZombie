@@ -17,15 +17,18 @@ namespace Player
         private bool _armR;
         private bool _armL;
 
+        public bool isRunning = false;
+        public delegate void Pause(bool isActive);
+        public Pause PauseGame;
 
         private bool _canRepeateActions = false;
         private float _repeatingTimer = 0.1f;
-        float _repeatTimerHead;
-        float _repeatTimerArmR;
-        float _repeatTimerArmL;
-        bool _repeatingHead = false;
-        bool _repeatingArmR = false;
-        bool _repeatingArmL = false;
+        private float _repeatTimerHead;
+        private float _repeatTimerArmR;
+        private float _repeatTimerArmL;
+        private bool _repeatingHead = false;
+        private bool _repeatingArmR = false;
+        private bool _repeatingArmL = false;
 
 
         public string ControlScheme { get => _controlScheme; set => _controlScheme = value; }
@@ -153,6 +156,12 @@ namespace Player
             {
                 _armL = value.isPressed;
             }
+        }
+
+        public void OnPause(InputValue value)
+        {
+            isRunning = !isRunning;
+            PauseGame(isRunning);
         }
     }
 }

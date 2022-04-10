@@ -93,6 +93,7 @@ namespace Managers
                 ActivateScene(SceneIndex);
             }
         }
+        
         /// <summary>
         /// Fades in to a new scene
         /// </summary>
