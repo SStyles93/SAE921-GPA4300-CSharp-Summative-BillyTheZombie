@@ -42,7 +42,7 @@ namespace Player
             _movementHash = Animator.StringToHash("Movement");
             _headbuttHash = Animator.StringToHash("Headbutt");
 
-            _playerController.PauseGame += PauseVisuals;
+            _playerController.PlayGame += PauseVisuals;
 
         }
         private void Start()

@@ -15,4 +15,4 @@ MonoBehaviour:
   isSubWaves: 0
   NumberOfEnemies: 5
   EnemyIndex: 0
-  PositionIndex: 1
+  PositionIndex: 0

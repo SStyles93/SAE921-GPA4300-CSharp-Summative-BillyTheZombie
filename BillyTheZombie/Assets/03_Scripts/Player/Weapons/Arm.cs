@@ -62,10 +62,11 @@ namespace Player
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-
         }
         private void Start()
         {
+            _player.GetComponent<PlayerController>().PlayGame += PauseArm;
+
             switch (armType)
             {
                 case ARMTYPE.BASIC:
@@ -322,6 +323,11 @@ namespace Player
             {
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
+        }
+
+        private void PauseArm(bool play)
+        {
+            _canMove = play;
         }
 
     }

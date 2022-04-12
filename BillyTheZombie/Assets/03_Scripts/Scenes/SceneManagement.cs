@@ -19,6 +19,7 @@ namespace Managers
         [Tooltip("The image to set a Color Fade In/Out on")]
         [SerializeField] private Image _transitionImage;
         [SerializeField] private AudioSource _musicAudioSource;
+        [SerializeField] private GameObject _pauseCanvas;
 
         private GameObject _player;
         private Color _currentColor;
@@ -135,6 +136,11 @@ namespace Managers
                 Application.Quit();
             }
 
+        }
+
+        public void PauseCanvas(bool state)
+        {
+            _pauseCanvas.SetActive(!state);
         }
     }
 }

@@ -41,7 +41,9 @@ namespace Managers
                 //Send the player ref to the EnemySpawner
                 _enemySpawner.Player = _player;
 
-                _player.GetComponent<PlayerController>().PauseGame += _enemySpawner.PauseEnemies;
+                _player.GetComponent<PlayerController>().PlayGame += _enemySpawner.PauseEnemies;
+                _player.GetComponent<PlayerController>().PlayGame += _sceneManagement.PauseCanvas;
+
             }
         }
 
@@ -62,6 +64,12 @@ namespace Managers
             playerStats.SceneManagement = _sceneManagement;
             playerStats.Health = _playerStatsSO.currentHealth;
             _player.GetComponentInChildren<EnemyIndicator>().EnemySpawner = _enemySpawner;
+        }
+
+        public void ResumeGame()
+        {
+            _player.GetComponent<PlayerController>().PlayGame(true);
+            _player.GetComponent<PlayerController>().play = true;
         }
     }
 }

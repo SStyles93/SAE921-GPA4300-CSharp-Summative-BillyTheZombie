@@ -138,11 +138,11 @@ namespace Managers
             _waveStarted = false;
         }
 
-        public void PauseEnemies(bool isRunning)
+        public void PauseEnemies(bool state)
         {
             foreach(GameObject enemy in _enemyTracked)
             {
-                enemy.GetComponent<Enemy.EnemyAI>().PauseEnemy(isRunning);
+                enemy.GetComponent<Enemy.EnemyAI>().PauseEnemy(state);
             }
         }
     }

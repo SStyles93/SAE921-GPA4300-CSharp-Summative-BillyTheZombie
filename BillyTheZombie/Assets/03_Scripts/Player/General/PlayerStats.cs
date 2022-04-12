@@ -50,7 +50,7 @@ namespace Player
             //Get player's body components
             _playerVisuals = GetComponentInChildren<PlayerVisuals>();
 
-            _playerController.PauseGame += PauseStats;
+            _playerController.PlayGame += PauseStats;
 
         }
 

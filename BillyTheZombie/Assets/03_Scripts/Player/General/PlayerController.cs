@@ -17,9 +17,9 @@ namespace Player
         private bool _armR;
         private bool _armL;
 
-        public bool isRunning = true;
+        public bool play = true;
         public delegate void Pause(bool isActive);
-        public Pause PauseGame;
+        public Pause PlayGame;
 
         private bool _canRepeateActions = false;
         private float _repeatingTimer = 0.1f;
@@ -160,8 +160,8 @@ namespace Player
 
         public void OnPause(InputValue value)
         {
-            isRunning = !isRunning;
-            PauseGame(isRunning);
+            play = !play;
+            PlayGame(play);
         }
     }
 }

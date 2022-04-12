@@ -1708,7 +1708,7 @@ Transform:
   - {fileID: 833030590}
   - {fileID: 776859281}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072073008
 GameObject:
@@ -4284,11 +4284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2556867033229618455, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.27
+      value: 5.69
       objectReference: {fileID: 0}
     - target: {fileID: 2556867033229618455, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.95
+      value: -4.43
       objectReference: {fileID: 0}
     - target: {fileID: 2556867033229618455, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4345,7 +4345,7 @@ PrefabInstance:
     - target: {fileID: 6518314374846458425, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: _sceneManagement
       value: 
-      objectReference: {fileID: 8155444452967597150}
+      objectReference: {fileID: 0}
     - target: {fileID: 8373941273949272624, guid: 52a7897bfaea41347b8c2d9c20705924, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.001
@@ -4416,11 +4416,11 @@ PrefabInstance:
     - target: {fileID: 5753758491665820217, guid: 83c5d07f013e6204493325c9426c5a1d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8155444452967597150}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753758491665820217, guid: 83c5d07f013e6204493325c9426c5a1d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 8155444452967597150}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753758491665820217, guid: 83c5d07f013e6204493325c9426c5a1d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -4492,6 +4492,10 @@ PrefabInstance:
     - target: {fileID: 5753758492930808503, guid: 83c5d07f013e6204493325c9426c5a1d, type: 3}
       propertyPath: m_Name
       value: ExitDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753758493017377512, guid: 83c5d07f013e6204493325c9426c5a1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83c5d07f013e6204493325c9426c5a1d, type: 3}
@@ -4601,6 +4605,7 @@ MonoBehaviour:
   _fadeOutDuration: 1
   _transitionImage: {fileID: 5647213948277622922}
   _musicAudioSource: {fileID: 938329803}
+  _pauseCanvas: {fileID: 0}
 --- !u!4 &8155444452967597151
 Transform:
   m_ObjectHideFlags: 0
@@ -4614,7 +4619,7 @@ Transform:
   m_Children:
   - {fileID: 6529670721451389192}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &8244686624659329014
 CanvasRenderer:
