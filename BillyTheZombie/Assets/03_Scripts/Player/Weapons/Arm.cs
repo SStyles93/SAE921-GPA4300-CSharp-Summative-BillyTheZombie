@@ -157,6 +157,10 @@ namespace Player
                         _canBePickedUp = true;
                         return;
                     }
+                    else
+                    {
+                        _startDamageCountDown = true;
+                    }
                     //on collision stops the rb from moving
                     _rb.velocity = Vector2.zero;
                     //stops applying force to the object
