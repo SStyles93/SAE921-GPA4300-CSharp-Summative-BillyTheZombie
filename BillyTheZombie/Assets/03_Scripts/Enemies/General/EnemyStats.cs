@@ -25,6 +25,7 @@ namespace Enemy
         public float Speed { get => _speed; private set => _speed = value; }
         public float Damage { get => _damage; set => _damage = value; }
         public float AttackFrequency { get => _attackFrequency; set => _attackFrequency = value; }
+        public float Health { get => _health; private set => _health = value; }
 
         public void Awake()
         {

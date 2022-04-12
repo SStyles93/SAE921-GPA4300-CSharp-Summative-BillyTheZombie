@@ -30,7 +30,7 @@ public class Gate : MonoBehaviour
         _rightDoorOpenPosition.y += 0.001f;
 
         //Set to open pos if already opened
-        if (_gameStatsSO.maxReachedWaveCount >= _indexToOpen ||_openGate)
+        if (_gameStatsSO.currentWaveCount >= _indexToOpen ||_openGate)
         {
             _leftDoor.transform.position = _leftDoorOpenPosition;
             _rightDoor.transform.position = _rightDoorOpenPosition;
@@ -40,7 +40,7 @@ public class Gate : MonoBehaviour
 
     protected void Update()
     {
-        if (_gameStatsSO.maxReachedWaveCount >= _indexToOpen ||_openGate)
+        if (_gameStatsSO.currentWaveCount >= _indexToOpen ||_openGate)
         {
             OpenGate();
         }
