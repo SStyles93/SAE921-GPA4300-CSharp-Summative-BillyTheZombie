@@ -2123,7 +2123,7 @@ CompositeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.2
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
@@ -2138,7 +2138,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1566754345}
   m_BodyType: 2
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -8182,8 +8182,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _waves.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b1c8758bb8d6da74bab0624bdf084f46, type: 2}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ffb0cc593ccb904193106876a64ba73, type: 2}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 909360cf9de4b9c47b4cf0486125a29f, type: 2}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 82105c15153632c40a7edab9eba59042, type: 2}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: e5d577c1dc054224fa58b79ec4710af2, type: 2}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _waves.Array.data[5]
       value: 
@@ -8200,6 +8220,10 @@ PrefabInstance:
       propertyPath: _waves.Array.data[8]
       value: 
       objectReference: {fileID: 11400000, guid: bdf1b0d0e00265d4389a846a56ef4861, type: 2}
+    - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
+      propertyPath: _waves.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 63623c070eb7e5f429191762838251ea, type: 2}
     - target: {fileID: 7812547682469548869, guid: e5caf383410783b4db0e597aafe5e356, type: 3}
       propertyPath: _waves.Array.data[10]
       value: 

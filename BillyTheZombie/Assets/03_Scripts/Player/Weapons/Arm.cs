@@ -13,6 +13,7 @@ namespace Player
         //Reference Components
         private Rigidbody2D _rb;
         private ParticleSystem _particleSystem;
+        private AudioSource _audioSource;
 
         //ArmType
         [SerializeField] private BODYPART armSide;
@@ -29,23 +30,27 @@ namespace Player
         [SerializeField] private float _speed = 1.0f;
         [SerializeField] private float _damage = 1.0f;
         [SerializeField] private float _explosiveArmRadius = 0.5f;
-        [SerializeField] private float _pushPower = 250.0f;
+        [SerializeField] private float _pushPower = 150.0f;
+
+        //Damage & PickUp logic
         private float _pickUpTimer = 0.5f;
-        private bool _startPickUpCountDown = false;
-        private bool _canDamage = true;
-        private float _damageTimer = 0.5f;
+        private bool _CheckForPickUp = false;
+        private bool _canBePickedUp = false;
+        [SerializeField] private float _damageTimer = 0.5f;
+        [SerializeField] private bool _startDamageCountDown = false;
+        [SerializeField] private bool _canDamage = true;
 
         //ArmThrow
         private Vector3 _armDirection;
         [Tooltip("Updates the phisical movement of the Arm")]
         private bool _canMove;
-        [Tooltip("Updates the phisical movement of the Arm")]
-        private bool _canBePickedUp = false;
 
         //Vec3 Used to Boomerang
         private Vector3 throwPosition;
         //ParticleSystem
         private bool _particlewasPlayed = false;
+        //AudioSource
+        private bool _audioSourceWasPlayed = false;
 
         //Properties
         public float Damage { get => _damage; set => _damage = value; }
@@ -99,6 +104,7 @@ namespace Player
                             _player.gameObject.GetComponent<CapsuleCollider2D>());
                     _particleSystem = GetComponent<ParticleSystem>();
                     _particleSystem.Stop();
+                    _audioSource = GetComponent<AudioSource>();
                     break;
             }
 
@@ -109,14 +115,36 @@ namespace Player
         private void Update()
         {
             Move();
-            _pickUpTimer -= Time.deltaTime;
-            if (_startPickUpCountDown)
+
+            //Lowers the _pickUpTimer until 0 is reached
+            if (_pickUpTimer > 0.0f)
+            {
+                _pickUpTimer -= Time.deltaTime;
+            }
+            else
+            {
+                _pickUpTimer = 0.0f;
+            }
+            //Checks if the arm can be picked up
+            if (_CheckForPickUp)
             {
                 _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
             }
             
-            _damageTimer -= Time.deltaTime;
-            _canDamage = _damageTimer <= 0.0f ? false : true;
+            if (_startDamageCountDown)
+            {
+                //Checks if the arm can deal damage
+                _canDamage = _damageTimer <= 0.0f ? false : true;
+                if (_damageTimer > 0.0f)
+                {
+                    _damageTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    _damageTimer = 0.0f;
+                }
+            }
+            
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -133,6 +161,7 @@ namespace Player
                     _rb.velocity = Vector2.zero;
                     //stops applying force to the object
                     _canMove = false;
+                    //Deals damage only once 
                     if (_canDamage)
                     {
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
@@ -141,62 +170,77 @@ namespace Player
                     break;
 
                 case ARMTYPE.LAWNMOWER:
+                    //Keeps the arm in movement
                     _canMove = true;
                     if (collision.gameObject.CompareTag("Enemy"))
                     {
+                        //Deals damage on every collision with an enemy
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                         collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
                         _canBePickedUp = true;
                     }
                     else
                     {
+                        //For other collisions, check if arm can be picked up
                         _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
                         if (!collision.gameObject.CompareTag("Player"))
                         {
+                            //if the object collides with anything except the player, stop it from moving
                             _canMove = false;
                         }
                     }
                     break;
 
                 case ARMTYPE.EXPLOSIVE:
-
                     if (collision.gameObject.CompareTag("Player"))
                     {
-                        _startPickUpCountDown = true;
+                        //Collision with PLAYER
+                        //Starts the timer for the playe to pickup the arm
+                        _CheckForPickUp = true;
                         if(_canBePickedUp)
                             GetComponent<BoxCollider2D>().isTrigger = true;
                     }
-                    if (!collision.gameObject.CompareTag("Player"))
+                    else
                     {
+                        //Every collision EXCEPT PLAYER
                         //on collision stops the rb from moving
                         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                         //stops applying force to the object
                         _canMove = false;
-                        _startPickUpCountDown = true;
+                        _CheckForPickUp = true;
+                        _startDamageCountDown = true;
 
-                        //collision with Enemy
+                        //Collision with ENEMY
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
-                            if (!_canDamage)
-                            {
-                                GetComponent<CircleCollider2D>().enabled = false;
-                            }
-                            else
+
+                            if (_canDamage)
                             {
                                 GetComponent<CircleCollider2D>().enabled = true;
                                 GetComponent<CircleCollider2D>().isTrigger = false;
+
                                 //Send enemy in opposite direction from player
                                 Vector2 forceDirection = collision.gameObject.transform.position -
                                     gameObject.transform.position;
                                 collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
                                 //Damages enemy
                                 collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+
                                 //Plays the particle system
                                 if (!_particlewasPlayed)
                                 {
                                     _particleSystem.Play();
                                     _particlewasPlayed = true;
                                 }
+                                if (!_audioSourceWasPlayed)
+                                {
+                                    _audioSource.Play();
+                                    _audioSourceWasPlayed = true;
+                                }
+                            }
+                            else
+                            {
+                                GetComponent<CircleCollider2D>().enabled = false;
                             } 
                         }
                     }
@@ -223,9 +267,9 @@ namespace Player
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
             }
         }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            //PickUp the Arm
             if (collision.gameObject.CompareTag("Player") && _canBePickedUp)
             {
                 collision.gameObject.GetComponent<PlayerActions>()?.EnablePlayersArm(armSide, true);
