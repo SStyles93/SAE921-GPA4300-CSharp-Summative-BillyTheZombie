@@ -78,6 +78,7 @@ namespace Player
             _sceneManagement.Player = gameObject;
             _sceneManagement.SceneIndex = 1;
             _sceneManagement.FadeOut = true;
+            _sceneManagement.GetComponent<PlayerSpawner>().SpawnIndexSO.positionIndex = 0;
         }
 
         /// <summary>

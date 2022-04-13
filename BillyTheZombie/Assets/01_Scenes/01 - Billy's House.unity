@@ -3421,7 +3421,7 @@ PrefabInstance:
     - target: {fileID: 700835789859022047, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 388589340}
+      objectReference: {fileID: 186082269}
     - target: {fileID: 700835789859022047, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
@@ -3493,7 +3493,7 @@ PrefabInstance:
     - target: {fileID: 700835790067626029, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
-      objectReference: {fileID: 186082269}
+      objectReference: {fileID: 388589340}
     - target: {fileID: 700835790067626029, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnLeft
       value: 
@@ -3809,7 +3809,7 @@ PrefabInstance:
     - target: {fileID: 700835790690551749, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 186082269}
+      objectReference: {fileID: 388589340}
     - target: {fileID: 700835790690551749, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
@@ -3937,7 +3937,7 @@ PrefabInstance:
     - target: {fileID: 700835790903199432, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
-      objectReference: {fileID: 388589340}
+      objectReference: {fileID: 186082269}
     - target: {fileID: 700835790903199432, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
@@ -4060,7 +4060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 700835791052173990, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 700835791052173990, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4092,7 +4092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 700835791292908127, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 700835791321309880, guid: 0324b8cf862aa70409cadc3aa587118f, type: 3}
       propertyPath: m_AnchorMax.y

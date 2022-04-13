@@ -26,6 +26,7 @@ namespace Managers
 
         //Properties
         public GameObject Player { get => _player; set => _player = value; }
+        public PlayerSpawnPositionIndexSO SpawnIndexSO { get => _spawnIndexSO; set => _spawnIndexSO = value; }
 
         private void Awake()
         {
