@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad14376d5782123459253f3681c27ad7, type: 3}
   m_Name: Wave10
   m_EditorClassIdentifier: 
-  isSubWaves: 0
-  NumberOfEnemies: 10
-  EnemyIndex: 1
-  PositionIndex: 3
+  isSubWaves: 1
+  NumberOfEnemies: 2
+  EnemyIndex: 0
+  PositionIndex: 8
