@@ -14,6 +14,8 @@ namespace Enemy
         [SerializeField] private SpriteRenderer[] _spriteRenders;
         [SerializeField] private GameObject _rayCaster;
         private Animator _animator;
+        private ParticleSystem _bloodEffect;
+
         //Animator Hashes
         private int _xPositionHash;
         private int _yPositionHash;
@@ -30,8 +32,10 @@ namespace Enemy
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
             _aIPath = GetComponentInParent<AIPath>();
+
+            _animator = GetComponent<Animator>();
+            _bloodEffect = GetComponent<ParticleSystem>();
 
             _xPositionHash = Animator.StringToHash("xPosition");
             _yPositionHash = Animator.StringToHash("yPosition");
@@ -97,6 +101,11 @@ namespace Enemy
         {
             _currentColor = Color.red;
             _damageCooldown = 0.0f;
+
+            if (!_bloodEffect.isPlaying)
+            {
+                _bloodEffect.Play();
+            }
         }
 
         /// <summary>

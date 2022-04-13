@@ -7,9 +7,10 @@ namespace Player
 {
     public class Headbutt : MonoBehaviour
     {
-        [SerializeField] private float _pushPower;
         [Tooltip("HeadDamage should NOT be changed (5.0f)")]
         [SerializeField] private float _headDamage = 5.0f;
+        
+        private float _pushPower;
 
         public float PushPower { get => _pushPower; set => _pushPower = value; }
 

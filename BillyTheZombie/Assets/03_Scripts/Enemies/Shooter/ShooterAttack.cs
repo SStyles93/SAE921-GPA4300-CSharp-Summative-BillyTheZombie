@@ -6,11 +6,14 @@ namespace Enemy
 {
     public class ShooterAttack : MonoBehaviour
     {
+        //Reference Scripts
         [SerializeField] private EnemyStats _enemyStats;
         [SerializeField] private EnemyRayCaster _enemyRayCaster;
-
+        
+        //Reference Prefab
         [SerializeField] private GameObject _ribPrefab;
-
+        
+        //Variables
         [SerializeField] private float _damage = 1.0f;
         [SerializeField] private float _ribSpeed = 0.5f;
 
@@ -18,16 +21,10 @@ namespace Enemy
         {
             _enemyStats = GetComponentInParent<EnemyStats>();
         }
-        // Start is called before the first frame update
+        
         void Start()
         {
             _damage = _enemyStats.Damage;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public void LaunchRib()

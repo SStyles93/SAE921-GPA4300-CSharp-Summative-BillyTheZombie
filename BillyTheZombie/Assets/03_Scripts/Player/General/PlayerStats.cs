@@ -7,11 +7,14 @@ namespace Player
 {
     public class PlayerStats : MonoBehaviour
     {
+        //Reference Scripts
+        private PlayerController _playerController;
+        private PlayerMovement _playerMovement;
+        private PlayerActions _playerActions;
+        private PlayerVisuals _playerVisuals;
+        
+        //Reference GameObjects
         [SerializeField] private SceneManagement _sceneManagement;
-        [SerializeField] private PlayerController _playerController;
-        [SerializeField] private PlayerMovement _playerMovement;
-        [SerializeField] private PlayerActions _playerActions;
-        [SerializeField] private PlayerVisuals _playerVisuals;
 
         //statSO contains all the player stats
         [Header("Player Stats ScriptableObject")]
@@ -44,13 +47,13 @@ namespace Player
             _speed = _statSO.basicSpeed + (_statSO.basicSpeed * _statSO.speedPercentage / 100.0f);
 
             //Get player components
+            _playerController = GetComponent<PlayerController>();
             _playerMovement = GetComponent<PlayerMovement>();
             _playerActions = GetComponent<PlayerActions>();
-            _playerController = GetComponent<PlayerController>();
             //Get player's body components
             _playerVisuals = GetComponentInChildren<PlayerVisuals>();
 
-            _playerController.PlayGame += PauseStats;
+            _playerController.GameState += PauseStats;
 
         }
 
@@ -80,11 +83,11 @@ namespace Player
         /// <summary>
         /// Pauses the player Stats when the game is not running
         /// </summary>
-        /// <param name="isRunning">State of game (isRunning = !Paused)</param>
-        private void PauseStats(bool isRunning)
+        /// <param name="state">State of game Play(true)/Pause(false)</param>
+        private void PauseStats(bool state)
         {
-            _isInvicible = !isRunning;
-            _playerActions.enabled = isRunning;
+            _isInvicible = !state;
+            _playerActions.enabled = state;
         }
 
         /// <summary>
@@ -97,7 +100,7 @@ namespace Player
         }
 
         /// <summary>
-        /// lowers health according to the damage
+        /// Lowers health according to the damage
         /// </summary>
         /// <param name="damage">The damage to substract to health</param>
         public void TakeDamage(float damage)
@@ -118,6 +121,9 @@ namespace Player
             _playerVisuals.Animator.speed = 0;
         }
 
+        /// <summary>
+        /// Resets the player's health
+        /// </summary>
         public void ResetLife()
         {
             //Reset player's health

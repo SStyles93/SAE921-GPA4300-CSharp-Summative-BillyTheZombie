@@ -35,21 +35,40 @@ namespace Managers
             resolutionDropdown.value = currentResolutionIndex;
             resolutionDropdown.RefreshShownValue();
         }
+
+        /// <summary>
+        /// Sets the resolution of the screen
+        /// </summary>
+        /// <param name="resolutionIndex">Screen resolution Index</param>
         public void SetResolution(int resolutionIndex)
         {
             Resolution resolution = resolutions[resolutionIndex];
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         }
 
+        /// <summary>
+        /// Sets the volume of the General AudioMixer
+        /// </summary>
+        /// <param name="volume">volume at which the AudioMixer is set</param>
         public void SetVolume(float volume)
         {
             audioMixer.SetFloat("Volume", volume);
 
         }
+
+        /// <summary>
+        /// Sets the Quality of the game
+        /// </summary>
+        /// <param name="qualityIndex">Quality Index</param>
         public void SetQuality(int qualityIndex)
         {
             QualitySettings.SetQualityLevel(qualityIndex);
         }
+
+        /// <summary>
+        /// Sets the game in full screen or not
+        /// </summary>
+        /// <param name="isFullScreen">True for full screen</param>
         public void SetFullScreen(bool isFullScreen)
         {
             Screen.fullScreen = isFullScreen;

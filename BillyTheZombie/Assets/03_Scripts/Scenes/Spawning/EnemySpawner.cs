@@ -7,9 +7,7 @@ namespace Managers
 {
     public class EnemySpawner : MonoBehaviour
     {
-
-
-        //reference ScriptableObjects
+        //Reference ScriptableObjects
         [Tooltip("The GameStats ScriptableObject to update in game")]
         [SerializeField] private GameStatsSO _gameStats;
 
@@ -54,7 +52,8 @@ namespace Managers
                 }
                 else
                 {
-                    if ((_enemyTracked[i].transform.position - _player.transform.position).magnitude <= 12f)
+                    //Enables the enemy if he is in a defined range from the player (15.0f)
+                    if ((_enemyTracked[i].transform.position - _player.transform.position).magnitude <= 15.0f)
                     {
                         _enemyTracked[i].gameObject.SetActive(true);
                     }
@@ -138,6 +137,10 @@ namespace Managers
             _waveStarted = false;
         }
 
+        /// <summary>
+        /// Sets all the enemies in Play(true)/Pause(false) state
+        /// </summary>
+        /// <param name="state">state in which the enemies have to be</param>
         public void PauseEnemies(bool state)
         {
             foreach(GameObject enemy in _enemyTracked)

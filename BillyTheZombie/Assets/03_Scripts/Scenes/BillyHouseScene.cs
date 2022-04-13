@@ -13,6 +13,10 @@ namespace Managers
         {
             OverrideStats();
         }
+
+        /// <summary>
+        /// Overrides the player stats when he is in a Non-combat scene
+        /// </summary>
         private void OverrideStats()
         {
             PlayerStats playerStats = _player.GetComponent<PlayerStats>();

@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
+    //ScriptableObject
     [SerializeField] protected GameStatsSO _gameStatsSO;
     
+    //Reference GameObjects
     [SerializeField] protected GameObject _leftDoor;
     [SerializeField] protected GameObject _rightDoor;
     [SerializeField] protected GameObject _leftGate;
     [SerializeField] protected GameObject _rightGate;
 
+    //Variables
     [SerializeField] protected bool _openGate = false;
     [SerializeField] protected int _indexToOpen;
-
     protected Vector3 _leftDoorOpenPosition;
     protected Vector3 _rightDoorOpenPosition;
-
+    
     //Audio
     [SerializeField] private AudioSource _audioSource;
     private bool _gateSoundPlayed;
+
+
 
 
     protected void Start()

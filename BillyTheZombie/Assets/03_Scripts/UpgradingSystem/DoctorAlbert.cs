@@ -100,11 +100,19 @@ public class DoctorAlbert : Interactable
         UpdateArmButtons();
     }
 
+    /// <summary>
+    /// Highlights the selected "body part" in UI
+    /// </summary>
+    /// <param name="highlightedImage"></param>
+    /// <param name="enable"></param>
     public void HighlightSlider(GameObject highlightedImage, bool enable)
     {
         highlightedImage.SetActive(enable);
     }
 
+    /// <summary>
+    /// Stops the player from acting/moving and enables UI Navigation
+    /// </summary>
     public override void Act()
     {
         _canvas.gameObject.SetActive(true);
@@ -126,6 +134,9 @@ public class DoctorAlbert : Interactable
 
     }
 
+    /// <summary>
+    /// Enables the players Actions/Movement
+    /// </summary>
     public override void StopActing()
     {
         _canvas.gameObject.SetActive(false);
@@ -199,6 +210,10 @@ public class DoctorAlbert : Interactable
         _leftArmButtons[2].SetActive(_activateThird);
     }
 
+    /// <summary>
+    /// Sets the right arm power
+    /// </summary>
+    /// <param name="armIndex">Index of the desired arm power</param>
     public void SetRightArmPower(int armIndex)
     {
         foreach(GameObject button in _rightArmButtons)
@@ -209,6 +224,11 @@ public class DoctorAlbert : Interactable
         if (armIndex <= 0) return;
         _rightArmButtons[armIndex-1].GetComponent<Image>().color = Color.green;
     }
+
+    /// <summary>
+    /// Sets the left arm power
+    /// </summary>
+    /// <param name="armIndex">Index of the desired arm power</param>
     public void SetLeftArmPower(int armIndex)
     {
         foreach (GameObject button in _leftArmButtons)
@@ -221,7 +241,7 @@ public class DoctorAlbert : Interactable
     }
 
     /// <summary>
-    /// Reset all slider values
+    /// Reset all slider values & ArmPower index
     /// </summary>
     public void ResetPoints()
     {
@@ -235,6 +255,9 @@ public class DoctorAlbert : Interactable
         }
     }
 
+    /// <summary>
+    /// Saves the state of the StatSliders & ArmPower in the _playerStats ScriptableObject
+    /// </summary>
     public void SavePoints()
     {
         for (int i = 0; i < _sliders.Length; i++)

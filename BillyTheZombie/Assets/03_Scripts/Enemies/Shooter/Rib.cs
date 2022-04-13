@@ -15,8 +15,8 @@ namespace Enemy
         private Vector3 _ribDirection;
 
         //Rib Stats
-        [SerializeField] private float _speed = 1.0f;
-        [SerializeField] private float _damage = 1.0f;
+        private float _speed = 1.0f;
+        private float _damage = 1.0f;
         private bool _canMove = true;
 
         public float Speed { get => _speed; set => _speed = value; }

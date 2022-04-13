@@ -47,6 +47,9 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
         }
     }
 
+    /// <summary>
+    /// Updates the playerStats according the the sliders value 
+    /// </summary>
     public void UpdateStat()
     {
         switch (statType)
@@ -81,16 +84,20 @@ public class PlayerStatUpdate : MonoBehaviour, IMoveHandler, IEndDragHandler
                 break;
         }
     }
+
+    /// <summary>
+    /// Updates the sliders according to the stat value
+    /// </summary>
     public void UpdateSlider()
     {
         _slider.value = stat /100.0f;
     }
 
-        /// <summary>
-        /// Sets the behaviour of the slider OnMove
-        /// </summary>
-        /// <param name="eventData">The movement event</param>
-        public void OnMove(AxisEventData eventData)
+    /// <summary>
+    /// Sets the behaviour of the slider OnMove
+    /// </summary>
+    /// <param name="eventData">The movement event</param>
+    public void OnMove(AxisEventData eventData)
     {
         // override the slider value using our previousSliderValue and the desired step
         if (eventData.moveDir == MoveDirection.Left)

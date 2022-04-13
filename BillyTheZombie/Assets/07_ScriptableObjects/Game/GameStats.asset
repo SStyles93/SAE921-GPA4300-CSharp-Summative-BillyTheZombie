@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252cad223fd039047ad82c0af3f10869, type: 3}
   m_Name: GameStats
   m_EditorClassIdentifier: 
-  mutagenPoints: 80
+  mutagenPoints: 160
   currentWaveCount: 3
   maxReachedWaveCount: 3
   indexOfWaveToSpawn: 8
