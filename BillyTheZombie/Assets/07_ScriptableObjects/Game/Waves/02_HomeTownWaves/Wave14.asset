@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wave14
   m_EditorClassIdentifier: 
   isSubWaves: 1
-  NumberOfEnemies: 20
-  EnemyIndex: 0
-  PositionIndex: 12
+  NumberOfEnemies: 50
+  EnemyIndex: 1
+  PositionIndex: 13

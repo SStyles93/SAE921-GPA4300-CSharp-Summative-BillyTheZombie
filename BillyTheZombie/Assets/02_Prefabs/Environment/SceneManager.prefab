@@ -192,6 +192,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _waves:
   - {fileID: 11400000, guid: b1c8758bb8d6da74bab0624bdf084f46, type: 2}
   - {fileID: 11400000, guid: 3ffb0cc593ccb904193106876a64ba73, type: 2}
@@ -201,6 +210,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 393219f2f409a094fafca59d6a554830, type: 2}
   - {fileID: 11400000, guid: 580d8171fcdd15449a9ba0b722f4d458, type: 2}
   - {fileID: 11400000, guid: 4e030a532325cd1498e6ea6b5042340b, type: 2}
+  - {fileID: 11400000, guid: bdf1b0d0e00265d4389a846a56ef4861, type: 2}
+  - {fileID: 11400000, guid: e1d1250864c0dfb4e98a3ce068f4e3a3, type: 2}
+  - {fileID: 11400000, guid: 3c1bf46f6131f0247b0e0dbd04d401c2, type: 2}
+  - {fileID: 11400000, guid: 4bd5d36c49a03d74cbae11518830c706, type: 2}
+  - {fileID: 11400000, guid: 94ed808fe8e6f0a4495a4e206f85b928, type: 2}
+  - {fileID: 11400000, guid: e166844024f3e3641a5b08490ca05a6c, type: 2}
+  - {fileID: 11400000, guid: 5b0343e95b22d5c4ea7695addbdc95b7, type: 2}
+  - {fileID: 11400000, guid: 3a0fc954e0a9f424a8a74180dff62714, type: 2}
+  - {fileID: 11400000, guid: d7e468bd5df32464e91cd1f84a4ce073, type: 2}
+  - {fileID: 11400000, guid: 4262924dc9dcda845863f98fb5b9749f, type: 2}
+  - {fileID: 11400000, guid: 30bd62aa352ce0b4abcd6088f1676805, type: 2}
+  - {fileID: 11400000, guid: 23fedb1dc09cfd140b555a6e4d41a825, type: 2}
+  - {fileID: 11400000, guid: a70f596bf06028e46a6ccef928d1f131, type: 2}
+  - {fileID: 11400000, guid: 26789184884198f44b8e78bccdb2d0aa, type: 2}
+  - {fileID: 11400000, guid: 7c76a30276b44d5439fb9b6df36ad7fe, type: 2}
   _enemyTracked: []
 --- !u!1 &8767532469977886746
 GameObject:
