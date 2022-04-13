@@ -74,6 +74,7 @@ namespace Player
                     _rb.drag = 3.0f;
                     _rb.sharedMaterial.bounciness = 0.25f;
                     _pickUpTimer = 1.0f;
+                    _damageTimer = 0.5f;
                     break;
 
                 case ARMTYPE.BOOMERANG:
@@ -172,6 +173,12 @@ namespace Player
                     {
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                     }
+                    else
+                    {
+                        Physics2D.IgnoreCollision(
+                            transform.GetComponent<BoxCollider2D>(),
+                            collision.gameObject.GetComponent<BoxCollider2D>());
+                    }
                     _canBePickedUp = true;
                     break;
 
@@ -247,6 +254,9 @@ namespace Player
                             else
                             {
                                 GetComponent<CircleCollider2D>().enabled = false;
+                                Physics2D.IgnoreCollision(
+                                    transform.GetComponent<BoxCollider2D>(),
+                                    collision.gameObject.GetComponent<BoxCollider2D>());
                             } 
                         }
                     }
@@ -257,9 +267,18 @@ namespace Player
                     {
                         //stops applying force to the object
                         _canMove = false;
-                        if (!_canBePickedUp)
-                            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
                         _canBePickedUp = true;
+                        _startDamageCountDown = true;
+                        if (_canDamage)
+                        {
+                            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                        }
+                        else
+                        {
+                            Physics2D.IgnoreCollision(
+                                transform.GetComponent<BoxCollider2D>(),
+                                collision.gameObject.GetComponent<BoxCollider2D>());
+                        }
                     }
                     break;
             }
