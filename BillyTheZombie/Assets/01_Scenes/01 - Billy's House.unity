@@ -2244,7 +2244,7 @@ MonoBehaviour:
   _sceneManagement: {fileID: 8155444452967597150}
   _sceneIndex: 2
   _spawnIndexSO: {fileID: 11400000, guid: 82bc7a854db9d1e44a4a40bc13f40ea9, type: 2}
-  _spawnIndex: 0
+  _spawnIndex: -1
 --- !u!61 &1520107327
 BoxCollider2D:
   m_ObjectHideFlags: 0

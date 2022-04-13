@@ -18,7 +18,10 @@ namespace Managers
             if (collision.CompareTag("Player"))
             {
                 collision.GetComponent<PlayerStats>().DisablePlayersActions();
-                _spawnIndexSO.positionIndex = _spawnIndex;
+                if(_spawnIndex >= 0)
+                {
+                    _spawnIndexSO.positionIndex = _spawnIndex;
+                }
                 _sceneManagement.Player = collision.gameObject;
                 _sceneManagement.SceneIndex = _sceneIndex;
                 _sceneManagement.FadeOut = true;
