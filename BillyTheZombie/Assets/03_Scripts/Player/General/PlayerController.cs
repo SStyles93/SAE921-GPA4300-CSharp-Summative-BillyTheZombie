@@ -7,30 +7,36 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        //Reference Scripts
         private PlayerInput _playerInput;
+
         private string _controlScheme;
 
+        //Movement Vectors
         private Vector2 _movement;
         private Vector2 _look;
 
+        //Action bools
         private bool _head;
         private bool _armR;
         private bool _armL;
 
+        //Game State bools
         public bool play = true;
         public delegate void Pause(bool isActive);
-        public Pause PlayGame;
+        public Pause GameState;
 
+        //Repeating logic
         private bool _canRepeateActions = false;
+        private bool _repeatingHead = false;
+        private bool _repeatingArmR = false;
+        private bool _repeatingArmL = false;
         private float _repeatingTimer = 0.1f;
         private float _repeatTimerHead;
         private float _repeatTimerArmR;
         private float _repeatTimerArmL;
-        private bool _repeatingHead = false;
-        private bool _repeatingArmR = false;
-        private bool _repeatingArmL = false;
 
-
+        //Properties
         public string ControlScheme { get => _controlScheme; set => _controlScheme = value; }
         public Vector2 Movement { get => _movement; set => _movement = value; }
         public Vector2 Look { get => _look; set => _look = value; }
@@ -161,7 +167,7 @@ namespace Player
         public void OnPause(InputValue value)
         {
             play = !play;
-            PlayGame(play);
+            GameState(play);
         }
     }
 }

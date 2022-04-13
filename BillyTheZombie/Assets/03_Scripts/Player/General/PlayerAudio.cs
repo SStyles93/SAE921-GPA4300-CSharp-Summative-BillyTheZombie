@@ -7,12 +7,10 @@ namespace Player
     public class PlayerAudio : MonoBehaviour
     {
         //Reference Scripts
-        [Header("Reference Scripts")]
-        [SerializeField] private PlayerController _playerController;
+        private PlayerController _playerController;
 
         //Reference Components
-        [Header("Reference Components")]
-        [SerializeField] private AudioSource _audioSource;
+        private AudioSource _audioSource;
 
         //Audio Clips
         [Header("Audio Clips")]

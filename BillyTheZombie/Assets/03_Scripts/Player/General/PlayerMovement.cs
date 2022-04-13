@@ -22,7 +22,7 @@ namespace Player
             _playerStats = GetComponent<PlayerStats>();
             _rb = GetComponent<Rigidbody2D>();
 
-            _playerController.PlayGame += PauseMovement;
+            _playerController.GameState += PauseMovement;
         }
         private void Update()
         {

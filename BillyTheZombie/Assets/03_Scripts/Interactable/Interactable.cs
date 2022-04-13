@@ -4,13 +4,16 @@ using UnityEngine;
 using Player;
 public abstract class Interactable : MonoBehaviour
 {
+    //Player Ref
     protected GameObject player;
+    //Interaction Check
     protected bool hasInteracted = false;
 
     [Header("Game Objects")]
     [SerializeField] protected GameObject _infoBubble;
     [Header("UI Library")]
     [SerializeField] protected UIButtonsSO _uIButtonsLibrary;
+
     public void Awake()
     {
         _infoBubble.SetActive(false);
@@ -18,7 +21,7 @@ public abstract class Interactable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>())
+        if (collision.gameObject.CompareTag("Player"))
         {
             player = collision.gameObject;
 

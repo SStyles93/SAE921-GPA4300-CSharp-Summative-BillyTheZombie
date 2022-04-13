@@ -13,24 +13,31 @@ namespace Managers
         [Tooltip("The duratrion of a FadeIn transition")]
         [SerializeField] private float _fadeInDuration = 1.0f;
         private float _maxFadeInDuration;
+
         [Tooltip("The duratrion of a FadeOut transition")]
         [SerializeField] private float _fadeOutDuration = 1.0f;
         private float _maxFadeOutDuration;
+        
         [Tooltip("The image to set a Color Fade In/Out on")]
         [SerializeField] private Image _transitionImage;
         [SerializeField] private AudioSource _musicAudioSource;
         [SerializeField] private GameObject _pauseCanvas;
 
+        //Reference GameObjects
         private GameObject _player;
+
+        //Components
         private Color _currentColor;
+
+        //Variables
         private int _sceneIndex;
         private bool _fadeIn;
         private bool _fadeOut;
 
+        //Properties
         public bool FadeIn { get => _fadeIn; set => _fadeIn = value; }
         public bool FadeOut { get => _fadeOut; set => _fadeOut = value; }
         public int SceneIndex { get => _sceneIndex; set => _sceneIndex = value; }
-
         public GameObject Player { get => _player; set => _player = value; }
 
         private void Start()
@@ -138,6 +145,10 @@ namespace Managers
 
         }
 
+        /// <summary>
+        /// Activates/Disactivates the canvas according to state
+        /// </summary>
+        /// <param name="state">state of the canvas</param>
         public void PauseCanvas(bool state)
         {
             _pauseCanvas.SetActive(!state);

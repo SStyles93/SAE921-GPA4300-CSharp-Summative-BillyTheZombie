@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
     //Variables
     private float _maxHealth;
     private float _currentHealth;
-    [SerializeField] private float displayTimer = 5.0f;
+    private float displayTimer = 5.0f;
 
     private void Awake()
     {
@@ -26,8 +26,6 @@ public class HealthBar : MonoBehaviour
         _currentHealth = _maxHealth = _enemyStats.Health;
         _healthBar.fillAmount = _enemyStats.Health / _maxHealth;
     }
-
-    // Update is called once per frame
     void Update()
     {
         _healthBar.fillAmount = _enemyStats.Health / _maxHealth;

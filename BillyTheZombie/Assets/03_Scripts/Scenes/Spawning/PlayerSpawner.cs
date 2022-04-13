@@ -17,10 +17,14 @@ namespace Managers
         [Tooltip("The transform on which to spawn the player")]
         [SerializeField] private Transform[] _playerSpawns;
 
-        private GameObject _player;
+        //Reference Scripts
         private EnemySpawner _enemySpawner;
         private SceneManagement _sceneManagement;
+        
+        //Reference GameObjects
+        private GameObject _player;
 
+        //Properties
         public GameObject Player { get => _player; set => _player = value; }
 
         private void Awake()
@@ -41,22 +45,17 @@ namespace Managers
                 //Send the player ref to the EnemySpawner
                 _enemySpawner.Player = _player;
 
-                _player.GetComponent<PlayerController>().PlayGame += _enemySpawner.PauseEnemies;
-                _player.GetComponent<PlayerController>().PlayGame += _sceneManagement.PauseCanvas;
+                //Subscribes the "Pause" Methods to the player Controller
+                _player.GetComponent<PlayerController>().GameState += _enemySpawner.PauseEnemies;
+                _player.GetComponent<PlayerController>().GameState += _sceneManagement.PauseCanvas;
 
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         /// <summary>
         /// Initializes the player 
         /// </summary>
-        /// <param name="playerSpawn"></param>
+        /// <param name="playerSpawn">The transform at which the player has to spawn</param>
         private void InitPlayer(Transform playerSpawn)
         {
             _player = Instantiate(_playerPrefab, playerSpawn.position, Quaternion.identity);
@@ -66,9 +65,12 @@ namespace Managers
             _player.GetComponentInChildren<EnemyIndicator>().EnemySpawner = _enemySpawner;
         }
 
+        /// <summary>
+        /// Sets the game state to "Play"
+        /// </summary>
         public void ResumeGame()
         {
-            _player.GetComponent<PlayerController>().PlayGame(true);
+            _player.GetComponent<PlayerController>().GameState(true);
             _player.GetComponent<PlayerController>().play = true;
         }
     }

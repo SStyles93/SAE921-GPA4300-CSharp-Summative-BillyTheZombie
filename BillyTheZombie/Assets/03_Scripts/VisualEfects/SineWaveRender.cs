@@ -16,7 +16,10 @@ public class SineWaveRender : MonoBehaviour
 		SineWaveEffect();
     }
 
-    public void SineWaveEffect()
+	/// <summary>
+	/// SineWave acting on the alpha value of a color
+	/// </summary>
+	public void SineWaveEffect()
     {
 		if (period <= Mathf.Epsilon) return;
 

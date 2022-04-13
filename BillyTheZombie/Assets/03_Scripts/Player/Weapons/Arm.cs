@@ -65,7 +65,8 @@ namespace Player
         }
         private void Start()
         {
-            _player.GetComponent<PlayerController>().PlayGame += PauseArm;
+            //Subscribe the PauseArm Method to the player controler's GameState
+            _player.GetComponent<PlayerController>().GameState += PauseArm;
 
             switch (armType)
             {
@@ -325,9 +326,13 @@ namespace Player
             }
         }
 
-        private void PauseArm(bool play)
+        /// <summary>
+        /// Enables arm movement according to GameState (Play/Pause)
+        /// </summary>
+        /// <param name="state">The state of the game Play(true)/Pause(false)</param>
+        private void PauseArm(bool state)
         {
-            _canMove = play;
+            _canMove = state;
         }
 
     }

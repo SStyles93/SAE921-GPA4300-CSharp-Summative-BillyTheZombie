@@ -13,6 +13,8 @@ namespace Enemy
         [SerializeField] private EnemyVisuals _enemyVisuals;
         [SerializeField] private EnemyAudio _enemyAudio;
 
+        //Prefab
+        [SerializeField] private GameObject _deadBodyPrefab;
 
         [SerializeField] private float _mutagenValue;
         [SerializeField] private float _health;
@@ -69,6 +71,7 @@ namespace Enemy
         {
             _gameStats.mutagenPoints += _mutagenValue;
             Destroy(gameObject);
+            Instantiate(_deadBodyPrefab, transform.position - new Vector3(0.0f, 0.3f, 0.0f), Quaternion.identity);
         }
     }
 }

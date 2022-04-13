@@ -33,7 +33,7 @@ public class Exit : Interactable
         player.GetComponent<PlayerActions>().enabled = false;
         player.GetComponentInChildren<PlayerVisuals>().enabled = false;
 
-        //Enables the "InfoBubble"
+        //Disables the "InfoBubble"
         _infoBubble.SetActive(false);
         
         _eventSystem.SetSelectedGameObject(_returnButton);
@@ -53,7 +53,7 @@ public class Exit : Interactable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>())
+        if (collision.gameObject.CompareTag("Player"))
         {
             //Gives the player as reference to the door
             player = collision.gameObject;

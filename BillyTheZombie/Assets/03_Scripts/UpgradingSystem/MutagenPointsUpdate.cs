@@ -7,6 +7,7 @@ public class MutagenPointsUpdate : MonoBehaviour
 {
     [SerializeField] private GameStatsSO _gameStats;
 
+    //UI elements
     private Slider _mpSlider;
     private Text _mpText;
 

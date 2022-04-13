@@ -10,6 +10,8 @@ namespace Player
         private PlayerController _playerController;
         private PlayerStats _playerStats;
         private PlayerVisuals _playerVisuals;
+
+        //Scriptable Object
         [SerializeField] private PlayerStatsSO _playerStatSO;
 
         //Reference GameObjects

@@ -16,7 +16,6 @@ namespace Player
             _arrow = GetComponentInChildren<SpriteRenderer>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             //Disable arrow if arm is not instantiated
