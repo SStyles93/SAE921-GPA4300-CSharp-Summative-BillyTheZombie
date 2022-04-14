@@ -14,7 +14,7 @@ namespace Player
 
         //Movement Vectors
         private Vector2 _movement;
-        private Vector2 _look;
+        private Vector2 _aim;
 
         //Action bools
         private bool _head;
@@ -39,7 +39,7 @@ namespace Player
         //Properties
         public string ControlScheme { get => _controlScheme; set => _controlScheme = value; }
         public Vector2 Movement { get => _movement; set => _movement = value; }
-        public Vector2 Look { get => _look; set => _look = value; }
+        public Vector2 Aim { get => _aim; set => _aim = value; }
         public bool Head { get => _head; set => _head = value; }
         public bool ArmR { get => _armR; set => _armR = value; }
         public bool ArmL { get => _armL; set => _armL = value; }
@@ -110,14 +110,14 @@ namespace Player
         {
             _movement = value.Get<Vector2>();
         }
-        public void OnLook(InputValue value)
+        public void OnAim(InputValue value)
         {
             switch (_controlScheme)
             {
                 case "Keyboard":
                     break;
                 case "Gamepad":
-                    _look = value.Get<Vector2>();
+                    _aim = value.Get<Vector2>();
                     break;
                 default:
                     break;

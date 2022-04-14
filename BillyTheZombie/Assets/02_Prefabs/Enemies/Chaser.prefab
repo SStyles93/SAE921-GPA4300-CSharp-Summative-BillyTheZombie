@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DEBUGMODE: 0
   tickTimer: 0.5
-  _numberOfRays: 16
+  _numberOfRays: 36
   _angleOfDetection: 360
   _detectionDistance: 10
   _target: {fileID: 769978087663957991}
@@ -5285,7 +5285,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0

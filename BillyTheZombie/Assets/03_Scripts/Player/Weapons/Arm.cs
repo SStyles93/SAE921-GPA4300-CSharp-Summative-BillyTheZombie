@@ -34,7 +34,7 @@ namespace Player
 
         //Damage & PickUp logic
         private float _pickUpTimer = 0.5f;
-        private bool _CheckForPickUp = false;
+        private bool _checkForPickUp = false;
         private bool _canBePickedUp = false;
         [SerializeField] private float _damageTimer = 0.5f;
         [SerializeField] private bool _startDamageCountDown = false;
@@ -73,7 +73,7 @@ namespace Player
                 case ARMTYPE.BASIC:
                     _rb.drag = 3.0f;
                     _rb.sharedMaterial.bounciness = 0.25f;
-                    _pickUpTimer = 1.0f;
+                    _pickUpTimer = 0.5f;
                     _damageTimer = 0.5f;
                     break;
 
@@ -82,10 +82,6 @@ namespace Player
                     _rb.sharedMaterial.bounciness = 1.0f;
                     _pickUpTimer = 0.25f;
                     _damageTimer = 1.0f;
-                    //If the collision is with the player Ignore
-                    Physics2D.IgnoreCollision(
-                        transform.GetComponent<BoxCollider2D>(),
-                        _player.gameObject.GetComponent<CapsuleCollider2D>());
                     break;
 
                 case ARMTYPE.LAWNMOWER:
@@ -129,7 +125,7 @@ namespace Player
                 _pickUpTimer = 0.0f;
             }
             //Checks if the arm can be picked up
-            if (_CheckForPickUp)
+            if (_checkForPickUp)
             {
                 _canBePickedUp = _pickUpTimer <= 0.0f ? true : false;
             }
@@ -157,29 +153,29 @@ namespace Player
                 case ARMTYPE.BOOMERANG:
                     if (collision.gameObject.CompareTag("Player"))
                     {
-                        _canBePickedUp = true;
-                        return;
+                        _checkForPickUp = true;
                     }
                     else
                     {
                         _startDamageCountDown = true;
+
+                        //on collision stops the rb from moving
+                        _rb.velocity = Vector2.zero;
+                        //stops applying force to the object
+                        _canMove = false;
+                        //Deals damage only once 
+                        if (_canDamage)
+                        {
+                            collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                        }
+                        else
+                        {
+                            Physics2D.IgnoreCollision(
+                                transform.GetComponent<BoxCollider2D>(),
+                                collision.gameObject.GetComponent<BoxCollider2D>());
+                        }
+                        _canBePickedUp = true;
                     }
-                    //on collision stops the rb from moving
-                    _rb.velocity = Vector2.zero;
-                    //stops applying force to the object
-                    _canMove = false;
-                    //Deals damage only once 
-                    if (_canDamage)
-                    {
-                        collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                    }
-                    else
-                    {
-                        Physics2D.IgnoreCollision(
-                            transform.GetComponent<BoxCollider2D>(),
-                            collision.gameObject.GetComponent<BoxCollider2D>());
-                    }
-                    _canBePickedUp = true;
                     break;
 
                 case ARMTYPE.LAWNMOWER:
@@ -209,7 +205,7 @@ namespace Player
                     {
                         //Collision with PLAYER
                         //Starts the timer for the playe to pickup the arm
-                        _CheckForPickUp = true;
+                        _checkForPickUp = true;
                         if(_canBePickedUp)
                             GetComponent<BoxCollider2D>().isTrigger = true;
                     }
@@ -220,7 +216,7 @@ namespace Player
                         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                         //stops applying force to the object
                         _canMove = false;
-                        _CheckForPickUp = true;
+                        _checkForPickUp = true;
                         _startDamageCountDown = true;
 
                         //Collision with ENEMY
@@ -235,7 +231,7 @@ namespace Player
                                 //Send enemy in opposite direction from player
                                 Vector2 forceDirection = collision.gameObject.transform.position -
                                     gameObject.transform.position;
-                                collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * PushPower, ForceMode2D.Force);
+                                collision.gameObject.GetComponent<Rigidbody2D>()?.AddForce(forceDirection * (PushPower * 100f), ForceMode2D.Force);
                                 //Damages enemy
                                 collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
 
@@ -263,18 +259,19 @@ namespace Player
                     break;
 
                 default:
+                    _checkForPickUp = true;
                     if (!collision.gameObject.CompareTag("Player"))
                     {
                         //stops applying force to the object
                         _canMove = false;
-                        _canBePickedUp = true;
-                        _startDamageCountDown = true;
                         if (_canDamage)
                         {
                             collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
+                            _canDamage = false;
                         }
                         else
                         {
+                            if(collision.gameObject.GetComponent<BoxCollider2D>() != null)
                             Physics2D.IgnoreCollision(
                                 transform.GetComponent<BoxCollider2D>(),
                                 collision.gameObject.GetComponent<BoxCollider2D>());

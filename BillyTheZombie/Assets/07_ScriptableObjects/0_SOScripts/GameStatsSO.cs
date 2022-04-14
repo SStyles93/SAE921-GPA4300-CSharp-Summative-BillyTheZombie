@@ -10,4 +10,14 @@ public class GameStatsSO : ScriptableObject
     public int maxReachedWaveCount;
 
     public int indexOfWaveToSpawn;
+
+    public void ResetGameStats()
+    {
+        mutagenPoints = 0.0f;
+
+        currentWaveCount = 0;
+        maxReachedWaveCount = 0;
+        
+        indexOfWaveToSpawn = 0;
+    }
 }

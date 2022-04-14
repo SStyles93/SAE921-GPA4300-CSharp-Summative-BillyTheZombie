@@ -33,6 +33,17 @@ namespace Enemy
             //Set TickTime
             tickTime = tickTimer;
         }
+
+        private void Start()
+        {
+            //Sets a random starting point for the enemy
+            _playersLastPosition = transform.position + new Vector3(Random.Range(-1,1), Random.Range(-1, 1), 0.0f);
+            if(_playersLastPosition == transform.position)
+            {
+                _playersLastPosition = transform.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0.0f);
+            }
+        }
+
         private void Update()
         {
             if (DEBUGMODE && _rayDirections != null)
@@ -99,7 +110,7 @@ namespace Enemy
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirections[i].normalized, _detectionDistance);
 
-                if (hit.collider != null && hit.transform.GetComponent<PlayerController>())
+                if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
                 {
                     _playerInSight = true;
                     _playersLastPosition = hit.transform.position;
@@ -108,13 +119,8 @@ namespace Enemy
                 }
                 else
                 {
-                    if (transform.position == _playersLastPosition)
-                    {
-                        return;
-                    }
-
-                    _target.transform.position = _playersLastPosition;
                     _playerInSight = false;
+                    _target.transform.position = _playersLastPosition;
                 }
             }
 

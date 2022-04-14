@@ -37,7 +37,7 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Look"",
+                    ""name"": ""Aim"",
                     ""type"": ""Value"",
                     ""id"": ""1aca8aae-0989-47f4-81d6-9ce134ca4064"",
                     ""expectedControlType"": ""Vector2"",
@@ -211,7 +211,7 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Look"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -222,7 +222,7 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Look"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -888,7 +888,7 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
         // PlayerMovement
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_Move = m_PlayerMovement.FindAction("Move", throwIfNotFound: true);
-        m_PlayerMovement_Look = m_PlayerMovement.FindAction("Look", throwIfNotFound: true);
+        m_PlayerMovement_Aim = m_PlayerMovement.FindAction("Aim", throwIfNotFound: true);
         m_PlayerMovement_Head = m_PlayerMovement.FindAction("Head", throwIfNotFound: true);
         m_PlayerMovement_ArmR = m_PlayerMovement.FindAction("ArmR", throwIfNotFound: true);
         m_PlayerMovement_ArmL = m_PlayerMovement.FindAction("ArmL", throwIfNotFound: true);
@@ -965,7 +965,7 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerMovement;
     private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
     private readonly InputAction m_PlayerMovement_Move;
-    private readonly InputAction m_PlayerMovement_Look;
+    private readonly InputAction m_PlayerMovement_Aim;
     private readonly InputAction m_PlayerMovement_Head;
     private readonly InputAction m_PlayerMovement_ArmR;
     private readonly InputAction m_PlayerMovement_ArmL;
@@ -975,7 +975,7 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
         private @PlayerActionMap m_Wrapper;
         public PlayerMovementActions(@PlayerActionMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerMovement_Move;
-        public InputAction @Look => m_Wrapper.m_PlayerMovement_Look;
+        public InputAction @Aim => m_Wrapper.m_PlayerMovement_Aim;
         public InputAction @Head => m_Wrapper.m_PlayerMovement_Head;
         public InputAction @ArmR => m_Wrapper.m_PlayerMovement_ArmR;
         public InputAction @ArmL => m_Wrapper.m_PlayerMovement_ArmL;
@@ -992,9 +992,9 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMove;
-                @Look.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLook;
+                @Aim.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAim;
                 @Head.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnHead;
                 @Head.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnHead;
                 @Head.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnHead;
@@ -1014,9 +1014,9 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
                 @Head.started += instance.OnHead;
                 @Head.performed += instance.OnHead;
                 @Head.canceled += instance.OnHead;
@@ -1159,7 +1159,7 @@ public partial class @PlayerActionMap : IInputActionCollection2, IDisposable
     public interface IPlayerMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
         void OnHead(InputAction.CallbackContext context);
         void OnArmR(InputAction.CallbackContext context);
         void OnArmL(InputAction.CallbackContext context);

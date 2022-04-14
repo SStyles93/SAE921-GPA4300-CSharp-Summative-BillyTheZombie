@@ -28,4 +28,18 @@ public class PlayerStatsSO : ScriptableObject
     public float basicArmDamage = 10.0f;
     public float basicSpeed = 4.0f;
     public float basicPushPower = 10.0f;
+
+    public void ResetPlayerStats()
+    {
+        currentHealth = 100.0f;
+        maxHealth = 100.0f;
+
+        pushPowerPercentage = 0.0f;
+        armDamagePercentage = 0.0f;
+        healthPercentage = 0.0f;
+        speedPercentage = 0.0f;
+
+        rightArmType = 0;
+        leftArmType = 0;
+}
 }

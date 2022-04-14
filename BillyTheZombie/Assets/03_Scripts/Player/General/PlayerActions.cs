@@ -48,6 +48,8 @@ namespace Player
         private bool _canHit = true;
         private bool _isInCombat = true;
 
+        Vector3 currentAimPos;
+
         //Properties
         public bool CanHit { get => _canHit; set => _canHit = value; }
         public bool[] CanThrow { get => _canThrow; set => _canThrow = value; }
@@ -81,15 +83,10 @@ namespace Player
                 PlayerPasiveLook();
             }
 
-
             if (_canHit)
             {
                 ActionCheck();
             }
-
-            //Sets the position of the head at half the aim's position;
-            _head.transform.position = _aim.transform.position;
-            _head.transform.localPosition /= 2.0f;
         }
 
         /// <summary>
@@ -106,26 +103,25 @@ namespace Player
                     _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
 
                     //Updates the Aim position according to the Gamepad input
-                    Vector2 look = _playerController.Look;
-                    Vector3 currentAimPos = _aim.transform.localPosition;
+                    Vector2 look = _playerController.Aim;
                     //Movement used for headbut aiming
                     Vector2 movement = _playerController.Movement;
 
                     if (look != Vector2.zero)
                     {
                         _cameraTarget.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
-                        _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
+                       currentAimPos = _aim.transform.localPosition = new Vector3(look.x, look.y, 0.0f);
                         _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
                     }
 
                     #region MoveToAim
 
-                    else if (_playerController.Movement != Vector2.zero)
-                    {
-                        _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-                        _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
-                        _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
-                    }
+                    //else if (_playerController.Movement != Vector2.zero)
+                    //{
+                    //    _cameraTarget.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+                    //    _aim.transform.localPosition = new Vector3(movement.x, movement.y, 0.0f);
+                    //    _cameraTarget.GetComponent<SpriteRenderer>().enabled = true;
+                    //}
 
                     #endregion
 
@@ -155,6 +151,7 @@ namespace Player
                     mouseTarget.gameObject.SetActive(false);
                     break;
             }
+
             Vector3 correctedPos = _aim.transform.localPosition;
             correctedPos.x += correctedPos.x * -_aimCorrection;
             correctedPos.y += correctedPos.y * -_aimCorrection;
@@ -190,6 +187,11 @@ namespace Player
             //RightArm Throw
             if (_playerController.ArmR && _canThrow[(int)BODYPART.RIGHTARM])
             {
+                if(_playerController.ControlScheme == "Gamepad" && _playerController.Aim == Vector2.zero)
+                {
+                    return;
+                }
+
                 EnablePlayersArm(BODYPART.RIGHTARM, false);
                 InstantiateArm(BODYPART.RIGHTARM);
                 _canThrow[(int)BODYPART.RIGHTARM] = false;
@@ -199,6 +201,11 @@ namespace Player
             //LeftArm Throw
             if (_playerController.ArmL && _canThrow[(int)BODYPART.LEFTARM])
             {
+                if (_playerController.ControlScheme == "Gamepad" && _playerController.Aim == Vector2.zero)
+                {
+                    return;
+                }
+
                 EnablePlayersArm(BODYPART.LEFTARM, false);
                 InstantiateArm(BODYPART.LEFTARM);
                 _canThrow[(int)BODYPART.LEFTARM] = false;

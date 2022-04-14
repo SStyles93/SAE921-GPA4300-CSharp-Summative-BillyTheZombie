@@ -13,8 +13,9 @@ public class DoctorAlbert : Interactable
     [SerializeField] private GameObject[] _sliders;
     [SerializeField] private GameObject[] _hightLights;
     [SerializeField] private GameObject[] _rightArmButtons;
+    [SerializeField] private bool[] _rightArmBools = new bool[4];
     [SerializeField] private GameObject[] _leftArmButtons;
-
+    [SerializeField] private bool[] _leftArmBools = new bool[4];
 
     //Reference Components
     [Header("Components")]
@@ -51,14 +52,6 @@ public class DoctorAlbert : Interactable
         {
             slider.GetComponentInChildren<Text>().text =
                 $"{slider.name}";
-        }
-        foreach(GameObject button in _rightArmButtons)
-        {
-            button.SetActive(false);
-        }
-        foreach (GameObject button in _leftArmButtons)
-        {
-            button.SetActive(false);
         }
     }
     private void Update()
@@ -98,6 +91,8 @@ public class DoctorAlbert : Interactable
         }
         UpdateSliders();
         UpdateArmButtons();
+        SetRightArmPower(_playerStatsSO.rightArmType);
+        SetLeftArmPower(_playerStatsSO.leftArmType);
     }
 
     /// <summary>
@@ -197,17 +192,32 @@ public class DoctorAlbert : Interactable
     /// </summary>
     private void UpdateArmButtons()
     {
+        //Activates the First Arm
         _activateFirst = (_sliders[1].GetComponent<Slider>().value * 100) >= _firstArmLimit;
-        _rightArmButtons[0].SetActive(_activateFirst);
-        _leftArmButtons[0].SetActive(_activateFirst);
-        
-        _activateSecond = (_sliders[1].GetComponent<Slider>().value * 100) >= _secondArmLimit;
-        _rightArmButtons[1].SetActive(_activateSecond);
-        _leftArmButtons[1].SetActive(_activateSecond);
+        _rightArmBools[1] = _activateFirst;
+        _leftArmBools[1] = _activateFirst;
+        _rightArmButtons[0].GetComponentInChildren<Text>().color = _activateFirst ? Color.white : Color.gray;
+        _leftArmButtons[0].GetComponentInChildren<Text>().color = _activateFirst ? Color.white : Color.gray;
+        _rightArmButtons[0].GetComponent<Image>().color = _activateFirst ? Color.white : Color.gray;
+        _leftArmButtons[0].GetComponent<Image>().color = _activateFirst ? Color.white : Color.gray;
 
+        //Activates the Second Arm
+        _activateSecond = (_sliders[1].GetComponent<Slider>().value * 100) >= _secondArmLimit;
+        _rightArmBools[2] = _activateSecond;
+        _leftArmBools[2] = _activateSecond;
+        _rightArmButtons[1].GetComponentInChildren<Text>().color = _activateSecond ? Color.white : Color.gray;
+        _leftArmButtons[1].GetComponentInChildren<Text>().color = _activateSecond ? Color.white : Color.gray;
+        _rightArmButtons[1].GetComponent<Image>().color = _activateSecond ? Color.white : Color.gray;
+        _leftArmButtons[1].GetComponent<Image>().color = _activateSecond ? Color.white : Color.gray;
+
+        //Activates the Third Arm
         _activateThird = (_sliders[1].GetComponent<Slider>().value * 100) >= _thirdArmLimit;
-        _rightArmButtons[2].SetActive(_activateThird);
-        _leftArmButtons[2].SetActive(_activateThird);
+        _rightArmBools[3] = _activateThird;
+        _leftArmBools[3] = _activateThird;
+        _rightArmButtons[2].GetComponentInChildren<Text>().color = _activateThird ? Color.white : Color.gray;
+        _leftArmButtons[2].GetComponentInChildren<Text>().color = _activateThird ? Color.white : Color.gray;
+        _rightArmButtons[2].GetComponent<Image>().color = _activateThird ? Color.white : Color.gray;
+        _leftArmButtons[2].GetComponent<Image>().color = _activateThird ? Color.white : Color.gray;
     }
 
     /// <summary>
@@ -216,12 +226,16 @@ public class DoctorAlbert : Interactable
     /// <param name="armIndex">Index of the desired arm power</param>
     public void SetRightArmPower(int armIndex)
     {
+        if (_rightArmBools[armIndex] == false) return;
+        _playerStatsSO.rightArmType = armIndex;
+        if (armIndex <= 0) return;
+        
+
         foreach(GameObject button in _rightArmButtons)
         {
             button.GetComponent<Image>().color = Color.gray;
         }
-        _playerStatsSO.rightArmType = armIndex;
-        if (armIndex <= 0) return;
+        
         _rightArmButtons[armIndex-1].GetComponent<Image>().color = Color.green;
     }
 
@@ -231,12 +245,14 @@ public class DoctorAlbert : Interactable
     /// <param name="armIndex">Index of the desired arm power</param>
     public void SetLeftArmPower(int armIndex)
     {
+        if (_leftArmBools[armIndex] == false) return;
+        _playerStatsSO.leftArmType = armIndex;
+        if (armIndex <= 0) return;
+        
         foreach (GameObject button in _leftArmButtons)
         {
             button.GetComponent<Image>().color = Color.gray;
         }
-        _playerStatsSO.leftArmType = armIndex;
-        if (armIndex <= 0) return;
         _leftArmButtons[armIndex-1].GetComponent<Image>().color = Color.green;
     }
 
@@ -250,8 +266,8 @@ public class DoctorAlbert : Interactable
             _gameStatsSO.mutagenPoints += _sliders[i].GetComponent<Slider>().value * (100.0f * _pointsCoef);
             _sliders[i].GetComponent<PlayerStatUpdate>().Stat = 0.0f;
             _sliders[i].GetComponent<Slider>().value = 0.0f;
-            _playerStatsSO.leftArmType = 0;
             _playerStatsSO.rightArmType = 0;
+            _playerStatsSO.leftArmType = 0;
         }
     }
 
@@ -266,10 +282,10 @@ public class DoctorAlbert : Interactable
         }
         _playerStatsSO.maxHealth = _playerStatsSO.basicHealth + (_playerStatsSO.basicHealth * _playerStatsSO.healthPercentage / 20.0f);
         _playerStatsSO.currentHealth = _playerStatsSO.maxHealth;
-        if(_playerStatsSO.armDamagePercentage <= 0.0f)
+        if(_playerStatsSO.armDamagePercentage <= _firstArmLimit)
         {
-            SetLeftArmPower(0);
-            SetRightArmPower(0);
+            _playerStatsSO.rightArmType = 0;
+            _playerStatsSO.leftArmType = 0;
         }
     }
 

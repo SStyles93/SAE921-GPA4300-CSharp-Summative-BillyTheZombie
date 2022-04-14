@@ -21,7 +21,7 @@ namespace Player
                 //Send enemy in opposite direction from player
                 Vector2 forceDirection = collision.gameObject.transform.position -
                     gameObject.transform.position;
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * _pushPower, ForceMode2D.Impulse);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection * (_pushPower * 100.0f), ForceMode2D.Impulse);
 
                 collision.gameObject.GetComponent<EnemyStats>().TakeDamage(_headDamage);
             }

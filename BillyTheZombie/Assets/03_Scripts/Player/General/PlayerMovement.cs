@@ -22,7 +22,7 @@ namespace Player
             _playerStats = GetComponent<PlayerStats>();
             _rb = GetComponent<Rigidbody2D>();
 
-            _playerController.GameState += PauseMovement;
+            _playerController.GameState += MovePlayer;
         }
         private void Update()
         {
@@ -30,9 +30,12 @@ namespace Player
             if (_canMove)
             {
                 Vector3 movement = new Vector3(_playerController.Movement.x, _playerController.Movement.y, 0.0f);
-                transform.Translate(movement * _playerStats.Speed * Time.deltaTime);
-                _rb.constraints = RigidbodyConstraints2D.None;
-                _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                //transform.Translate(movement * _playerStats.Speed * Time.deltaTime);
+                if(movement != Vector3.zero)
+                {
+                    _rb.MovePosition(transform.position + movement * _playerStats.Speed * 2f * Time.deltaTime);
+                    _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                }
             }
             else
             {
@@ -43,10 +46,10 @@ namespace Player
         /// <summary>
         /// Stops the movement of the player when the game is not running
         /// </summary>
-        /// <param name="isRunning">The state in which we want the player to be (paused/!paused)</param>
-        private void PauseMovement(bool isRunning)
+        /// <param name="state">The state in which we want the player to be</param>
+        private void MovePlayer(bool state)
         {
-            _canMove = isRunning;
+            _canMove = state;
         }
     }
 }

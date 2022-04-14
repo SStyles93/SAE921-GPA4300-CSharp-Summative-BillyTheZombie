@@ -17,7 +17,7 @@ MonoBehaviour:
   pushPowerPercentage: 0
   armDamagePercentage: 0
   healthPercentage: 0
-  speedPercentage: 0
+  speedPercentage: 17.000029
   rightArmType: 0
   leftArmType: 0
   basicHealth: 100

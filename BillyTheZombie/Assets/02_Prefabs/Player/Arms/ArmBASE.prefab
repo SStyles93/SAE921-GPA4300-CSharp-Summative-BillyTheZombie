@@ -231,7 +231,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.3
 --- !u!114 &6693062172291444171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +250,6 @@ MonoBehaviour:
   _damage: 2.5
   _explosiveArmRadius: 1
   _pushPower: 1
+  _damageTimer: 0.5
+  _startDamageCountDown: 0
+  _canDamage: 1

@@ -484,6 +484,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 82bc7a854db9d1e44a4a40bc13f40ea9, type: 2}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 4d31a40770295d247ae9c91dd226c0e3, type: 2}
+        m_TargetAssemblyTypeName: GameStatsSO, Assembly-CSharp
+        m_MethodName: ResetGameStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8e75537d895c89b48a22e256998336ef, type: 2}
+        m_TargetAssemblyTypeName: PlayerStatsSO, Assembly-CSharp
+        m_MethodName: ResetPlayerStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &168411588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,6 +1105,7 @@ MonoBehaviour:
   _fadeOutDuration: 2
   _transitionImage: {fileID: 1251771443}
   _musicAudioSource: {fileID: 564057758}
+  _pauseCanvas: {fileID: 0}
 --- !u!4 &293400846
 Transform:
   m_ObjectHideFlags: 0
