@@ -17,6 +17,7 @@ namespace Player
         [SerializeField] private AudioClip _footStepsClip;
         [SerializeField] private AudioClip _armThrowClip;
         [SerializeField] private AudioClip _headbuttClip;
+        [SerializeField] private AudioClip _hitClip;
 
 
         private void Awake()
@@ -52,6 +53,16 @@ namespace Player
         private void PlayClip(AudioClip clip)
         {
             _audioSource.clip = clip;
+            if (!_audioSource.isPlaying)
+                _audioSource.Play();
+        }
+
+        /// <summary>
+        /// Plays the hit audio effect
+        /// </summary>
+        public void PlayHit()
+        {
+            _audioSource.clip = _hitClip;
             if (!_audioSource.isPlaying)
                 _audioSource.Play();
         }

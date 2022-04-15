@@ -11,6 +11,7 @@ namespace Player
         private PlayerController _playerController;
         private PlayerMovement _playerMovement;
         private PlayerActions _playerActions;
+        private PlayerAudio _playerAudio;
         private PlayerVisuals _playerVisuals;
         
         //Reference GameObjects
@@ -50,6 +51,7 @@ namespace Player
             _playerController = GetComponent<PlayerController>();
             _playerMovement = GetComponent<PlayerMovement>();
             _playerActions = GetComponent<PlayerActions>();
+            _playerAudio = GetComponent<PlayerAudio>();
             //Get player's body components
             _playerVisuals = GetComponentInChildren<PlayerVisuals>();
 
@@ -110,6 +112,7 @@ namespace Player
             if (!_isInvicible)
                 _statSO.currentHealth -= damage;
             _playerVisuals.HitEffect();
+            _playerAudio.PlayHit();
         }
 
         /// <summary>

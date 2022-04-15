@@ -15,8 +15,14 @@ namespace Enemy
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            //Uses the Trigger to hit
-            collision.GetComponent<PlayerStats>()?.TakeDamage(_enemyStats.Damage);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                //Uses the Trigger to hit
+                collision.GetComponent<PlayerStats>()?.TakeDamage(_enemyStats.Damage);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce((collision.gameObject.transform.position -
+                    gameObject.transform.position) * 100.0f, ForceMode2D.Impulse);
+            }
+            
         }
     }
 }

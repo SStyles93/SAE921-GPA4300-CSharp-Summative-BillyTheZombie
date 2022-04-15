@@ -254,7 +254,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.4
 --- !u!114 &1593645519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5541,10 +5541,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: be5d7491c88346042b576733920194a8, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 3
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -5753,6 +5753,7 @@ MonoBehaviour:
   _footStepsClip: {fileID: 0}
   _armThrowClip: {fileID: 0}
   _headbuttClip: {fileID: 0}
+  _hitClip: {fileID: 8300000, guid: c05c8cd9d532b2d47a33f0d8298a097b, type: 3}
 --- !u!1 &3500165302731754256
 GameObject:
   m_ObjectHideFlags: 0
