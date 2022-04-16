@@ -52,9 +52,12 @@ namespace Player
         /// <param name="clip">The clip to play</param>
         private void PlayClip(AudioClip clip)
         {
-            _audioSource.clip = clip;
             if (!_audioSource.isPlaying)
+            {
+                _audioSource.clip = clip;
+                _audioSource.pitch = 1.0f;
                 _audioSource.Play();
+            }
         }
 
         /// <summary>
@@ -63,8 +66,8 @@ namespace Player
         public void PlayHit()
         {
             _audioSource.clip = _hitClip;
-            if (!_audioSource.isPlaying)
-                _audioSource.Play();
+            _audioSource.pitch = 3.0f;
+            _audioSource.Play();
         }
     }
 }

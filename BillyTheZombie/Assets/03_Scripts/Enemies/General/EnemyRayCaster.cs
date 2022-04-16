@@ -21,6 +21,7 @@ namespace Enemy
         private float tickTime = 0.0f;
         private Vector3[] _rayDirections;
         private Vector3 _playersLastPosition;
+        private LayerMask rayLayer;
         [SerializeField] private Transform _target;
         [SerializeField] private bool _playerInSight = false;
 
@@ -42,6 +43,14 @@ namespace Enemy
             {
                 _playersLastPosition = transform.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0.0f);
             }
+
+            //Player Layer
+            rayLayer = 6;
+            //Obstacle Layer
+            rayLayer |= 7;
+            //Sets the RayCasting Layer to ignore all except player & obstacle
+            rayLayer = ~rayLayer;
+
         }
 
         private void Update()
@@ -108,7 +117,7 @@ namespace Enemy
         {
             for (int i = 0; i < _rayDirections.Length; i++)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirections[i].normalized, _detectionDistance);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirections[i].normalized, _detectionDistance, rayLayer);
 
                 if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
                 {
@@ -123,7 +132,6 @@ namespace Enemy
                     _target.transform.position = _playersLastPosition;
                 }
             }
-
         }
     }
 }
