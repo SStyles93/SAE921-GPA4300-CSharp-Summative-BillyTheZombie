@@ -73,6 +73,7 @@ namespace Managers
         {
             _player.GetComponent<PlayerController>().GameState(true);
             _player.GetComponent<PlayerController>().play = true;
+            Time.timeScale = 1.0f;
         }
     }
 }

@@ -167,6 +167,7 @@ namespace Player
         public void OnPause(InputValue value)
         {
             play = !play;
+            Time.timeScale = play ? 1.0f : 0.0f;
             GameState(play);
         }
     }
