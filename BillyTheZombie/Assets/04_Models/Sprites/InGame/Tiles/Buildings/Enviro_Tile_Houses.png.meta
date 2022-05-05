@@ -174,6 +174,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1300,6 +1301,57 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Enviro_Tile_Houses_48: 3618748219588260945
+      Enviro_Tile_Houses_20: 1390388431298324055
+      Enviro_Tile_Houses_29: 8769165401163438020
+      Enviro_Tile_Houses_44: -2344077754202140407
+      Enviro_Tile_Houses_38: 8245516852745673786
+      Enviro_Tile_Houses_26: 4302811555858714576
+      Enviro_Tile_Houses_5: -2705250589875732181
+      Enviro_Tile_Houses_2: 6094543854963268462
+      Enviro_Tile_Houses_27: 660759849719991935
+      Enviro_Tile_Houses_1: -3199734476000584639
+      Enviro_Tile_Houses_30: 1156914674084737037
+      Enviro_Tile_Houses_49: 2225878371414257088
+      Enviro_Tile_Houses_43: 5784288468721430253
+      Enviro_Tile_Houses_39: -7613005495295437255
+      Enviro_Tile_Houses_36: -5516754804859162306
+      Enviro_Tile_Houses_40: -4755251453430110074
+      Enviro_Tile_Houses_3: -6968757648805421915
+      Enviro_Tile_Houses_7: -7201012541462718304
+      Enviro_Tile_Houses_22: 5105267863663483661
+      Enviro_Tile_Houses_17: 1385890453864355487
+      Enviro_Tile_Houses_37: 8780523358782167311
+      Enviro_Tile_Houses_34: -1616700120053835402
+      Enviro_Tile_Houses_28: 6018689904783835657
+      Enviro_Tile_Houses_13: -4057930755289804612
+      Enviro_Tile_Houses_11: -8745045728075074545
+      Enviro_Tile_Houses_31: 8459269030767836965
+      Enviro_Tile_Houses_47: 4191560407436976635
+      Enviro_Tile_Houses_19: 2738085658974979429
+      Enviro_Tile_Houses_4: -3998925177096459452
+      Enviro_Tile_Houses_21: 3116038502203413380
+      Enviro_Tile_Houses_0: -4698173900244933060
+      Enviro_Tile_Houses_33: -5659102911896779224
+      Enviro_Tile_Houses_35: -6341492468237321214
+      Enviro_Tile_Houses_45: -2756358511855515661
+      Enviro_Tile_Houses_12: 364967837447600188
+      Enviro_Tile_Houses_8: -7885672908516290479
+      Enviro_Tile_Houses_6: -2050747755489946216
+      Enviro_Tile_Houses_16: 517132269978610563
+      Enviro_Tile_Houses_24: 4829878365470359858
+      Enviro_Tile_Houses_42: 200703736781598853
+      Enviro_Tile_Houses_25: 3992935457445605531
+      Enviro_Tile_Houses_23: 8883655324663651446
+      Enviro_Tile_Houses_46: -1799259206102833306
+      Enviro_Tile_Houses_9: 4052922296540543956
+      Enviro_Tile_Houses_41: 3177687572294573791
+      Enviro_Tile_Houses_32: 2310721459987105822
+      Enviro_Tile_Houses_10: -5621416986544414646
+      Enviro_Tile_Houses_14: -1210208348006922825
+      Enviro_Tile_Houses_18: 5941978302926294881
+      Enviro_Tile_Houses_15: -7806135458540836858
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

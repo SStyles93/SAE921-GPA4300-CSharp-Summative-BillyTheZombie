@@ -144,6 +144,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1060,6 +1061,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Enviro_Tile_Buildings_02_23: 7060268445301432842
+      Enviro_Tile_Buildings_02_22: -5120738745733675320
+      Enviro_Tile_Buildings_02_32: -732365862099583618
+      Enviro_Tile_Buildings_02_8: -699656834620786371
+      Enviro_Tile_Buildings_02_11: 5327137039533389154
+      Enviro_Tile_Buildings_02_28: 6323893337870711847
+      Enviro_Tile_Buildings_02_34: -450460458936980769
+      Enviro_Tile_Buildings_02_9: 3725943910808311653
+      Enviro_Tile_Buildings_02_35: -5494353433028057485
+      Enviro_Tile_Buildings_02_37: -327610139051272749
+      Enviro_Tile_Buildings_02_26: -8473096685497494508
+      Enviro_Tile_Buildings_02_14: 944276452439748524
+      Enviro_Tile_Buildings_02_21: -822599340469996684
+      Enviro_Tile_Buildings_02_2: 3368349400491286618
+      Enviro_Tile_Buildings_02_4: -4343287039576089194
+      Enviro_Tile_Buildings_02_20: -384577516024119630
+      Enviro_Tile_Buildings_02_5: 3987150722090795047
+      Enviro_Tile_Buildings_02_38: 7342766551444666061
+      Enviro_Tile_Buildings_02_1: 8826033831118022449
+      Enviro_Tile_Buildings_02_13: 5331040478977003144
+      Enviro_Tile_Buildings_02_24: 8478557740194758522
+      Enviro_Tile_Buildings_02_33: -6095210857554210245
+      Enviro_Tile_Buildings_02_25: 558704001704450537
+      Enviro_Tile_Buildings_02_12: -9107285385915709645
+      Enviro_Tile_Buildings_02_18: 8888329057872848933
+      Enviro_Tile_Buildings_02_27: 189703944584493690
+      Enviro_Tile_Buildings_02_36: -6678742594633056917
+      Enviro_Tile_Buildings_02_31: -734102176022884906
+      Enviro_Tile_Buildings_02_15: -6087050232824410746
+      Enviro_Tile_Buildings_02_30: 5482738632177661195
+      Enviro_Tile_Buildings_02_17: -6926496440802320222
+      Enviro_Tile_Buildings_02_29: 3528763175572389064
+      Enviro_Tile_Buildings_02_3: 2023702428511706318
+      Enviro_Tile_Buildings_02_16: -7588827703765009491
+      Enviro_Tile_Buildings_02_7: -3277590433917221876
+      Enviro_Tile_Buildings_02_19: 8784533735035856533
+      Enviro_Tile_Buildings_02_10: 4128147501371805166
+      Enviro_Tile_Buildings_02_0: 7867010376820712860
+      Enviro_Tile_Buildings_02_6: 2577147558168048539
+      Enviro_Tile_Buildings_02_39: -3867330343818671005
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
