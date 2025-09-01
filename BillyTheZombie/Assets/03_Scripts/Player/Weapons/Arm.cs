@@ -71,28 +71,28 @@ namespace Player
             switch (armType)
             {
                 case ARMTYPE.BASIC:
-                    _rb.drag = 3.0f;
+                    _rb.linearDamping = 3.0f;
                     _rb.sharedMaterial.bounciness = 0.25f;
                     _pickUpTimer = 0.5f;
                     _damageTimer = 0.5f;
                     break;
 
                 case ARMTYPE.BOOMERANG:
-                    _rb.drag = 0.0f;
+                    _rb.linearDamping = 0.0f;
                     _rb.sharedMaterial.bounciness = 1.0f;
                     _pickUpTimer = 0.25f;
                     _damageTimer = 1.0f;
                     break;
 
                 case ARMTYPE.LAWNMOWER:
-                    _rb.drag = 0.1f;
+                    _rb.linearDamping = 0.1f;
                     _rb.sharedMaterial.bounciness = 0.0f;
                     _rb.mass = 10.0f;
                     _pickUpTimer = 2.0f;
                     break;
 
                 case ARMTYPE.EXPLOSIVE:
-                    _rb.drag = 10.0f;
+                    _rb.linearDamping = 10.0f;
                     _rb.sharedMaterial.bounciness = 0.0f;
                     _pickUpTimer = 1.0f;
                     _damageTimer = 0.5f;
@@ -160,7 +160,7 @@ namespace Player
                         _startDamageCountDown = true;
 
                         //on collision stops the rb from moving
-                        _rb.velocity = Vector2.zero;
+                        _rb.linearVelocity = Vector2.zero;
                         //stops applying force to the object
                         _canMove = false;
                         //Deals damage only once 
@@ -185,7 +185,7 @@ namespace Player
                     {
                         //Deals damage on every collision with an enemy
                         collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                        collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
+                        collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity = _armDirection * _speed;
                         _canBePickedUp = true;
                     }
                     else
@@ -286,7 +286,7 @@ namespace Player
             if (armType == ARMTYPE.LAWNMOWER)
             {
                 collision.gameObject.GetComponent<EnemyStats>()?.TakeDamage(_damage);
-                collision.gameObject.GetComponent<Rigidbody2D>().velocity = _armDirection * _speed;
+                collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity = _armDirection * _speed;
             }
         }
         private void OnTriggerEnter2D(Collider2D collision)
@@ -318,12 +318,12 @@ namespace Player
             {
                 _rb.constraints = RigidbodyConstraints2D.None;
                 //Physic movement
-                _rb.velocity = _armDirection * _speed;
+                _rb.linearVelocity = _armDirection * _speed;
                 transform.Rotate(Vector3.back * Time.deltaTime * 1000f);
             }
             else
             {
-                _rb.velocity = Vector2.zero;
+                _rb.linearVelocity = Vector2.zero;
             }
             //Boomerang return
             if (armType == ARMTYPE.BOOMERANG && !_canMove)
